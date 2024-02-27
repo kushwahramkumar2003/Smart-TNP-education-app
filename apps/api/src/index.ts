@@ -4,6 +4,7 @@ import cors from "cors";
 
 import routes from "./routes";
 
+
 const app: Express = express();
 
 app.use(express.json());
@@ -17,8 +18,8 @@ app.use(
 
 app.use("/api/v1", routes);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+app.get("/", async (req: Request, res: Response) => {
+  res.send("Hello World");
 });
 
 app.listen(config.port, () => {
