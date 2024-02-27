@@ -1,11 +1,12 @@
 version: "3.8"
 services:
   postgres:
-    image: postgres:10.3
+    image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=ramkumar
       - POSTGRES_PASSWORD=HacksRK
+      - POSTGRES_DB=smart-tnp
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
