@@ -1,7 +1,9 @@
-import { ErrorRequestHandler, Request, Response } from "express";
+import { Request, Response } from "express";
 import { prisma } from "../utils/prisma";
 import z from "zod";
 import getNewToken from "../utils/jwtToke";
+import asyncHandler from "../utils/asynchHandler";
+import bcrypt from "bcrypt";
 
 const cookieOptions = {
   httpOnly: true,
@@ -23,40 +25,34 @@ const SignUpSchema = z.object({
   lastName: z.string().optional(),
 });
 
-export const signUp = async (req: Request, res: Response) => {
-  try {
-    const { email, password, firstName, lastName } = SignUpSchema.parse(
-      req.body
-    );
+export const signUp = asyncHandler(async (req: Request, res: Response) => {
+  const { email, password, firstName, lastName } = SignUpSchema.parse(req.body);
 
-    if (await prisma.user.findUnique({ where: { email } })) {
-      throw new Error("Email already exists");
-    }
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password,
-        firstName,
-        lastName,
-      },
-    });
-
-    user.password = "";
-
-    const token = await getNewToken(user);
-
-    res.cookie("token", token, cookieOptions);
-
-    res.status(201).json({
-      user: {
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      },
-    });
-  } catch (error) {
-    console.log("Error in signUp", error?.message);
-    res.status(400).json({ error: error?.message });
+  if (await prisma.user.findUnique({ where: { email } })) {
+    throw new Error("Email already exists");
   }
-};
+
+  const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt(15));
+  const user = await prisma.user.create({
+    data: {
+      email,
+      password: hashedPassword,
+      firstName,
+      lastName,
+    },
+  });
+
+  user.password = "";
+
+  const token = await getNewToken(user);
+
+  res.cookie("token", token, cookieOptions);
+
+  res.status(201).json({
+    user: {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    },
+  });
+});
