@@ -23,7 +23,7 @@ const LoginSchema = z.object({
   password: z.string().min(8),
 });
 
-/**************************************
+/***************************************
  * @kushwahramkumar2003
  * @api {post} /api/auth/register
  * @apiName signUp
@@ -54,6 +54,7 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
   res.cookie("token", token, cookieOptions);
 
   res.status(201).json({
+    message: "User created",
     user: {
       email: user.email,
       firstName: user.firstName,
@@ -91,10 +92,23 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   res.cookie("token", token, cookieOptions);
 
   res.status(200).json({
+    message: "User logged in successfully",
     user: {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
     },
   });
+});
+
+/**************************************
+ * @kushwahramkumar2003
+ * @api {get} /api/auth/logout
+ * @apiName logout
+ * @apiGroup Auth
+ * @apiDescription Logout a user
+ ****************************************/
+export const logout = asyncHandler(async (req: Request, res: Response) => {
+  res.clearCookie("token", cookieOptions);
+  res.status(200).json({ message: "User Logged out successfully" });
 });
