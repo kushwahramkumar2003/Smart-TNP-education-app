@@ -4,6 +4,7 @@ import z from "zod";
 import getNewToken from "../utils/jwtToke";
 import asyncHandler from "../utils/asynchHandler";
 import bcrypt from "bcrypt";
+import { User } from "../types/user";
 
 const cookieOptions = {
   httpOnly: true,
@@ -111,4 +112,22 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 export const logout = asyncHandler(async (req: Request, res: Response) => {
   res.clearCookie("token", cookieOptions);
   res.status(200).json({ message: "User Logged out successfully" });
+});
+
+export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
+  if (!req?.body.id) {
+    throw new Error("User not found");
+  }
+
+  const user = await prisma.user.delete({
+    where: {
+      id: req.body.id,
+    },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  res.status(200).json({ message: "User deleted successfully" });
 });
