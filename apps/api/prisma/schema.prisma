@@ -34,9 +34,7 @@ model StudentProfile{
   website String?
   linkedin String?
   github String?
-  twitter String?
-  instagram String?
-  facebook String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  links String[]
 }
