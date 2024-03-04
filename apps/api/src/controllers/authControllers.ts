@@ -131,3 +131,40 @@ export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
 
   res.status(200).json({ message: "User deleted successfully" });
 });
+
+/**************************************
+ * @kushwahramkumar2003
+ * @api {get} /api/auth/user
+ * @apiName getUser
+ * @apiGroup Auth
+ * @apiDescription Get user details
+ ****************************************/
+export const updatePassword = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { id, password } = req.body;
+    if (!id || !password) {
+      throw new Error("Invalid request");
+    }
+
+    const hashedPassword = await bcrypt.hash(
+      password,
+      await bcrypt.genSalt(15)
+    );
+
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password: hashedPassword,
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+    user.password = "";
+
+    res.status(200).json({ message: "Password updated successfully" });
+  }
+);
