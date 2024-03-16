@@ -12,4 +12,6 @@ const config: Omit<Config, "content"> = {
   },
   plugins: [],
 };
+
+export * from "@repo/ui/tailwind.config"
 export default config;
