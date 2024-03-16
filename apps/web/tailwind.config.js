@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-<<<<<<< HEAD
+import("@repo/ui/tailwind.config");
 export default {
   content: [
     "./index.html",
@@ -11,14 +11,13 @@ export default {
   plugins: [],
 }
 
-=======
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -87,5 +86,5 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
->>>>>>> b62d4d74b875fe8b911146dfc4221587cb46c218
+};
+
