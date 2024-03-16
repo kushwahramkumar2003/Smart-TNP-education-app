@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
   "extends": "@repo/typescript-config/base.json"
+=======
+"extends": "@repo/typescript-config/base.json"
+>>>>>>> b62d4d74b875fe8b911146dfc4221587cb46c218
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 
 import './App.css'
@@ -11,6 +12,16 @@ function App() {
       <SignUp/>
       </>
   )
+=======
+import Home from "./pages/home/Home";
+
+function App() {
+  return (
+    <>
+      <Home />
+    </>
+  );
+>>>>>>> b62d4d74b875fe8b911146dfc4221587cb46c218
 }
 
-export default App
+export default App;

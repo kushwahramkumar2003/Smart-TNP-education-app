@@ -4,7 +4,6 @@ import cors from "cors";
 
 import routes from "./routes";
 
-
 const app: Express = express();
 
 app.use(express.json());
@@ -17,6 +16,8 @@ app.use(
 );
 
 app.use("/api/v1", routes);
+
+
 
 app.get("/", async (req: Request, res: Response) => {
   res.send("Hello World");
