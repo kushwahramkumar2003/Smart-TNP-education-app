@@ -1,5 +1,8 @@
 @tailwind base;
 @tailwind components;
+<<<<<<< HEAD
+@tailwind utilities;
+=======
 @tailwind utilities;
 
 
@@ -75,3 +78,4 @@
     @apply bg-background text-foreground;
   }
 }
+>>>>>>> b62d4d74b875fe8b911146dfc4221587cb46c218
