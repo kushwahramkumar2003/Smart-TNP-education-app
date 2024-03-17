@@ -3,11 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoNotifications } from "react-icons/io5";
 import SideMenuBar from "../core/Dashboard/SideMenuBar.tsx";
 import { Input } from "../ui/input.tsx";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../ui/avatar.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,41 +13,52 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu.tsx";
 import { ModeToggle } from "../reusable/mode-toggle.tsx";
+import SideMenuResponsive from "../core/Dashboard/SideMenuResponsive.tsx";
 
 const HomeLayout = () => {
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
+
       <div className={"flex flex-col  w-full p-4"}>
         <div className={"flex flex-row justify-between"}>
-          <div
+          <SideMenuResponsive />
+
+          <form
+            action=""
             className={
-              "flex flex-row justify-center items-center border px-2 rounded-lg border-slate-200 bg-white]"
+              " flex-row justify-center items-center border px-2 rounded-lg border-slate-200 bg-white lg:flex hidden dark:bg-inherit dark:border-inherit "
             }
           >
-            <CiSearch size={20} className={"bg-white"} />
+            {/* <CiSearch size={20} className={"bg-white"} /> */}
             <Input
               type={"text"}
               placeholder={"Search anything ?"}
-              className={"outline-none border-none"}
+              className={
+                "outline-none border-none focus-within:outline-none focus:outline-none"
+              }
             />
-          </div>
+          </form>
 
-          <div className={"flex flex-row justify-center items-center"}>
+          <div
+            className={
+              "flex flex-row justify-center items-center gap-3 lg:gap-1"
+            }
+          >
             <div className={"rounded-full"}>
               <Avatar>
                 <AvatarImage src="https://avatars.githubusercontent.com/u/68776478?v=4" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
-            <NavigationMenu>
+            <NavigationMenu className="lg:flex hidden">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
                     Ramkumar kushwah
                   </NavigationMenuTrigger>
                   <NavigationMenuContent
-                    className={"flex flex-col gap-3 w-52 h-60"}
+                    className={"flex flex-col gap-3 w-52 h-60 "}
                   >
                     <NavigationMenuLink>Account</NavigationMenuLink>
                     <NavigationMenuLink>Settings</NavigationMenuLink>
@@ -61,7 +68,7 @@ const HomeLayout = () => {
               </NavigationMenuList>
             </NavigationMenu>
 
-            <IoNotifications size={25} />
+            <IoNotifications size={25} className="lg:flex hidden" />
             <ModeToggle />
           </div>
         </div>
