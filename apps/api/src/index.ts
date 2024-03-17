@@ -1,15 +1,28 @@
-import dotenv from "dotenv";
+import config from "./config";
 import express, { Express, Request, Response } from "express";
+import cors from "cors";
 
-dotenv.config();
+import routes from "./routes";
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
+
+app.use("/api/v1", routes);
+
+
+
+app.get("/", async (req: Request, res: Response) => {
+  res.send("Hello World");
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${3000}`);
+app.listen(config.port, () => {
+  console.log(`[server]: Server is running at http://localhost:${config.port}`);
 });

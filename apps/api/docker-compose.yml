@@ -1,14 +1,40 @@
-version: "3.8"
 services:
   postgres:
-    image: postgres:10.3
+    image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=ramkumar
       - POSTGRES_PASSWORD=HacksRK
+      - POSTGRES_DB=smart-tnp
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - 5432:5432
+
+  redis-stack-server:
+    image: redis/redis-stack-server:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data/redis
+
+  smart-tnp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/smart-tnp-server
+    depends_on:
+      - postgres
+      - redis-stack-server
+    environment:
+      - DATABASE_URL=postgresql://ramkumar:HacksRK@localhost:5432/smart-tnp?schema=public
+      - PORT=8080
+      - JWT_SECRET=ee6467528837c9f8fff6279faa9c34ed70429d6ae462b6b7ea14fda6843996be
+    restart: always
+
 volumes:
-  postgres:
+  postgres-data:
+  redis-data:
