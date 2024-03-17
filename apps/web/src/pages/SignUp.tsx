@@ -1,4 +1,4 @@
-import { Button } from "../Components/ui/button";
+import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -6,20 +6,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../Components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "../Components/ui/card";
-import { Input } from "../Components/ui/input";
+} from "../components/ui/form";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Input } from "../components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { VscLoading } from "react-icons/vsc";
 import { useMutation } from "@tanstack/react-query";
-import { Checkbox } from "../Components/ui/checkbox";
+import { Checkbox } from "../components/ui/checkbox";
 import { signUp } from "../services/auth";
-import { ToastAction } from "../Components/ui/toast";
-import { useToast } from "../Components/ui/use-toast";
+import { ToastAction } from "../components/ui/toast";
+import { useToast } from "../components/ui/use-toast";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const SignUpSchema = z.object({
   username: z.string().min(2, {

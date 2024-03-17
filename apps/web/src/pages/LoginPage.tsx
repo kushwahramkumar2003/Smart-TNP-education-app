@@ -1,4 +1,4 @@
-import { Button } from "../Components/ui/button";
+import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -6,24 +6,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../Components/ui/form";
+} from "../components/ui/form";
 import { useDispatch } from "react-redux";
-import { Card, CardContent, CardHeader, CardTitle } from "../Components/ui/card";
-import { Input } from "../Components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Input } from "../components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { VscLoading } from "react-icons/vsc";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../services/auth";
-import { ToastAction } from "../Components/ui/toast";
-import { useToast } from "../Components/ui/use-toast";
+import { ToastAction } from "../components/ui/toast";
+import { useToast } from "../components/ui/use-toast";
 
 import { ReactNode, useState } from "react";
-import { Checkbox } from "../Components/ui/checkbox";
-import { userActions } from "../Components/store/reducers/userReducers";
-import { UserState } from "../Components/store/user/types";
+import { Checkbox } from "../components/ui/checkbox";
 import { Link } from "react-router-dom";
+import { UserState } from "@/store/user/types";
+import { userActions } from "@/store/reducers/userReducers";
 
 export const LoginSchema = z.object({
   username: z.string().min(2, {

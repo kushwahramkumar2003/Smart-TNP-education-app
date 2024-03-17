@@ -6,9 +6,13 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // @ts-ignore
     setUserInfo(state, action) {
       state = action.payload;
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // @ts-ignore
     resetUserInfo(state) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = {};

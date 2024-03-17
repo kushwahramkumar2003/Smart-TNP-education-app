@@ -5,11 +5,8 @@
     "**/*.css"
   ],
   "exports": {
-    "./globals.css": "./dist/globals.css",
     "./postcss.config": "./postcss.config.js",
-    "./tailwind.config": "./tailwind.config.js",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx"
+    "./tailwind.config": "./tailwind.config.js"
   },
   "license": "MIT",
   "scripts": {
@@ -36,7 +33,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.358.0",
