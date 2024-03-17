@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
     "@repo/eslint-config": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
@@ -36,15 +35,12 @@
     "react-router-dom": "^6.22.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
-    "@repo/ui": "*",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
