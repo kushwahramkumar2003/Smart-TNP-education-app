@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { CiSearch } from "react-icons/ci";
 import { IoNotifications } from "react-icons/io5";
 import SideMenuBar from "../core/Dashboard/SideMenuBar.tsx";
 import { Input } from "../ui/input.tsx";
