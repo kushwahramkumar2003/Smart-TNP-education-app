@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { IoNotifications } from "react-icons/io5";
-import SideMenuBar from "../core/Dashboard/SideMenuBar.tsx";
-import { Input } from "../ui/input.tsx";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
+import SideMenuBar from "../../core/Dashboard/SideMenuBar.tsx";
+import { Input } from "../../ui/input.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar.tsx";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,15 +10,15 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu.tsx";
-import { ModeToggle } from "../reusable/mode-toggle.tsx";
-import SideMenuResponsive from "../core/Dashboard/SideMenuResponsive.tsx";
+} from "../../ui/navigation-menu.tsx";
+import { ModeToggle } from "../mode-toggle.tsx";
+import SideMenuResponsive from "../../core/Dashboard/SideMenuResponsive.tsx";
 
 const HomeLayout = () => {
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
-
+ 
       <div className={"flex flex-col  w-full p-4"}>
         <div className={"flex flex-row justify-between"}>
           <SideMenuResponsive />
