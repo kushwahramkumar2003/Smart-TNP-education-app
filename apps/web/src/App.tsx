@@ -2,6 +2,8 @@ import { ThemeProvider } from "./components/reusable/theme-provider.tsx";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "./components/reusable/layout/HomeLayout.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
+import Login from "./pages/LoginPage.tsx";
+import SignUp from "./pages/SignUp.tsx";
 
 function App() {
   return (
