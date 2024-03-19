@@ -2,7 +2,7 @@ import { ThemeProvider } from "./components/reusable/theme-provider.tsx";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "./components/layout/HomeLayout.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
-import Goals from "./pages/Dashboard/screens/goals/Goals.tsx";
+import Goals from "./pages/Goals/Goals.tsx";
 
 function App() {
   return (
