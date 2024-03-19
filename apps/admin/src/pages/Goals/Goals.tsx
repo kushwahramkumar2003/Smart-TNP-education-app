@@ -163,7 +163,7 @@ const Goals = () => {
           <Button>+ Create New Goals</Button>
         </div>
         <div className="grid grid-cols-5 max-md:grid-cols-3">
-          {goalsStatusAndTypes.map((goal, index) => (
+          {goalsStatusAndTypes.map((goal) => (
             <div
               className="flex flex-row justify-center items-center gap-3 max-sm:flex-col"
               key={goal.type}
