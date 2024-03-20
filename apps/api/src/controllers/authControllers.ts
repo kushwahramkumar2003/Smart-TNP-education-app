@@ -4,7 +4,6 @@ import z from "zod";
 import getNewToken from "../utils/jwtToke";
 import asyncHandler from "../utils/asynchHandler";
 import bcrypt from "bcrypt";
-import { User } from "../types/user";
 
 const cookieOptions = {
   httpOnly: true,
@@ -15,8 +14,9 @@ const cookieOptions = {
 const SignUpSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-  firstName: z.string(),
-  lastName: z.string().optional(),
+  name: z.string().min(3),
+  role: z.enum(["ADMIN", "STUDENT", "TEACHER"]).default("STUDENT"),
+  token: z.string().optional(),
 });
 
 const LoginSchema = z.object({
@@ -32,10 +32,32 @@ const LoginSchema = z.object({
  * @apiDescription Sign up a new user
  ****************************************/
 export const signUp = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password, firstName, lastName } = SignUpSchema.parse(req.body);
+  const { email, password, name, role, token } = SignUpSchema.parse(req.body);
 
   if (await prisma.user.findUnique({ where: { email } })) {
     throw new Error("Email already exists");
+  }
+
+  if (role === "TEACHER" && !token) {
+    throw new Error("Token is required");
+  }
+
+  if (role === "TEACHER") {
+    const teacherToken = await prisma.teacherRegestrationToken.findFirst({
+      where: {
+        token,
+      },
+    });
+
+    if (!teacherToken) {
+      throw new Error("Invalid token");
+    }
+
+    await prisma.teacherRegestrationToken.delete({
+      where: {
+        token,
+      },
+    });
   }
 
   const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt(15));
@@ -43,23 +65,23 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
     data: {
       email,
       password: hashedPassword,
-      firstName,
-      lastName,
+      name,
+      role,
     },
   });
 
   user.password = "";
 
-  const token = await getNewToken(user);
+  const jwtToken = await getNewToken(user);
 
-  res.cookie("token", token, cookieOptions);
+  res.cookie("token", jwtToken, cookieOptions);
 
   res.status(201).json({
     message: "User created",
     user: {
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name: user.name,
+      role,
     },
   });
 });
@@ -96,8 +118,8 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     message: "User logged in successfully",
     user: {
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name: user.name,
+      role:user.role
     },
   });
 });
@@ -168,4 +190,3 @@ export const updatePassword = asyncHandler(
     res.status(200).json({ message: "Password updated successfully" });
   }
 );
-
