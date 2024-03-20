@@ -7,11 +7,12 @@ import crypto from "crypto";
 const TokenSchema = z.object({
   name: string().min(3),
   email: string().email(),
+  role: z.enum(["ADMIN", "STUDENT", "TEACHER"]).default("TEACHER"),
 });
 
 export const generateTeacherRegeToken = asyncHandler(
   async (req: Request, res: Response) => {
-    const { name, email } = TokenSchema.parse(req.body);
+    const { name, email, role } = TokenSchema.parse(req.body);
     if (await prisma.teacherRegestrationToken.findFirst({ where: { email } })) {
       throw new Error("Token already exists");
     }
@@ -24,6 +25,7 @@ export const generateTeacherRegeToken = asyncHandler(
         name,
         email,
         token,
+        role,
       },
     });
 

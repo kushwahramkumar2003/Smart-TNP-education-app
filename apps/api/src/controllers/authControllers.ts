@@ -11,12 +11,16 @@ const cookieOptions = {
   sameSite: true,
 };
 
-const SignUpSchema = z.object({
+const AdminTeacherSignUpSchema = z.object({
+  password: z.string().min(8),
+  token: z.string(),
+});
+
+const StudentSignUpSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
   name: z.string().min(3),
   role: z.enum(["ADMIN", "STUDENT", "TEACHER"]).default("STUDENT"),
-  token: z.string().optional(),
 });
 
 const LoginSchema = z.object({
@@ -32,32 +36,64 @@ const LoginSchema = z.object({
  * @apiDescription Sign up a new user
  ****************************************/
 export const signUp = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password, name, role, token } = SignUpSchema.parse(req.body);
+  // const { email, password, name, role, token } = SignUpSchema.parse(req.body);
 
-  if (await prisma.user.findUnique({ where: { email } })) {
-    throw new Error("Email already exists");
-  }
-
-  if (role === "TEACHER" && !token) {
-    throw new Error("Token is required");
-  }
-
-  if (role === "TEACHER") {
-    const teacherToken = await prisma.teacherRegestrationToken.findFirst({
+  if (req.body.token) {
+    const { password, token } = AdminTeacherSignUpSchema.parse(req.body);
+    const teacher = await prisma.teacherRegestrationToken.findFirst({
       where: {
         token,
       },
     });
 
-    if (!teacherToken) {
+    if (!teacher) {
       throw new Error("Invalid token");
     }
+
+    if (await prisma.user.findUnique({ where: { email: teacher.email } })) {
+      throw new Error("Email already exists");
+    }
+
+    const hashedPassword = await bcrypt.hash(
+      password,
+      await bcrypt.genSalt(15)
+    );
+    const user = await prisma.user.create({
+      data: {
+        email: teacher.email,
+        password: hashedPassword,
+        name: teacher.name,
+        role: teacher.role,
+      },
+    });
 
     await prisma.teacherRegestrationToken.delete({
       where: {
         token,
       },
     });
+
+    user.password = "";
+
+    const jwtToken = await getNewToken(user);
+
+    res.cookie("token", jwtToken, cookieOptions);
+
+    res.status(201).json({
+      message: "User created",
+      user: {
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+    });
+    return;
+  }
+
+  const { email, password, name } = StudentSignUpSchema.parse(req.body);
+
+  if (await prisma.user.findUnique({ where: { email } })) {
+    throw new Error("Email already exists");
   }
 
   const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt(15));
@@ -66,7 +102,6 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       name,
-      role,
     },
   });
 
@@ -81,7 +116,7 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
     user: {
       email: user.email,
       name: user.name,
-      role,
+      role: user.role,
     },
   });
 });
@@ -119,7 +154,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     user: {
       email: user.email,
       name: user.name,
-      role:user.role
+      role: user.role,
     },
   });
 });

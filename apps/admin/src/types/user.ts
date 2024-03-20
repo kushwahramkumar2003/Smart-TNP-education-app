@@ -1,11 +1,10 @@
 interface UserState {
-  user: {
-    name: string;
-    email: string;
-    loggedIn: boolean;
-    avatar: string;
-    username: string;
-  };
+  name: string;
+  email: string;
+  loggedIn: boolean;
+  avatar: string;
+  username: string;
+  role: string;
 }
 
 export interface RootState {
