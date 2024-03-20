@@ -5,9 +5,11 @@ const userSlice = createSlice({
   name: "user",
   initialState: {},
   reducers: {
+    // @ts-ignore
     setUserInfo(state, action) {
       state = action.payload;
     },
+    // @ts-ignore
     resetUserInfo(state) {
       state = {};
     },
