@@ -30,9 +30,9 @@ export const useFilterGoalsData = () => {
 const FilterButtons: React.FC = () => {
   const {
     selectedData,
-    selectedDuration,
+    // selectedDuration,
     handleDataSelection,
-    handleDurationSelection,
+    // handleDurationSelection,
   } = useFilterGoalsData();
 
   const dataButtons: DataButton[] = [
@@ -42,7 +42,7 @@ const FilterButtons: React.FC = () => {
     "Profesional",
     "Live Event",
   ];
-  const durationButtons: DurationButton[] = ["1W", "1M", "1Y"];
+  // const durationButtons: DurationButton[] = ["1W", "1M", "1Y"];
 
   return (
     <div className="flex flex-row justify-between max-md:flex-col max-md:gap-4">

@@ -50,11 +50,11 @@ const HomeLayout = () => {
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
-            <NavigationMenu className="lg:flex hidden">
+            <NavigationMenu className="lg:flex hidden bg-[#F1F2F4]">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
-                    Ramkumar kushwah
+                    Pankaj Prajapati
                   </NavigationMenuTrigger>
                   <NavigationMenuContent
                     className={"flex flex-col gap-3 w-52 h-60 "}

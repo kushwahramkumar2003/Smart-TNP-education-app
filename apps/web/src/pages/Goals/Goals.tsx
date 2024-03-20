@@ -1,15 +1,14 @@
+import { Button } from "../../components/ui/button";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineChartPie } from "react-icons/hi2";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineTaskAlt } from "react-icons/md";
-// import { Button } from "@/components/ui/button";
 import FilterButtons, {
   useFilterGoalsData,
 } from "../../hooks/useFilterGoalsData";
 import { useEffect } from "react";
-// import GoalDataTable from "../../components/core/Goals/GoalDataTable";
-import GoalDataTable from "../../components/core/Goals/GoalDataTable.tsx";
+import GoalDataTable from "../../components/core/Goals/GoalDataTable";
 import {
   Table,
   TableBody,
@@ -89,7 +88,7 @@ const goalsStatusAndTypes = [
 
 type GoalTypes = "Personal" | "Financial" | "Profesional" | "Live Event";
 type GoalStatus = "On-Going" | "Complete" | "In Progress" | "Pending";
-export interface DashboardItems {
+export interface IGoals {
   name: string;
   type: GoalTypes;
   start: Date;
@@ -97,7 +96,7 @@ export interface DashboardItems {
   status: GoalStatus;
 }
 
-const goalsData: DashboardItems[] = [
+const goalsData: IGoals[] = [
   {
     name: "Cooking class",
     type: "Personal",
@@ -149,7 +148,7 @@ const goalsData: DashboardItems[] = [
   },
 ];
 
-const DashboardItems = () => {
+const Goals = () => {
   const { selectedData, selectedDuration } = useFilterGoalsData();
   useEffect(() => {
     console.log("selectedData", selectedData);
@@ -160,15 +159,15 @@ const DashboardItems = () => {
     <div className="flex flex-col gap-6 overflow-y-scroll max-h-screen max-md:mb-8 max-sm:mb-6 pb-8">
       <div className="flex gap-2 flex-col mt-4">
         <div className="flex flex-row justify-between">
-          {/* <p className="text-2xl font-semibold">My Courses</p> */}
-          {/* <Button>+ Create New Goals</Button> */}
+          <p className="text-2xl font-semibold">My Courses</p>
+          <Button>+ Create New Goals</Button>
         </div>
-        <div className=" rounded-xl mr-6 py-6 bg-white grid grid-cols-5 max-md:grid-cols-3">
+        <div className="grid grid-cols-5 max-md:grid-cols-3">
           {goalsStatusAndTypes.map((goal) => (
-              <div
+            <div
               className="flex flex-row justify-center items-center gap-3 max-sm:flex-col"
               key={goal.type}
-              >
+            >
               {goal.icon}
               <div className="flex flex-col justify-center items-center">
                 <p className="text-lg opacity-35">{goal.type}</p>
@@ -178,14 +177,13 @@ const DashboardItems = () => {
           ))}
         </div>
       </div>
-    <p className={"text-2xl font-semibold"}>Nearby Goals</p>
-      <div className="flex flex-col  lg:px-0 md:px-6 sm:px-2">
+      <div className="flex flex-col lg:px-8 md:px-6 sm:px-2">
         <FilterButtons />
-        <div className=" py-4 flex flex-col px-1 gap-1">
-          <Table className="bg-white my-2">
-            <TableCaption className="">A list of your recent invoices.</TableCaption>
-            <TableHeader className="bg-white">
-              <TableRow className="bg-[#F1F2F4]">
+        <div className="flex flex-col px-1 gap-1">
+          <Table>
+            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableHeader>
+              <TableRow>
                 <TableHead className="">Name</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Start</TableHead>
@@ -232,4 +230,4 @@ const DashboardItems = () => {
   );
 };
 
-export default DashboardItems;
+export default Goals;
