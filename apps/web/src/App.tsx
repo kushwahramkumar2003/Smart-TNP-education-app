@@ -4,6 +4,7 @@ import HomeLayout from "./components/reusable/layout/HomeLayout.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import Login from "./pages/LoginPage.tsx";
 import SignUp from "./pages/SignUp.tsx";
+import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
 function App() {
   return (
@@ -11,7 +12,6 @@ function App() {
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
-          <Route path={"/goals"} element={<>To implemented goals</>} />
           <Route path={"/schedule"} element={<>To implemented schedule</>} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<>To implemented course</>} />
