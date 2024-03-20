@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": " npm run prisma:prod:migrate && npm run prisma:prod:generate && npx tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "npm run prisma:dev:migrate && npm run prisma:dev:generate && nodemon src/index.ts",
+    "prisma:dev:migrate": "prisma migrate dev --name init",
+    "prisma:dev:generate": "prisma generate",
+    "prisma:prod:migrate": "prisma migrate deploy",
+    "prisma:prod:generate": "prisma generate",
+    "postinstall": "npm run prisma:prod:generate"
   },
   "author": "Ramkumar kushwah",
   "license": "MIT",
