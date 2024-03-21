@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
-          {/* <Route path={"/goals"} element={<Goals />} /> */}
+          <Route path={"/goals"} element={<Goals />} />
           <Route path={"/schedule"} element={<>To implemented schedule</>} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<>To implemented course</>} />
