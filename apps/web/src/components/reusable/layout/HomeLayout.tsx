@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { IoNotifications } from "react-icons/io5";
-import SideMenuBar from "../core/Dashboard/SideMenuBar.tsx";
-import { Input } from "../ui/input.tsx";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar.tsx";
+import SideMenuBar from "../../core/Dashboard/SideMenuBar.tsx";
+import { Input } from "../../ui/input.tsx";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar.tsx";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,15 +10,15 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu.tsx";
-import { ModeToggle } from "../reusable/mode-toggle.tsx";
-import SideMenuResponsive from "../core/Dashboard/SideMenuResponsive.tsx";
+} from "../../ui/navigation-menu.tsx";
+import { ModeToggle } from "../mode-toggle.tsx";
+import SideMenuResponsive from "../../core/Dashboard/SideMenuResponsive.tsx";
 
 const HomeLayout = () => {
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
-
+ 
       <div className={"flex flex-col  w-full p-4"}>
         <div className={"flex flex-row justify-between"}>
           <SideMenuResponsive />
@@ -50,11 +50,11 @@ const HomeLayout = () => {
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
-            <NavigationMenu className="lg:flex hidden">
+            <NavigationMenu className="lg:flex hidden bg-[#F1F2F4]">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
-                    Ramkumar kushwah
+                    Pankaj Prajapati
                   </NavigationMenuTrigger>
                   <NavigationMenuContent
                     className={"flex flex-col gap-3 w-52 h-60 "}
