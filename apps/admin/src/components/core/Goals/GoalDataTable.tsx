@@ -1,4 +1,4 @@
-import { IGoals } from "../../../components/core/Goals/";
+import { IGoals } from "../../../pages/Goals/Goals";
 import {
   DropdownMenu,
   DropdownMenuContent,
