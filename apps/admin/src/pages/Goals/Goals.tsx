@@ -156,10 +156,10 @@ const Goals = () => {
   }, [selectedData, selectedDuration]);
 
   return (
-    <div className="flex flex-col gap-6 overflow-y-scroll max-h-screen max-md:mb-8 max-sm:mb-6 pb-8">
+    <div className="flex flex-col gap-6  max-h-screen max-md:mb-8 max-sm:mb-6 pb-8">
       <div className="flex gap-2 flex-col mt-4">
         <div className="flex flex-row justify-between">
-          <p className="text-2xl font-semibold">My Courses</p>
+          <p className="text-2xl font-semibold">Goals</p>
           <Button>+ Create New Goals</Button>
         </div>
         <div className="grid grid-cols-5 max-md:grid-cols-3">
@@ -177,9 +177,9 @@ const Goals = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col lg:px-8 md:px-6 sm:px-2">
+      <div className="flex flex-col lg:px-8 md:px-6 sm:px-2 overflow-y-scroll">
         <FilterButtons />
-        <div className="flex flex-col px-1 gap-1">
+        <div className="flex flex-col px-1 gap-1 ">
           <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
