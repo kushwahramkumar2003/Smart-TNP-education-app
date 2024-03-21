@@ -46,7 +46,7 @@ const FilterButtons: React.FC = () => {
 
   return (
     <div className="flex flex-row justify-between max-md:flex-col max-md:gap-4">
-      <div className="flex flex-row gap-3 dark:text-white">
+      <div className="flex flex-row gap-3 dark:text-white overflow-x-auto">
         {dataButtons.map((data) => (
           <Button
             key={data}
