@@ -13,21 +13,21 @@ import GoalDataTable from "../../components/core/Goals/GoalDataTable.tsx";
 import {
   Table,
   TableBody,
-  TableCaption,
+//   TableCaption,
   TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../../components/ui/pagination";
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "../../components/ui/pagination";
 import { cn } from "../../lib/utils";
 const goalsStatusAndTypes = [
   {
@@ -126,27 +126,27 @@ const goalsData: DashboardItems[] = [
     deadline: new Date(),
     status: "On-Going",
   },
-  {
-    name: "Cooking class",
-    type: "Profesional",
-    start: new Date(),
-    deadline: new Date(),
-    status: "Complete",
-  },
-  {
-    name: "Cooking class",
-    type: "Live Event",
-    start: new Date(),
-    deadline: new Date(),
-    status: "Pending",
-  },
-  {
-    name: "Cooking class",
-    type: "Personal",
-    start: new Date(),
-    deadline: new Date(),
-    status: "Pending",
-  },
+//   {
+//     name: "Cooking class",
+//     type: "Profesional",
+//     start: new Date(),
+//     deadline: new Date(),
+//     status: "Complete",
+//   },
+//   {
+//     name: "Cooking class",
+//     type: "Live Event",
+//     start: new Date(),
+//     deadline: new Date(),
+//     status: "Pending",
+//   },
+//   {
+//     name: "Cooking class",
+//     type: "Personal",
+//     start: new Date(),
+//     deadline: new Date(),
+//     status: "Pending",
+//   },
 ];
 
 const DashboardItems = () => {
@@ -179,11 +179,11 @@ const DashboardItems = () => {
         </div>
       </div>
     <p className={"text-2xl font-semibold"}>Nearby Goals</p>
-      <div className="flex flex-col  lg:px-0 md:px-6 sm:px-2">
+      <div className="pb-32 flex flex-col  lg:px-0 md:px-6 sm:px-2">
         <FilterButtons />
         <div className=" py-4 flex flex-col px-1 gap-1">
           <Table className="bg-white my-2">
-            <TableCaption className="">A list of your recent invoices.</TableCaption>
+            {/* <TableCaption className="">A list of your recent invoices.</TableCaption> */}
             <TableHeader className="bg-white">
               <TableRow className="bg-[#F1F2F4]">
                 <TableHead className="">Name</TableHead>
@@ -199,31 +199,12 @@ const DashboardItems = () => {
                 <GoalDataTable goal={goal} key={goal.name} />
               ))}
             </TableBody>
-            <TableFooter className="flex flex-row justify-center items-center w-full">
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious href="#" />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#" isActive>
-                      2
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext href="#" />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
+            <div className="place-self-center w-full">
+            <p className="px-4 cursor-pointer pb-2  font-semibold text-lg">View All</p>
+            </div>
+              
+            <TableFooter className="flex flex-row justify-center items-center ">
+      
             </TableFooter>
           </Table>
         </div>
@@ -233,3 +214,29 @@ const DashboardItems = () => {
 };
 
 export default DashboardItems;
+
+//still no need -- > 
+{/* <Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>
+        2
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination> */}

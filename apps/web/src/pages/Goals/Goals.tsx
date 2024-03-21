@@ -191,6 +191,11 @@ const Goals = () => {
                 <TableHead className="">Status</TableHead>
                 <TableHead className="">Action</TableHead>
               </TableRow>
+            {/* <div className="mt-4">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+          View All
+        </button>
+      </div> */}
             </TableHeader>
             <TableBody className={cn(null, "max-h-screen overflow-y-auto")}>
               {goalsData.map((goal) => (
@@ -231,3 +236,140 @@ const Goals = () => {
 };
 
 export default Goals;
+
+
+
+// import React from 'react';
+// import { useTable } from 'react-table';
+// import 'tailwindcss/tailwind.css';
+
+// const Table = ({ data }) => {
+//   const columns = [
+//     {
+//       Header: 'Type',
+//       accessor: 'type',
+//     },
+//     {
+//       Header: 'Name',
+//       accessor: 'name',
+//     },
+//     {
+//       Header: 'Start',
+//       accessor: 'start',
+//     },
+//     {
+//       Header: 'Deadline',
+//       accessor: 'deadline',
+//     },
+//     {
+//       Header: 'Status',
+//       accessor: 'status',
+//     },
+//     {
+//       Header: 'Action',
+//       accessor: 'action',
+//     },
+//   ];
+
+//   const {
+//     getTableProps,
+//     getTableBodyProps,
+//     headerGroups,
+//     rows,
+//     prepareRow,
+//   } = useTable({ columns, data });
+
+//   return (
+//     <div>
+//       <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
+//         <thead className="bg-gray-800">
+//           {headerGroups.map((headerGroup) => (
+//             <tr {...headerGroup.getHeaderGroupProps()}>
+//               {headerGroup.headers.map((column) => (
+//                 <th
+//                   {...column.getHeaderProps()}
+//                   className="px-4 py-2 text-left text-sm font-semibold text-white"
+//                 >
+//                   {column.render('Header')}
+//                 </th>
+//               ))}
+//             </tr>
+//           ))}
+//         </thead>
+//         <tbody {...getTableBodyProps()}>
+//           {rows.map((row) => {
+//             prepareRow(row);
+//             return (
+//               <tr {...row.getRowProps()}>
+//                {row.cells.map((cell) => (
+//                   <td
+//                     {...cell.getCellProps()}
+//                     className={`px-4 py-2 ${
+//                       cell.column.id === 'status'
+//                         ? cell.value === 'Complete'
+//                           ? 'bg-green-500'
+//                           : 'bg-blue-500'
+//                         : ''
+//                     }`}
+//                   >
+//                     {cell.render('Cell')}
+//                   </td>
+//                 ))}
+//               </tr>
+//             );
+//           })}
+//         </tbody>
+//       </table>
+//       <div className="mt-4">
+//         <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+//           View All
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// const Page = () => {
+//   const data = [
+//     {
+//       type: 'Personal',
+//       name: 'Cooking Class Mediterania',
+//       start: '21 Dec, 2020',
+//       deadline: '21 Jan, 2021',
+//       status: 'On Going',
+//       action: '-',
+//     },
+//     {
+//       type: 'Profesional',
+//       name: 'Final Exam Thesis',
+//       start: '21 Dec, 2020',
+//       deadline: '21 Jan, 2021',
+//       status: 'Complete',
+//       action: 'View',
+//     },
+//     {
+//       type: 'Live Event',
+//       name: 'Major Lazer Concert Live',
+//       start: '21 Dec, 2020',
+//       deadline: '21 Jan, 2021',
+//       status: 'Complete',
+//       action: 'View',
+//     },
+//     {
+//       type: 'Finance',
+//       name: 'Buy Air Jordan 1',
+//       start: '21 Dec, 2020',
+//       deadline: '21 Jan, 2021',
+//       status: 'In Progress',
+//       action: 'Buy',
+//     },
+//   ];
+
+//   return (
+//     <div className="p-4">
+//       <Table data={data} />
+//     </div>
+//   );
+// };
+
+// export default Page;
