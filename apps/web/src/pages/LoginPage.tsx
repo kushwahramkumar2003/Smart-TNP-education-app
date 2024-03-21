@@ -1,4 +1,4 @@
-import { Button } from "../components/ui/button";
+import { Button } from  "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -177,3 +177,13 @@ const Login = (): ReactNode => {
 };
 
 export default Login;
+
+// import React from 'react';
+
+// export default function Login() {
+//   return (
+//     <div>
+//       I'm Login page
+//     </div>
+//   );
+// }

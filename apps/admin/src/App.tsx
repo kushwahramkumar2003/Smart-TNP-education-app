@@ -1,8 +1,8 @@
 import { ThemeProvider } from "./components/reusable/theme-provider.tsx";
 import { Route, Routes } from "react-router-dom";
-import HomeLayout from "./components/layout/HomeLayout.tsx";
+import HomeLayout from "./components/reusable/layout/HomeLayout.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
-import Goals from "./pages/Goals/Goals.tsx";
+// import Goals from "./pages/Goals/Goals.tsx";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
-          <Route path={"/goals"} element={<Goals />} />
+          {/* <Route path={"/goals"} element={<Goals />} /> */}
           <Route path={"/schedule"} element={<>To implemented schedule</>} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<>To implemented course</>} />

@@ -108,7 +108,7 @@ const SignUp = () => {
                         <FormControl>
                           <Input
                             type="text"
-                            placeholder="Type full name (Optional)"
+                            placeholder="Enter your name "
                             {...field}
                           />
                         </FormControl>
@@ -127,7 +127,7 @@ const SignUp = () => {
                         <FormControl>
                           <Input
                             type="text"
-                            placeholder="Type username"
+                            placeholder="Enter username"
                             {...field}
                           />
                         </FormControl>
@@ -146,7 +146,7 @@ const SignUp = () => {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="Type your email"
+                            placeholder="Enter your email"
                             {...field}
                           />
                         </FormControl>
