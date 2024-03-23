@@ -1,4 +1,3 @@
-import { Button } from "../../components/ui/button";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineChartPie } from "react-icons/hi2";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -161,7 +160,7 @@ const Goals = () => {
       <div className="flex gap-2 flex-col mt-4">
         <div className="flex flex-row justify-between">
           <p className="text-2xl font-semibold">Goals</p>
-          
+
           <CreateNewGoal />
         </div>
         <div className="grid grid-cols-5 max-md:grid-cols-3">
