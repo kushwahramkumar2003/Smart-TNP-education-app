@@ -10,15 +10,31 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "../../ui/navigation-menu.tsx";
 import { ModeToggle } from "../mode-toggle.tsx";
 import SideMenuResponsive from "../../core/Dashboard/SideMenuResponsive.tsx";
+import { useSelector } from "react-redux";
+import { RootState, UserState } from "../../../types/user.ts";
+import { getUserSelector } from "../../../store/slices/userReducers.ts";
+
+function extractInitials(fullName: string): string {
+  let words = fullName.split(" ");
+  let initials = "";
+  for (let i = 0; i < words.length; i++) {
+    initials += words[i].charAt(0);
+  }
+  return initials;
+}
 
 const HomeLayout = () => {
+  const user = useSelector(
+    (state: RootState): UserState => getUserSelector(state)
+  );
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
- 
+
       <div className={"flex flex-col  w-full p-4"}>
         <div className={"flex flex-row justify-between"}>
           <SideMenuResponsive />
@@ -46,22 +62,33 @@ const HomeLayout = () => {
           >
             <div className={"rounded-full"}>
               <Avatar>
-                <AvatarImage src="https://avatars.githubusercontent.com/u/68776478?v=4" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src={user.avatar} />
+                <AvatarFallback>{extractInitials(user.name)}</AvatarFallback>
               </Avatar>
             </div>
             <NavigationMenu className="lg:flex hidden">
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    Ramkumar kushwah
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent
-                    className={"flex flex-col gap-3 w-52 h-60 "}
-                  >
-                    <NavigationMenuLink>Account</NavigationMenuLink>
-                    <NavigationMenuLink>Settings</NavigationMenuLink>
-                    <NavigationMenuLink>Sign Out</NavigationMenuLink>
+                  <NavigationMenuTrigger>{user.name}</NavigationMenuTrigger>
+                  <NavigationMenuContent className={"flex flex-col "}>
+                    <NavigationMenuLink
+                      href="/profile"
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Account
+                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                      href="/settings"
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Settings
+                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                      href="/signout"
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Sign Out
+                    </NavigationMenuLink>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
