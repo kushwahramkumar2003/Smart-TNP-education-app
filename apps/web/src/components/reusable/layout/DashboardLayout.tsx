@@ -2,6 +2,7 @@ import React from 'react';
 import { TfiMenuAlt } from "react-icons/tfi";
 import { RxDashboard } from "react-icons/rx";
 import Class from '../../ui/Class'
+import CalendarChec from '../Calender';
  function DashboardLayout() {
   return (
     <>
@@ -21,7 +22,10 @@ import Class from '../../ui/Class'
                    
                 </div>
             </div>
+            <div className='flex flex-row gap-2 justify-between p-4'>
           <Class></Class>
+          <CalendarChec ></CalendarChec>
+          </div>
     </div>
          </>
 

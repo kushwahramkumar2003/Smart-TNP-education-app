@@ -17,37 +17,23 @@
 //     </div>
 //     );
 // }
-import "src/App.css";
-import Actions from "./Partials/Actions";
-import CalendarComponent from "./Partials/Calendar";
-import Title from "./Partials/Title";
-
-interface ICalendarProps {
-  setDate: any;
-  date: any;
-  selectRange: boolean;
-  setSelectRange: any;
-}
-
-const CustomCalendar = (props: ICalendarProps) => {
-  const { setDate, date, selectRange, setSelectRange } = props;
+import { useState } from "react";
+import "../CalenderComponents/style.css";
+import { Calendar } from "../../components/CalenderComponents/index";
+import { CalendarCheck } from "lucide-react";
+function CalendarChec() {
+  const [date, setDate] = useState<any>(new Date());
+  const [selectRange, setSelectRange] = useState<boolean>(false);
   return (
-    <div style={{ width: "80vw", display: "grid", placeItems: "center" }}>
-      <Title title={"Calendar"} />
-      <CalendarComponent
-        setDate={setDate}
+    <div className="" style={{ display: "grid", placeItems: "center" }}>
+      <Calendar
         date={date}
-        selectRange={selectRange}
-      />
-      <Actions
         setDate={setDate}
-        date={date}
         selectRange={selectRange}
         setSelectRange={setSelectRange}
       />
     </div>
   );
-};
+}
 
-export default CustomCalendar;
-
+export default CalendarChec;
