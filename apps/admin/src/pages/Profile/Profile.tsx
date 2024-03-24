@@ -3,11 +3,12 @@ import { FaInstagram } from "react-icons/fa6";
 import { CiFacebook } from "react-icons/ci";
 import { RxTwitterLogo } from "react-icons/rx";
 import { CiLinkedin } from "react-icons/ci";
+import ProfileDescription from "../../components/core/Profile/ProfileDescription";
 
 const Profile = () => {
   return (
     <div className="w-full">
-      <div className="w-full flex flex-row rounded-xl">
+      <div className="w-full flex flex-row rounded-xl h-auto">
         <div className="flex flex-col w-full absolute">
           <img
             src="https://t3.ftcdn.net/jpg/06/71/07/40/240_F_671074077_KpgkMGWOEFOVs5yo3ZMGMA3J88288A4N.jpg"
@@ -34,6 +35,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      
+        <ProfileDescription />
+     
     </div>
   );
 };
