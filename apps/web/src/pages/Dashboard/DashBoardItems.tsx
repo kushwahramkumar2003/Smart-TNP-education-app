@@ -212,7 +212,7 @@ const DashboardItems = () => {
           </Table>
       <p className={"text-2xl py-3 font-semibold"}>Nearby Goals</p>
       <DashboardLayout></DashboardLayout>
-      <Calendar></Calendar>
+      {/* <Calendar></Calendar> */}
         </div>
       </div>
     </div>
