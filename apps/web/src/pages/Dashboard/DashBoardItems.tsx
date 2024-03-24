@@ -28,7 +28,10 @@ import {
 //   PaginationNext,
 //   PaginationPrevious,
 // } from "../../components/ui/pagination";
+import DashboardLayout from "@/components/reusable/layout/DashboardLayout.tsx";
 import { cn } from "../../lib/utils";
+// import { Calendar } from "lucide-react";
+import Calendar  from "../../components/reusable/Calender.tsx";
 const goalsStatusAndTypes = [
   {
     icon: (
@@ -207,9 +210,13 @@ const DashboardItems = () => {
       
             </TableFooter>
           </Table>
+      <p className={"text-2xl py-3 font-semibold"}>Nearby Goals</p>
+      <DashboardLayout></DashboardLayout>
+      <Calendar></Calendar>
         </div>
       </div>
     </div>
+    
   );
 };
 
@@ -240,3 +247,5 @@ export default DashboardItems;
     </PaginationItem>
   </PaginationContent>
 </Pagination> */}
+
+
