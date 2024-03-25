@@ -27,7 +27,7 @@
 
 // export default LiveClasses;
 
-import React from 'react';
+// import React from 'react';
 import { ClassData } from '../data/ClassData';
 
 function LiveClasses() {

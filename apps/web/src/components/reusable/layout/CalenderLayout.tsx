@@ -32,16 +32,28 @@
 
 // export default CustomCalendar;
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import "../../CalenderComponents/style.css";
 import CalendarComponent from "../../CalenderComponents/Calender";
 import Actions from "../../CalenderComponents/Actions";
-import Title from "../../CalenderComponents/Title";
+// import Title from "../../CalenderComponents/Title";
 
-const CustomCalendar = () => {
-  const [date, setDate] = useState(new Date());
-  const [selectRange, setSelectRange] = useState(false);
+interface CustomCalendarProps {
+  date: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
+  selectRange: boolean;
+  setSelectRange: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const CustomCalendar: React.FC<CustomCalendarProps> = ({
+  date,
+  setDate,
+  selectRange,
+  setSelectRange,
+}) => {
+  // const [date, setDate] = useState(new Date());
+  // const [selectRange, setSelectRange] = useState(false);
+  
   return (
     <div>
       {/* Only render the CalendarComponent directly */}

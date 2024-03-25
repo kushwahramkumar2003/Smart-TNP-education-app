@@ -13,7 +13,7 @@ import GoalDataTable from "../../components/core/Goals/GoalDataTable.tsx";
 import {
   Table,
   TableBody,
-//   TableCaption,
+  //   TableCaption,
   TableFooter,
   TableHead,
   TableHeader,
@@ -31,7 +31,7 @@ import {
 import DashboardLayout from "@/components/reusable/layout/DashboardLayout.tsx";
 import { cn } from "../../lib/utils";
 // import { Calendar } from "lucide-react";
-import Calendar  from "../../components/reusable/Calender.tsx";
+// import Calendar  from "../../components/reusable/Calender.tsx";
 const goalsStatusAndTypes = [
   {
     icon: (
@@ -129,27 +129,27 @@ const goalsData: DashboardItems[] = [
     deadline: new Date(),
     status: "On-Going",
   },
-//   {
-//     name: "Cooking class",
-//     type: "Profesional",
-//     start: new Date(),
-//     deadline: new Date(),
-//     status: "Complete",
-//   },
-//   {
-//     name: "Cooking class",
-//     type: "Live Event",
-//     start: new Date(),
-//     deadline: new Date(),
-//     status: "Pending",
-//   },
-//   {
-//     name: "Cooking class",
-//     type: "Personal",
-//     start: new Date(),
-//     deadline: new Date(),
-//     status: "Pending",
-//   },
+  //   {
+  //     name: "Cooking class",
+  //     type: "Profesional",
+  //     start: new Date(),
+  //     deadline: new Date(),
+  //     status: "Complete",
+  //   },
+  //   {
+  //     name: "Cooking class",
+  //     type: "Live Event",
+  //     start: new Date(),
+  //     deadline: new Date(),
+  //     status: "Pending",
+  //   },
+  //   {
+  //     name: "Cooking class",
+  //     type: "Personal",
+  //     start: new Date(),
+  //     deadline: new Date(),
+  //     status: "Pending",
+  //   },
 ];
 
 const DashboardItems = () => {
@@ -168,10 +168,10 @@ const DashboardItems = () => {
         </div>
         <div className=" rounded-xl mr-6 py-6 bg-white grid grid-cols-5 max-md:grid-cols-3">
           {goalsStatusAndTypes.map((goal) => (
-              <div
+            <div
               className="flex flex-row justify-center items-center gap-3 max-sm:flex-col"
               key={goal.type}
-              >
+            >
               {goal.icon}
               <div className="flex flex-col justify-center items-center">
                 <p className="text-lg opacity-35">{goal.type}</p>
@@ -181,7 +181,7 @@ const DashboardItems = () => {
           ))}
         </div>
       </div>
-    <p className={"text-2xl font-semibold"}>Nearby Goals</p>
+      <p className={"text-2xl font-semibold"}>Nearby Goals</p>
       <div className="pb-32 flex flex-col  lg:px-0 md:px-6 sm:px-2">
         <FilterButtons />
         <div className=" py-4 flex flex-col px-1 gap-1">
@@ -203,24 +203,25 @@ const DashboardItems = () => {
               ))}
             </TableBody>
             <div className="place-self-center w-full">
-            <p className="px-4 cursor-pointer pb-2  font-semibold text-lg">View All</p>
+              <p className="px-4 cursor-pointer pb-2  font-semibold text-lg">View All</p>
             </div>
-              
+
             <TableFooter className="flex flex-row justify-center items-center ">
-      
+
             </TableFooter>
           </Table>
-      <p className={"text-2xl py-3 font-semibold"}>Nearby Goals</p>
-      <DashboardLayout></DashboardLayout>
-      {/* <Calendar></Calendar> */}
+          <p className={"text-2xl py-3 font-semibold"}>Nearby Goals</p>
+          <DashboardLayout></DashboardLayout>
+          {/* <Calendar></Calendar> */}
         </div>
       </div>
     </div>
-    
+
   );
 };
 
 export default DashboardItems;
+
 
 //still no need -- > 
 {/* <Pagination>
