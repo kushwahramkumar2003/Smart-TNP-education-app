@@ -95,44 +95,6 @@ const Signup = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid items-center w-full gap-4">
-                {/* <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Full name</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder="Type full name (Optional)"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                /> */}
-                {/* <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="Type your email"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                /> */}
                 <FormField
                   control={form.control}
                   name="token"
