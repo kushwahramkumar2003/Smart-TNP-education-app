@@ -50,7 +50,7 @@ function DashboardLayout() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-2 justify-between p-4">
+        <div className="flex flex-row gap-6 py-4">
           <Class></Class>
           <CalendarChec></CalendarChec>
         </div>

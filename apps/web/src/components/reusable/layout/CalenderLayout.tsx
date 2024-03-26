@@ -57,7 +57,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
   return (
     <div>
       {/* Only render the CalendarComponent directly */}
-      <div style={{ display: "grid", placeItems: "center" }}>
+      {/* <div className="w-1/2" style={{ display: "grid", placeItems: "center",  }} > */}
         {/* <Title title={"Calendar"} /> */}
         <CalendarComponent
           setDate={setDate}
@@ -71,7 +71,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
           setSelectRange={setSelectRange}
         />
       </div>
-    </div>
+    // </div>
   );
 };
 
