@@ -63,7 +63,9 @@ const HomeLayout = () => {
             <div className={"rounded-full"}>
               <Avatar>
                 <AvatarImage src={user.avatar} />
-                <AvatarFallback>{extractInitials(user.name)}</AvatarFallback>
+                <AvatarFallback>
+                  {extractInitials(user?.name ? user?.name : "")}
+                </AvatarFallback>
               </Avatar>
             </div>
             <NavigationMenu className="lg:flex hidden">
