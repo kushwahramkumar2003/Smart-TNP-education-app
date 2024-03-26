@@ -8,6 +8,8 @@ import Signup from "./pages/Signup/Signup.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Auth from "./components/reusable/Auth.tsx";
+import LiveSchedule from "./pages/LiveSchedule/LiveSchedule.tsx";
+import ClassSchedule from "./pages/ClassSchedule/ClassSchedule.tsx";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -17,8 +19,8 @@ function App() {
             <Route path={"/"} element={<Dashboard />} />
             <Route path={"/goals"} element={<Goals />} />
             <Route path={"/profile"} element={<Profile />} />
-            <Route path={"/schedule"} element={<>To implemented schedule</>} />
-            <Route path={"/class"} element={<>To implemented class</>} />
+            <Route path={"/schedule"} element={<LiveSchedule />} />
+            <Route path={"/class"} element={<ClassSchedule />} />
             <Route path={"/course"} element={<>To implemented course</>} />
             <Route
               path={"/resources"}
