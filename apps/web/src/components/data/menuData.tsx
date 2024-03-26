@@ -5,6 +5,13 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { GrResources } from "react-icons/gr";
 import { GoFileDirectory } from "react-icons/go";
+import { ReactElement } from "react";
+export interface MenuItem {
+  title: string;
+  to: string;
+  icon: ReactElement; // Assuming the icon is a React component
+}
+
 export const menuItems = [
   {
     icon: <RxDashboard size={25} />,
