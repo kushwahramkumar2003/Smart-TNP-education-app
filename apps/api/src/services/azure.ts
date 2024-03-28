@@ -5,6 +5,7 @@ import {
   ContainerClient,
 } from "@azure/storage-blob";
 import config from "../config";
+const { v4: uuidv4 } = require("uuid");
 
 const upload = multer();
 
@@ -32,7 +33,7 @@ export const azureUpload = async (file) => {
   if (!file) throw new Error("No file uploaded.");
 
   const buffer = file.buffer;
-  const fileName = file.originalname;
+  const fileName = `${uuidv4()}_${file.originalname}`;
   const containerName = "photosandvideos"; // Replace with your container name
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blobClient = containerClient.getBlockBlobClient(fileName);
@@ -42,6 +43,7 @@ export const azureUpload = async (file) => {
 
   // Get the public URL of the uploaded file
   const publicUrl = blobClient.url;
+
   console.log("File uploaded to Azure Blob Storage. Public URL:", publicUrl);
 
   return publicUrl;

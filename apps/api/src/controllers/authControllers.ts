@@ -155,6 +155,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
       email: user.email,
       name: user.name,
       role: user.role,
+      avatar: user.avatar,
     },
   });
 });
