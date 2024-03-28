@@ -1,6 +1,9 @@
 import { Button } from "../../components/ui/button";
 import ProfileDescription from "../../components/core/Profile/ProfileDescription";
 import EditProfile from "../../components/core/Profile/EditProfile";
+import { getUserSelector } from "../../store/slices/userReducers";
+import { useSelector } from "react-redux";
+import { RootState, UserState } from "../../types/user";
 
 const intrest = [
   "Web Development",
@@ -28,6 +31,9 @@ const skills = [
 ];
 
 const Profile = () => {
+  const user = useSelector(
+    (state: RootState): UserState => getUserSelector(state)
+  );
   return (
     <div className="w-full flex flex-row bg-gray-100 p-4 gap-4">
       <div className="flex flex-col gap-4">
@@ -43,7 +49,7 @@ const Profile = () => {
             <div className="flex justify-center px-5  -mt-12 flex-col items-center">
               <img
                 className="h-32 w-32 bg-white p-2 rounded-full   "
-                src="https://avatars.githubusercontent.com/u/68776478?v=4"
+                src={user && user.avatar}
                 alt=""
               />
               <EditProfile />
