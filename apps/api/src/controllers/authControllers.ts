@@ -40,7 +40,7 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
 
   if (req.body.token) {
     const { password, token } = AdminTeacherSignUpSchema.parse(req.body);
-    const teacher = await prisma.teacherRegestrationToken.findFirst({
+    const teacher = await prisma.teacherRegistrationToken.findFirst({
       where: {
         token,
       },
@@ -67,7 +67,7 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
       },
     });
 
-    await prisma.teacherRegestrationToken.delete({
+    await prisma.teacherRegistrationToken.delete({
       where: {
         token,
       },
@@ -155,6 +155,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
       email: user.email,
       name: user.name,
       role: user.role,
+      avatar: user.avatar,
     },
   });
 });

@@ -8,7 +8,7 @@ import { ReactNode, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/use-toast.ts";
 import { UserState } from "../../types/user.ts";
-import { userActions } from "web/src/store/reducers/userReducers.ts";
+
 import { ToastAction } from "../../components/ui/toast.tsx";
 import {
   Card,
@@ -28,6 +28,7 @@ import { Input } from "../../components/ui/input.tsx";
 import { Button } from "../../components/ui/button.tsx";
 import { login } from "../../services/auth.ts";
 import { Checkbox } from "../../components/ui/checkbox.tsx";
+import { setUserInfo } from "../../store/slices/userReducers.ts";
 
 export const LoginSchema = z.object({
   email: z.string().min(2, {
@@ -63,7 +64,7 @@ const Login = (): ReactNode => {
       form.setValue("email", "");
       form.setValue("password", "");
       console.log("login user", user);
-      dispatch(userActions.setUserInfo(user));
+      dispatch(setUserInfo(user));
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     },

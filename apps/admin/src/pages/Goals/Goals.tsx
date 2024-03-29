@@ -1,4 +1,3 @@
-import { Button } from "../../components/ui/button";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineChartPie } from "react-icons/hi2";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -28,6 +27,7 @@ import {
   PaginationPrevious,
 } from "../../components/ui/pagination";
 import { cn } from "../../lib/utils";
+import CreateNewGoal from "../../components/core/Goals/CreateNewGoal";
 const goalsStatusAndTypes = [
   {
     icon: (
@@ -160,7 +160,8 @@ const Goals = () => {
       <div className="flex gap-2 flex-col mt-4">
         <div className="flex flex-row justify-between">
           <p className="text-2xl font-semibold">Goals</p>
-          <Button>+ Create New Goals</Button>
+
+          <CreateNewGoal />
         </div>
         <div className="grid grid-cols-5 max-md:grid-cols-3">
           {goalsStatusAndTypes.map((goal) => (
@@ -191,7 +192,7 @@ const Goals = () => {
                 <TableHead className="">Status</TableHead>
                 <TableHead className="">Action</TableHead>
               </TableRow>
-            {/* <div className="mt-4">
+              {/* <div className="mt-4">
         <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
           View All
         </button>
@@ -236,8 +237,6 @@ const Goals = () => {
 };
 
 export default Goals;
-
-
 
 // import React from 'react';
 // import { useTable } from 'react-table';

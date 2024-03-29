@@ -13,14 +13,14 @@ const TokenSchema = z.object({
 export const generateTeacherRegeToken = asyncHandler(
   async (req: Request, res: Response) => {
     const { name, email, role } = TokenSchema.parse(req.body);
-    if (await prisma.teacherRegestrationToken.findFirst({ where: { email } })) {
+    if (await prisma.teacherRegistrationToken.findFirst({ where: { email } })) {
       throw new Error("Token already exists");
     }
     const hash = crypto.createHash("sha256");
     hash.update(email);
     const token = hash.digest("hex");
 
-    await prisma.teacherRegestrationToken.create({
+    await prisma.teacherRegistrationToken.create({
       data: {
         name,
         email,
