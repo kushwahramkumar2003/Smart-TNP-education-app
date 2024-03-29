@@ -1,6 +1,6 @@
 import { FiEdit } from "react-icons/fi";
 import { useState } from "react";
-import z, { string } from "zod";
+import z from "zod";
 import CreatableSelect from "react-select/creatable";
 import { useToast } from "../../../ui/use-toast";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,7 @@ import { RootState, UserState } from "../../../../types/user";
 import { getUserSelector } from "../../../../store/slices/userReducers";
 const ProfileTab = () => {
   const [interest, setInterest] = useState<string[]>([]);
+
   const [skills, setSkills] = useState<string[]>([]);
   const user = useSelector(
     (state: RootState): UserState => getUserSelector(state)
@@ -35,6 +36,7 @@ const ProfileTab = () => {
   });
 
   const { isPending, mutate } = useMutation({
+    //@ts-ignore
     mutationFn: async (data: z.infer<typeof ProfileSchema>) => {
       // const newData = { title: data.title, description: data.description };
       // ProfileSchema([...NeedHelpFor, newData]);
@@ -141,6 +143,7 @@ const ProfileTab = () => {
                   <FormField
                     control={form.control}
                     name="intrest"
+                    //@ts-ignore
                     render={({ field }) => {
                       return (
                         <FormItem className="flex flex-col space-y-1.5">
@@ -166,6 +169,7 @@ const ProfileTab = () => {
                   <FormField
                     control={form.control}
                     name="skills"
+                    //@ts-ignore
                     render={({ field }) => {
                       return (
                         <FormItem className="flex flex-col space-y-1.5">
@@ -178,7 +182,7 @@ const ProfileTab = () => {
                               }))}
                               isMulti
                               onChange={(newValue) =>
-                                setInterest(
+                                setSkills(
                                   newValue.map((item): string => item.value)
                                 )
                               }
