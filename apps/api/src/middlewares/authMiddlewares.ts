@@ -40,12 +40,9 @@ export const authMiddleware = async (
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-
     //@ts-ignore
     req.user = user as User;
-    console.log("extracted user ", user);
-    //@ts-ignore
-    console.log("authMiddleware user --> ", req?.user);
+    console.log("authMiddleware user --> ", req.body.user);
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
