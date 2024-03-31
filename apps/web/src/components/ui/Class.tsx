@@ -40,7 +40,7 @@ function LiveClasses() {
           <img  src={classItem.imageUrl} alt={classItem.title} className="w-24 h-24 rounded-lg " />
           <div className="px-8">
             <div className="user-info flex items-center">
-              <img src={classItem.userPhoto} alt={classItem.userName} className="w-8 h-8 rounded-full mr-2" />
+              <img src={classItem.userPhoto} alt={classItem.userName} className="w-6 h-6 rounded-full mr-2" />
               <span className="text-gray-800 font-semibold">{classItem.userName}</span>
             </div>
             <a href={classItem.url} className="block mt-0">

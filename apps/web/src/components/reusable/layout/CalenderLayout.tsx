@@ -35,7 +35,7 @@
 // import React, { useState } from 'react';
 import "../../CalenderComponents/style.css";
 import CalendarComponent from "../../CalenderComponents/Calender";
-import Actions from "../../CalenderComponents/Actions";
+// import Actions from "../../CalenderComponents/Actions";
 // import Title from "../../CalenderComponents/Title";
 
 interface CustomCalendarProps {
@@ -64,12 +64,12 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
           date={date}
           selectRange={selectRange}
         />
-        <Actions
+        {/* <Actions
           setDate={setDate}
           date={date}
           selectRange={selectRange}
           setSelectRange={setSelectRange}
-        />
+        /> */}
       </div>
     // </div>
   );
