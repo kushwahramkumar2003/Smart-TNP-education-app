@@ -73,6 +73,12 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
       },
     });
 
+    await prisma.teacherProfile.create({
+      data: {
+        userId: user.id,
+      },
+    });
+
     user.password = "";
 
     const jwtToken = await getNewToken(user);
