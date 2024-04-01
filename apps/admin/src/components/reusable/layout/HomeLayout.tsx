@@ -14,9 +14,12 @@ import {
 } from "../../ui/navigation-menu.tsx";
 import { ModeToggle } from "../mode-toggle.tsx";
 import SideMenuResponsive from "../../core/Dashboard/SideMenuResponsive.tsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState, UserState } from "../../../types/user.ts";
-import { getUserSelector } from "../../../store/slices/userReducers.ts";
+import {
+  getUserSelector,
+  resetUserInfo,
+} from "../../../store/slices/userReducers.ts";
 
 function extractInitials(fullName: string): string {
   let words = fullName.split(" ");
@@ -28,9 +31,19 @@ function extractInitials(fullName: string): string {
 }
 
 const HomeLayout = () => {
+  const dispatch = useDispatch();
   const user = useSelector(
     (state: RootState): UserState => getUserSelector(state)
   );
+  const handleSignOut = () => {
+    dispatch(resetUserInfo());
+    document.cookie.split(";").forEach(function (cookie) {
+      document.cookie = cookie
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    history.pushState("/login", "", "/login");
+  };
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
@@ -86,7 +99,8 @@ const HomeLayout = () => {
                       Settings
                     </NavigationMenuLink>
                     <NavigationMenuLink
-                      href="/signout"
+                      onClick={handleSignOut}
+                      href="#"
                       className={navigationMenuTriggerStyle()}
                     >
                       Sign Out
