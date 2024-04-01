@@ -5,6 +5,8 @@ interface UserState {
   avatar: string;
   username: string;
   role: string;
+  status: string;
+  lastLoggedIn: number | null;
 }
 
 export interface RootState {

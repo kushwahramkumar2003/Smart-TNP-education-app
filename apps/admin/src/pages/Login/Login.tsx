@@ -26,9 +26,8 @@ import {
 } from "../../components/ui/form.tsx";
 import { Input } from "../../components/ui/input.tsx";
 import { Button } from "../../components/ui/button.tsx";
-import { login } from "../../services/auth.ts";
 import { Checkbox } from "../../components/ui/checkbox.tsx";
-import { setUserInfo } from "../../store/slices/userReducers.ts";
+import { loginUser } from "../../store/slices/userReducers.ts";
 
 export const LoginSchema = z.object({
   email: z.string().min(2, {
@@ -51,9 +50,22 @@ const Login = (): ReactNode => {
 
   const { isPending, mutate } = useMutation({
     mutationFn: async (data: z.infer<typeof LoginSchema>) => {
-      return await login(data);
+      // return await login(data);
+      return await dispatch(loginUser(data));
     },
     onSuccess: async (user: UserState) => {
+      //@ts-ignore
+      if (user?.error) {
+        toast({
+          title: "Error",
+          //@ts-ignore
+          description: user?.error?.message,
+          variant: "destructive",
+          className: "text-red-500",
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        });
+        return;
+      }
       console.log("User:", user);
       toast({
         title: "Success",
@@ -64,26 +76,43 @@ const Login = (): ReactNode => {
       form.setValue("email", "");
       form.setValue("password", "");
       console.log("login user", user);
-      dispatch(setUserInfo(user));
-      localStorage.setItem("user", JSON.stringify(user));
+      // dispatch(setUserInfo(user));
+      // localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     },
-    onError: (error: unknown) => {
+    onError: (error: Error) => {
+      console.error("error occure ", error);
       if (error instanceof Error) {
-        toast({
-          variant: "destructive",
-
-          description: error?.message || "An unknown error occurred.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
-        console.log(error.message);
+        // Check if the error message indicates incorrect credentials or user not registered
+        if (
+          error.message === "Incorrect email or password." ||
+          error.message === "User not registered."
+        ) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive",
+            className: "text-red-500",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        } else {
+          // For other errors, display a generic error message
+          toast({
+            title: "Error",
+            description:
+              error.message || "An error occurred. Please try again.",
+            variant: "destructive",
+            className: "text-red-500",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        }
       }
 
       console.log("Error:", error);
     },
   });
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     mutate(data);
   };
 
