@@ -23,9 +23,9 @@ import { Textarea } from "../../../ui/textarea";
 import { useSelector } from "react-redux";
 import { RootState, UserState } from "../../../../types/user";
 import { getUserSelector } from "../../../../store/slices/userReducers";
-const ProfileTab = () => {
-  const [interest, setInterest] = useState<string[]>([]);
 
+const ProfileTab = () => {
+  const [interests, setInterests] = useState<string[]>([]);
   const [skills, setSkills] = useState<string[]>([]);
   const user = useSelector(
     (state: RootState): UserState => getUserSelector(state)
@@ -33,13 +33,18 @@ const ProfileTab = () => {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
+    defaultValues: {
+      name: "",
+      biography: "",
+      email: "",
+      location: "",
+    },
   });
 
   const { isPending, mutate } = useMutation({
-    //@ts-ignore
     mutationFn: async (data: z.infer<typeof ProfileSchema>) => {
-      // const newData = { title: data.title, description: data.description };
-      // ProfileSchema([...NeedHelpFor, newData]);
+      console.log("form data --> ", data);
+      // Perform mutation logic here
     },
     onSuccess: () => {
       toast({
@@ -48,12 +53,9 @@ const ProfileTab = () => {
         variant: "default",
         className: "text-green-500",
       });
-      form.setValue("name", "");
-      form.setValue("biography", "");
-      form.setValue("skills", []);
-      form.setValue("intrest", []);
-      form.setValue("email", "");
-      form.setValue("location", "");
+      form.reset();
+      setInterests([]);
+      setSkills([]);
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
@@ -65,14 +67,17 @@ const ProfileTab = () => {
         });
         console.log(error.message);
       }
-
       console.log("Error:", error);
     },
   });
 
   const onSubmit = (data: z.infer<typeof ProfileSchema>) => {
+    data.interests = interests;
+    data.skills = skills;
+    console.log("data --> ", data);
     mutate(data);
   };
+
   return (
     <div>
       <div>
@@ -88,15 +93,7 @@ const ProfileTab = () => {
             </span>
           </div>
           <div className="flex justify-start px-5  -mt-20 flex-col items-start">
-            {/* <img
-              className="h-24 w-24 bg-white p-2 rounded-full   "
-              src="https://avatars.githubusercontent.com/u/68776478?v=4"
-              alt=""
-            />
-            <span className="p-1 rounded-full bg-white text-primary justify-end items-end flex -mt-10 mr-32">
-              <FiEdit size={20} className=" " /> */}
             <ProfilePhotoUploader iniImage={user.avatar} />
-            {/* </span> */}
           </div>
         </div>
         <div>
@@ -107,131 +104,114 @@ const ProfileTab = () => {
                   <FormField
                     control={form.control}
                     name="name"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">Title</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="text"
-                              placeholder="Your title"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col space-y-1.5">
+                        <FormLabel className="text-left">
+                          Profile name
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="Your title"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                   <FormField
                     control={form.control}
                     name="biography"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">
-                            Description
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="Your biography" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col space-y-1.5">
+                        <FormLabel className="text-left">Biography</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Your biography" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
-                    name="intrest"
-                    //@ts-ignore
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">Interest</FormLabel>
-                          <FormControl>
-                            <CreatableSelect
-                              defaultValue={interest.map((interest) => ({
-                                value: interest,
-                                label: interest,
-                              }))}
-                              isMulti
-                              onChange={(newValue) =>
-                                setInterest(newValue.map((item) => item.value))
-                              }
-                              className="relative z-20"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
-                  <FormField
+                    name="interests"
+                    render={({ field }) => ( */}
+                  <FormItem className="flex flex-col space-y-1.5">
+                    <FormLabel className="text-left">Interests</FormLabel>
+                    <FormControl>
+                      <CreatableSelect
+                        defaultValue={interests.map((interest) => ({
+                          value: interest,
+                          label: interest,
+                        }))}
+                        isMulti
+                        onChange={(newValue) =>
+                          setInterests(newValue.map((item) => item.value))
+                        }
+                        className="relative z-20"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                  {/* )}
+                  /> */}
+                  {/* <FormField
                     control={form.control}
                     name="skills"
-                    //@ts-ignore
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">Skill</FormLabel>
-                          <FormControl>
-                            <CreatableSelect
-                              defaultValue={skills.map((skill) => ({
-                                value: skill,
-                                label: skill,
-                              }))}
-                              isMulti
-                              onChange={(newValue) =>
-                                setSkills(
-                                  newValue.map((item): string => item.value)
-                                )
-                              }
-                              className="relative z-20"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
-
+                    render={({ field }) => ( */}
+                  <FormItem className="flex flex-col space-y-1.5">
+                    <FormLabel className="text-left">Skills</FormLabel>
+                    <FormControl>
+                      <CreatableSelect
+                        defaultValue={skills.map((skill) => ({
+                          value: skill,
+                          label: skill,
+                        }))}
+                        isMulti
+                        onChange={(newValue) =>
+                          setSkills(newValue.map((item) => item.value))
+                        }
+                        className="relative z-20"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                  {/* )} */}
+                  {/* /> */}
                   <FormField
                     control={form.control}
                     name="email"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">Email</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="text"
-                              placeholder="Your email"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col space-y-1.5">
+                        <FormLabel className="text-left">Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="Your email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                   <FormField
                     control={form.control}
                     name="location"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="flex flex-col space-y-1.5">
-                          <FormLabel className="text-left">Location</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="text"
-                              placeholder="Your location"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col space-y-1.5">
+                        <FormLabel className="text-left">Location</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="Your location"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                   <div className="w-full flex flex-row justify-between">
                     <Button type="button" onClick={() => form.reset()}>
@@ -262,13 +242,12 @@ const ProfileTab = () => {
 export default ProfileTab;
 
 export const ProfileSchema = z.object({
-  name: z.string().min(1, { message: "name must have at least one character" }),
+  name: z.string().min(1, { message: "Name must have at least one character" }),
   biography: z
     .string()
     .min(10, { message: "Biography must have at least 10 characters" }),
-
-  intrest: z.array(z.string()),
-  skills: z.array(z.string()),
+  interests: z.array(z.string()).optional(),
+  skills: z.array(z.string()).optional(),
   email: z.string().email(),
   location: z.string(),
 });

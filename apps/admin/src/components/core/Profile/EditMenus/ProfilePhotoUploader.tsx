@@ -15,10 +15,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, UserState } from "../../../../types/user";
 import { Progress } from "../../../ui/progress";
+import { useToast } from "../../../ui/use-toast";
 axios.defaults.baseURL = "http://localhost:8080/api/v1";
 axios.defaults.withCredentials = true;
 
 export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
+  const { toast } = useToast();
   const [uploadProgress, setUploadProgress] = React.useState<number>(0);
   const dispatch = useDispatch();
   let user = useSelector(
@@ -73,9 +75,21 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
       dispatch(setUserInfo(response.data.updatedUser as UserState));
       localStorage.setItem("user", JSON.stringify(response.data.updatedUser));
       console.log("Upload successful:", response.data.updatedUser);
+      toast({
+        title: "Success",
+        description: "Profile photo updated success!",
+        variant: "default",
+        className: "text-green-500",
+      });
 
       setUploadProgress(0); // Reset progress after successful upload
     } catch (error) {
+      toast({
+        title: "Error",
+        variant: "default",
+        description: "Error in updating profile image",
+        className: "text-red-600",
+      });
       console.error("Error uploading media:", error);
     }
   };
