@@ -49,7 +49,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
   date,
   setDate,
   selectRange,
-  setSelectRange,
+  // setSelectRange,
 }) => {
   // const [date, setDate] = useState(new Date());
   // const [selectRange, setSelectRange] = useState(false);

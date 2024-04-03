@@ -3,7 +3,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { RxDashboard } from "react-icons/rx";
 import Class from "../../ui/Class";
 import CalendarChec from "../Calender";
-import { Link, Routes } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function DashboardLayout() {
   const [isTfiColored, setIsTfiColored] = useState(false);
