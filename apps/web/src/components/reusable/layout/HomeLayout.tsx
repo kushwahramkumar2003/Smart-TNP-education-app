@@ -71,7 +71,7 @@ const HomeLayout = () => {
             <ModeToggle />
           </div>
         </div>
-        <main>
+        <main className="pb-64 my-3 w-full h-screen overflow-y-scroll">
           <Outlet />
         </main>
       </div>
