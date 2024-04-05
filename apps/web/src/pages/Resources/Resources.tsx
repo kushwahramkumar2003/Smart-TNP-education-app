@@ -1,11 +1,11 @@
-import React from 'react';
+
 
 // Define ResourcesList outside the component
 const ResourcesList = [
   {
     id: "1",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -13,7 +13,7 @@ const ResourcesList = [
   {
     id: "2",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -21,7 +21,7 @@ const ResourcesList = [
   {
     id: "3",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -29,7 +29,7 @@ const ResourcesList = [
   {
     id: "4",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -37,7 +37,7 @@ const ResourcesList = [
   {
     id: "5",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -45,7 +45,7 @@ const ResourcesList = [
   {
     id: "6",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -53,7 +53,7 @@ const ResourcesList = [
   {
     id: "7",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -61,7 +61,7 @@ const ResourcesList = [
   {
     id: "8",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -69,7 +69,7 @@ const ResourcesList = [
   {
     id: "9",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -77,7 +77,7 @@ const ResourcesList = [
   {
     id: "10",
     tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    title: "Apptitute",
+    title: "how to add numbers in c++ using add method",
     category: "book",
     duration: "84 pages",
     size: "32 mb"
@@ -101,7 +101,7 @@ export default function Resources() {
             <div className=''>
          <div className='flex flex-col'>
             <img className='rounded-t-xl' src={resource.tambnail} alt={resource.title} />
-            <p className='px-3 text-red-300'>{resource.title}</p>
+            <p className='px-3'>{resource.title}</p>
             </div>
             <div className='p-4 flex flex-row gap-3'>
             <p className='bg-blue-200 px-2 hover:text-blue-500 rounded-xl cursor-pointer'>{resource.category}</p>
