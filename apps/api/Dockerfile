@@ -10,6 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+CMD ["npm", "run", "build"]
 # Copy the rest of your application code
 COPY . .
 
@@ -20,4 +21,5 @@ RUN npx prisma generate
 EXPOSE 8080
 
 # Run the web service on container startup
-CMD ["npm", "run", "dev"]
+# CMD ["npm", "run", "build"]
+# CMD ["npm", "run", "dev"]
