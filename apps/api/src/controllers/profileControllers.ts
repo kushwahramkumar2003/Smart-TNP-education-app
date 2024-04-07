@@ -7,10 +7,10 @@ import { User } from "@prisma/client";
 import { strToArr } from "../utils/stringToArr";
 
 const cometomefor = z.object({
-  id: z.string().min(1),
+  id: z.string().min(1).optional(),
   title: z.string().min(1),
   description: z.string().min(10),
-  teacherProfileId: z.string(),
+  teacherProfileId: z.string().optional(),
 });
 const needHelpFor = z.object({
   id: z.string().min(1),
