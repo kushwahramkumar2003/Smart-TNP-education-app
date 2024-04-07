@@ -35,7 +35,7 @@
 // import React, { useState } from 'react';
 import "../../CalenderComponents/style.css";
 import CalendarComponent from "../../CalenderComponents/Calender";
-import Actions from "../../CalenderComponents/Actions";
+// import Actions from "../../CalenderComponents/Actions";
 // import Title from "../../CalenderComponents/Title";
 
 interface CustomCalendarProps {
@@ -49,7 +49,7 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
   date,
   setDate,
   selectRange,
-  setSelectRange,
+  // setSelectRange,
 }) => {
   // const [date, setDate] = useState(new Date());
   // const [selectRange, setSelectRange] = useState(false);
@@ -57,21 +57,21 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({
   return (
     <div>
       {/* Only render the CalendarComponent directly */}
-      <div style={{ display: "grid", placeItems: "center" }}>
+      {/* <div className="w-1/2" style={{ display: "grid", placeItems: "center",  }} > */}
         {/* <Title title={"Calendar"} /> */}
         <CalendarComponent
           setDate={setDate}
           date={date}
           selectRange={selectRange}
         />
-        <Actions
+        {/* <Actions
           setDate={setDate}
           date={date}
           selectRange={selectRange}
           setSelectRange={setSelectRange}
-        />
+        /> */}
       </div>
-    </div>
+    // </div>
   );
 };
 

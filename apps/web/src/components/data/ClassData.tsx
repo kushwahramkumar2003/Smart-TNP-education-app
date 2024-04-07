@@ -1,30 +1,34 @@
 import img from '../../assets/studyimg.jpg' 
+import userImg from '../../assets/user.jpg'
 export const ClassData = [
     {
       id: 1,
-      url: "www.ptanhi.com",
+      url: "Apptitude all topics in very short trick",
       imageUrl: img,
-      title: "Video 1",
+      title: "Apptitude all topics in very short trick",
       duration: "10:30",
-      userPhoto: "https://example.com/user1.jpg",
+      time : ".....",
+      userPhoto: userImg,
       userName: "User 1"
     },
     {
       id: 2,
-      url: "https://t4.ftcdn.net/jpg/04/30/26/81/360_F_430268143_vgIE6L3H5JRxpqeAP1QBm2s2fOYmRNDC.jpg",
+      url: "Apptitude all topics in very short trick",
       imageUrl: img,
-      title: "Video 2",
+      title: "Apptitude all topics in very short trick",
       duration: "15:45",
-      userPhoto: "https://example.com/user2.jpg",
+      time : ".....",
+      userPhoto: userImg,
       userName: "User 2"
     },
     {
-      id: 2,
-      url: "https://example.com/video2",
+      id: 3,
+      url: "Apptitude all topics in very short trick",
       imageUrl: img,
-      title: "Video 2",
+      title: "Apptitude all topics in very short trick",
       duration: "15:45",
-      userPhoto: "https://example.com/user2.jpg",
+      time : ".....",
+      userPhoto: userImg,
       userName: "User 2"
     },
 

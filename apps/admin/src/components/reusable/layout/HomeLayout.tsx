@@ -114,7 +114,7 @@ const HomeLayout = () => {
             <ModeToggle />
           </div>
         </div>
-        <main className=" mt-3 w-full h-screen overflow-y-scroll">
+        <main className=" mt-3 mb-24 w-full h-screen overflow-y-scroll">
           <Outlet />
         </main>
       </div>

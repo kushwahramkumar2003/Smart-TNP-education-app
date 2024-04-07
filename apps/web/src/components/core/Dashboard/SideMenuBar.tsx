@@ -26,7 +26,7 @@ const SideMenuBar: React.FC<SideMenuBarProps> = () => {
           <Link
             key={menuItem.title}
             to={menuItem.to}
-            className={`hover:bg-white rounded-lg p-2 transition-all duration-200 ${
+            className={`hover:bg-white hover:text-red-500 rounded-lg p-2 transition-all duration-200 ${
               selectedItem === index
                 ? "bg-white text-red-500"
                 : ""
