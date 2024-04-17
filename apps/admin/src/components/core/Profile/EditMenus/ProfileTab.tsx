@@ -6,7 +6,7 @@ import { useToast } from "../../../ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { ToastAction } from "../../../ui/toast";
+
 import {
   Form,
   FormControl,
@@ -20,55 +20,79 @@ import { Button } from "../../../ui/button";
 import { VscLoading } from "react-icons/vsc";
 import { ProfilePhotoUploader } from "./ProfilePhotoUploader";
 import { Textarea } from "../../../ui/textarea";
-import { useSelector } from "react-redux";
-import { RootState, UserState } from "../../../../types/user";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, UserProfile, UserState } from "../../../../types/user";
 import { getUserSelector } from "../../../../store/slices/userReducers";
+import {
+  getUserProfileError,
+  getUserProfileSelector,
+  getUserProfileStatus,
+  UpdateProfile,
+} from "../../../../store/slices/profileReducers";
 
 const ProfileTab = () => {
-  const [interests, setInterests] = useState<string[]>([]);
-  const [skills, setSkills] = useState<string[]>([]);
+  const profileStatus = useSelector(getUserProfileStatus);
+  const profileError = useSelector(getUserProfileError);
+  const dispatch = useDispatch();
   const user = useSelector(
-    (state: RootState): UserState => getUserSelector(state)
+    (state: RootState): UserState => getUserSelector(state),
   );
+  const userProfile = useSelector(
+    (state: RootState): UserProfile => getUserProfileSelector(state),
+  );
+  const [interests, setInterests] = useState<string[]>(
+    userProfile.interests || [],
+  );
+  const [skills, setSkills] = useState<string[]>(userProfile.skills || []);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      name: "",
-      biography: "",
-      email: "",
-      location: "",
+      name: user.name || "",
+      bio: userProfile.bio || "",
+      location: userProfile.location || "",
     },
   });
 
   const { isPending, mutate } = useMutation({
     mutationFn: async (data: z.infer<typeof ProfileSchema>) => {
       console.log("form data --> ", data);
+      return await dispatch(UpdateProfile(data));
       // Perform mutation logic here
     },
-    onSuccess: () => {
-      toast({
-        title: "Success",
-        description: "You have successfully added new item!",
-        variant: "default",
-        className: "text-green-500",
-      });
-      form.reset();
-      setInterests([]);
-      setSkills([]);
-    },
-    onError: (error: unknown) => {
-      if (error instanceof Error) {
+    onSuccess: (data) => {
+      console.log("Success called ", data);
+      if (profileStatus === "idle") {
         toast({
-          variant: "destructive",
-          title: "Error occurred while signing up.",
-          description: error?.message || "An unknown error occurred.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
+          title: "Success",
+          description: "You have successfully added new item!",
+          variant: "default",
+          className: "text-green-500",
         });
-        console.log(error.message);
+        form.reset();
+        setInterests([]);
+        setSkills([]);
+      } else {
+        toast({
+          title: "Error",
+          description: profileError,
+          variant: "default",
+          className: "text-red-500",
+        });
       }
-      console.log("Error:", error);
     },
+    // onError: (error: unknown) => {
+    //   if (error instanceof Error) {
+    //     toast({
+    //       variant: "destructive",
+    //       title: "Error occurred while signing up.",
+    //       description: error?.message || "An unknown error occurred.",
+    //       action: <ToastAction altText="Try again">Try again</ToastAction>,
+    //     });
+    //     console.log(error.message);
+    //   }
+    //   console.log("Error:", error);
+    // },
   });
 
   const onSubmit = (data: z.infer<typeof ProfileSchema>) => {
@@ -112,7 +136,7 @@ const ProfileTab = () => {
                         <FormControl>
                           <Input
                             type="text"
-                            placeholder="Your title"
+                            placeholder="Your name"
                             {...field}
                           />
                         </FormControl>
@@ -122,7 +146,7 @@ const ProfileTab = () => {
                   />
                   <FormField
                     control={form.control}
-                    name="biography"
+                    name="bio"
                     render={({ field }) => (
                       <FormItem className="flex flex-col space-y-1.5">
                         <FormLabel className="text-left">Biography</FormLabel>
@@ -179,23 +203,7 @@ const ProfileTab = () => {
                   </FormItem>
                   {/* )} */}
                   {/* /> */}
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder="Your email"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+
                   <FormField
                     control={form.control}
                     name="location"
@@ -243,11 +251,10 @@ export default ProfileTab;
 
 export const ProfileSchema = z.object({
   name: z.string().min(1, { message: "Name must have at least one character" }),
-  biography: z
+  bio: z
     .string()
     .min(10, { message: "Biography must have at least 10 characters" }),
   interests: z.array(z.string()).optional(),
   skills: z.array(z.string()).optional(),
-  email: z.string().email(),
   location: z.string(),
 });
