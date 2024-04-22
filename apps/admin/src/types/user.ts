@@ -9,8 +9,29 @@ interface UserState {
   lastLoggedIn: number | null;
 }
 
-export interface RootState {
-  user: UserState;
+interface UserProfile {
+  id?: string;
+  bio?: string;
+  location?: string;
+  interests?: string[];
+  skills?: string[];
+  avatar?: string;
+  comeToMeFor: {
+    id: string;
+    title: string;
+    description: string;
+  }[];
+  needHelpFor: {
+    id: string;
+    title: string;
+    description: string;
+  }[];
+  status: string;
 }
 
-export type { UserState };
+export interface RootState {
+  user: UserState;
+  profile: UserProfile;
+}
+
+export type { UserState, UserProfile };
