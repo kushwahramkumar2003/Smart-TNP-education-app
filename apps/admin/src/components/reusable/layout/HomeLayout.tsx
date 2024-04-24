@@ -33,7 +33,7 @@ function extractInitials(fullName: string): string {
 const HomeLayout = () => {
   const dispatch = useDispatch();
   const user = useSelector(
-    (state: RootState): UserState => getUserSelector(state)
+    (state: RootState): UserState => getUserSelector(state),
   );
   const handleSignOut = () => {
     dispatch(resetUserInfo());
@@ -114,7 +114,7 @@ const HomeLayout = () => {
             <ModeToggle />
           </div>
         </div>
-        <main className=" mt-3 mb-24 w-full h-screen overflow-y-scroll">
+        <main className="mt-3 w-full h-screen overflow-y-scroll pb-28">
           <Outlet />
         </main>
       </div>
