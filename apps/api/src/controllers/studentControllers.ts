@@ -5,21 +5,32 @@ import { prisma } from "../utils/prisma";
 import z, { string } from "zod";
 import { User } from "@prisma/client";
 import { strToArr } from "../utils/stringToArr";
+//  interface StudentProfile{
+//     interests : String;
+//     skills : String;
+//     location : String;
+//     comeToMeFor : String;
+//     needHelpFor : String;
+// }
 
+interface studentProfile {
+     interests : String,
+    skills : String,
+}
 const cometomefor = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(10),
-  teacherProfileId: z.string(),
+  studentProfileId: z.string(),
 });
 const needHelpFor = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(10),
-  teacherProfileId: z.string(),
+  studentProfileId: z.string(),
 });
 
-const TeacherProfileSchema = z.object({
+const studentProfileSchema = z.object({
   bio: z.string().optional(),
   interests: z.array(z.string()).optional(),
   skills: z.array(z.string()).optional(),
@@ -63,10 +74,10 @@ export const uploadAvatar = asyncHandler(
   }
 );
 
-export const updateTeacherProfile = asyncHandler(
+export const updateStudentProfile = asyncHandler(
   async (req: Request, res: Response) => {
     const { bio, interests, skills, location, comeToMeFor, needHelpFor } =
-      TeacherProfileSchema.parse(req.body);
+      studentProfileSchema.parse(req.body);
 
     //@ts-ignore
     const user = req?.user as User;
@@ -74,25 +85,21 @@ export const updateTeacherProfile = asyncHandler(
       throw new Error("User not found");
     }
 
-    const teacherProfile = await prisma.teacherProfile.findUnique({
-      where: { userId: user.id },
-      include: {
-        comeToMeFor: true,
-        needHelpFor: true,
-      },
+    const studentProfile = await prisma.studentProfile.findUnique({
+      where: { userId: user.id }
     });
 
-    if (!teacherProfile) {
-      throw new Error("Teacher profile not found");
+    if (!studentProfile) {
+      throw new Error("Student profile not found");
     }
 
-    const updatedTeacherProfile = await prisma.teacherProfile.update({
+    const updatedstudentProfile = await prisma.studentProfile.update({
       where: { userId: user.id },
       data: {
-        bio: bio || teacherProfile.bio,
-        interests: interests || teacherProfile.interests,
-        skills: skills || teacherProfile.skills,
-        location: location || teacherProfile.location,
+        bio: bio || studentProfile.bio,
+        interests: interests || studentProfile.interests,
+        skills: skills || studentProfile.skills,
+        location: location || studentProfile.location,
         comeToMeFor: {
           // Update comeToMeFor associations
           update: comeToMeFor?.map((item) => ({
@@ -120,16 +127,16 @@ export const updateTeacherProfile = asyncHandler(
       },
     });
 
-    if (!updatedTeacherProfile) {
-      throw new Error("Error updating teacher profile");
+    if (!updatedstudentProfile) {
+      throw new Error("Error updating student profile");
     }
 
     res.status(200).json({
       profile: {
-        bio: updatedTeacherProfile.bio,
-        interests: updatedTeacherProfile?.interests,
-        skills: updatedTeacherProfile?.skills,
-        location: updatedTeacherProfile.location,
+        bio: updatedstudentProfile.bio,
+        interests: updatedstudentProfile?.interests,
+        skills: updatedstudentProfile?.skills,
+        location: updatedstudentProfile.location,
       },
     });
   }

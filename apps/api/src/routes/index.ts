@@ -1,6 +1,6 @@
 import { Router } from "express";
 import authRoutes from "./auth.routes";
-import usersRoutes from "./user.routes";
+import usersRoutes from "./student.routes";
 import teachersRoutes from "./teacher.routes";
 import adminRoutes from "./admin";
 import profileRoutes from "./profile.routes";
