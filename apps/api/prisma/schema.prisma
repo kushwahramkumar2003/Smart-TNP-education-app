@@ -37,6 +37,15 @@ model TeacherRegistrationToken { // Corrected typo in model name
   role      Role        @default(TEACHER)
 }
 
+model StudentRegistrationToken {
+  id        String      @id @default(uuid())
+  token     String      @unique
+  createdAt DateTime    @default(now())
+  email     String      @unique
+  name      String
+  role      Role        @default(STUDENT)
+}
+
 model StudentProfile {
   id            String    @id @default(uuid()) 
   user          User      @relation(fields: [userId],references: [id])

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { generateTeacherRegeToken } from "../../controllers/teacherManagmentControllers";
+import { generateStudentRegeToken } from "../../controllers/studentManagetControlllers";
 
 const router = Router();
 
-router.post("/genToken", generateTeacherRegeToken);
+router.post("/genToken", generateStudentRegeToken);
 
 export default router;
