@@ -8,6 +8,17 @@ interface UserState {
   status: string;
   lastLoggedIn: number | null;
 }
+// user.ts
+
+// Define UserProfile type
+export type UserProfile = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  // Add other fields as needed
+};
+
 
 export interface RootState {
   user: UserState;

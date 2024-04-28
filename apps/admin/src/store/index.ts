@@ -1,7 +1,8 @@
 import { configureStore, Reducer, UnknownAction } from "@reduxjs/toolkit";
 import userReducer from "./slices/userReducers";
-import { UserProfile, UserState } from "../types/user";
+import { UserState } from "../types/user";
 import profileReducer from "./slices/profileReducers";
+import { UserProfile } from "../types/user"; // Import the UserProfile type
 
 const getUserFromLocalStorage = (): UserState | null => {
   const user = localStorage.getItem("user");
@@ -10,6 +11,7 @@ const getUserFromLocalStorage = (): UserState | null => {
   parsedUser.loggedIn = true;
   return parsedUser;
 };
+
 const getUserProfileFromLocalStorage = (): UserProfile | null => {
   const profile = localStorage.getItem("profile");
   if (profile === "undefined" || !profile) return null;
@@ -21,6 +23,7 @@ const initialState = {
   user: getUserFromLocalStorage() || {},
   profile: getUserProfileFromLocalStorage() || {},
 };
+
 
 const store = configureStore({
   reducer: {

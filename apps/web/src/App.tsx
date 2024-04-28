@@ -5,13 +5,16 @@ import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 // import DashboardLayout from './components/reusable/layout/DashboardLayout.tsx'
 import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
-// import Login from "./pages/LoginPage.tsx";
+import Auth from "./components/reusable/Auth.tsx";
+import SignUp from "./pages/SignUp.tsx";
+import Login from "./pages/LoginPage.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Auth>
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
@@ -23,7 +26,10 @@ function App() {
           <Route path={"/resources"} element={<Resources/>} />
           <Route path={"/directory"} element={<>To implemented directory</>} />
         </Route>
+        <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/login"} element={<Login />} />
       </Routes>
+        </Auth>
     </ThemeProvider>
   );
 }

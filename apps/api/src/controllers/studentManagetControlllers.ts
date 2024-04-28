@@ -1,96 +1,84 @@
-// import { ApiError } from "../utils/apiError";
-// import asyncHandler from "../utils/asynchHandler";
-// import { prisma } from "../utils/prisma";
+import { PrismaClient } from '@prisma/client';
+import { Request, Response } from 'express';
 
+const prisma = new PrismaClient();
 
-
-
-// // @ts-ignore
-// const registerUser = asyncHandler(async (req, res, next) => {
-//     const { fullname, email, username, password } = req.body;
-
-//     // Check if any required field is empty
-//     if ([fullname, email, username, password].some(field => !field || field.trim() === "")) {
-//         throw new ApiError(400, "All fields are required");
-//     }
-
-//     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-//     if (existingUser) {
-//         throw new ApiError(409, "User already exists");
-//     }
-
-
-//     const user = await User.create({
-//         fullname,
-//         email,
-//         username: username.toLowerCase(),
-//         password,
-       
-//     });
-//     if (!user) {
-//         throw new ApiError(500, "User creation failed. Please check and register again.");
-//     }
-//     const createdUser = await User.findById(user._id).select("-password -refreshToken");
-//     const existUser = await User.findOne({email});
-//     if(!existUser){
-//         throw new ApiError(409,"User already exists")
-//     }
-//     // const token = user.generateToken();
-//     // res.cookie("token", token, {
-//     //     httpOnly: true,
-//     //     sameSite: "strict",
-//     //     maxAge: 1000 * 60 * 60 * 24 * 7, 
-//     // });
-//     return res.status(201).json({
-//         message: "User created successfully",
-//         user: createdUser,
-//     });
-// });
-
-// export { registerUser };
-
-
-// │  Deploying your app to serverless or edge functions?        │
-// │  Try Prisma Accelerate for connection pooling and caching.  │
-// │  https://pris.ly/cli/accelerate                             │
-// └───────────────────────────────────
-
-
-import { Request, Response } from "express";
-import asyncHandler from "../utils/asynchHandler";
-import z, { string } from "zod";
-import { prisma } from "../utils/prisma";
-import crypto from "crypto";
-import { ApiError } from "../utils/apiError";
-
-const TokenSchema = z.object({
-  name: string().min(3),
-  email: string().email(),
-  role: z.enum(["ADMIN", "STUDENT", "TEACHER"]).default("STUDENT"),
-});
-
-export const generateStudentRegeToken = asyncHandler(
-  async (req: Request, res: Response) => {
-    const { name, email, role } = TokenSchema.parse(req.body);
-    if (await prisma.studentRegistrationToken.findFirst({ where: { email } })) {
-      throw new ApiError(409, "Token already generated for this email");
+// Get student profile by ID
+export const getStudentProfileById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const studentProfile = await prisma.studentProfile.findUnique({
+      where: { id }
+    });
+    if (!studentProfile) {
+      return res.status(404).json({ message: 'Student profile not found' });
     }
-    const hash = crypto.createHash("sha256");
-    hash.update(email);
-    const token = hash.digest("hex");
-
-    await prisma.studentRegistrationToken.create({
-      data: {
-        name,
-        email,
-        token,
-        role,
-      },
-    });
-
-    res.status(201).json({
-      message: "Token generated successfully",
-      token,
-    });
+    res.json(studentProfile);
+  } catch (error) {
+    console.error('Error fetching student profile:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
-);
+};
+
+// Create a new student profile
+export const createStudentProfile = async (req: Request, res: Response) => {
+  const { userId, enrollmentId, batch, department, semester, section, bio, location, website, linkedin, github } = req.body;
+  try {
+    const studentProfile = await prisma.studentProfile.create({
+      data: {
+        user: { connect: { id: userId } },
+        enrollmentId,
+        batch,
+        department,
+        semester,
+        section,
+        bio,
+        location,
+        website,
+        linkedin,
+        github
+      }
+    });
+    res.status(201).json(studentProfile);
+  } catch (error) {
+    console.error('Error creating student profile:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Update an existing student profile
+export const updateStudentProfile = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { bio, location, website, linkedin, github } = req.body;
+  try {
+    const updatedProfile = await prisma.studentProfile.update({
+      where: { id },
+      data: {
+        bio,
+        location,
+        website,
+        linkedin,
+        github
+      }
+    });
+    res.json(updatedProfile);
+  } catch (error) {
+    console.error('Error updating student profile:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+export const deleteStudentProfile = async (req: Request, res: Response) => {
+const { id } = req.params;
+try {
+    await prisma.studentProfile.delete({
+        where: { id }
+    });
+    res.status(204).end();
+} catch (error) {
+    console.error('Error deleting student profile:', error);
+    res.status(500).json({ message: 'Internal server error' }); // Add a semicolon at the end of this line
+}
+  }
+

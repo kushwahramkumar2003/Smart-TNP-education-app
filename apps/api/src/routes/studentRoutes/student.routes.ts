@@ -1,8 +1,11 @@
-import { Router } from "express";
-import { generateStudentRegeToken } from "../../controllers/studentManagetControlllers";
+// routes/studentProfileRoutes.ts
+// routes/studentProfileRoutes.ts
 
-const router = Router();
+import express from 'express';
+import * as studentProfileController from '../../controllers/studentManagetControlllers';
 
-router.post("/genToken", generateStudentRegeToken);
+const router = express.Router();
+
+router.get('/:id', studentProfileController.getStudentProfileById);
 
 export default router;
