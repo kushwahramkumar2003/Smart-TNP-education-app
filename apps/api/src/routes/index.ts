@@ -13,7 +13,7 @@ import {
 const router = Router();
 
 router.use("/auth", rateLimitMiddleware, authRoutes);
-router.use("/student", rateLimitMiddleware, extractUserMiddleware, studentRoutes); // Mount studentRoutes
+router.use("/student", rateLimitMiddleware, extractUserMiddleware, studentRoutes);
 router.use("/teacher", rateLimitMiddleware, extractUserMiddleware, teachersRoutes);
 router.use("/admin", rateLimitMiddleware, extractUserMiddleware, adminRoutes);
 router.use("/profile", rateLimitMiddleware, authMiddleware, profileRoutes);

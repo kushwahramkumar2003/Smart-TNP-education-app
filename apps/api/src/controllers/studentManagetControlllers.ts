@@ -6,6 +6,8 @@ const prisma = new PrismaClient();
 // Get student profile by ID
 export const getStudentProfileById = async (req: Request, res: Response) => {
   const { id } = req.params;
+  if(!id)
+  return res.status(400).json({ message: 'Student profile ID is required' })
   try {
     const studentProfile = await prisma.studentProfile.findUnique({
       where: { id }

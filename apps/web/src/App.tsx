@@ -14,7 +14,7 @@ import Login from "./pages/LoginPage.tsx";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      {/* <Auth> */}
+      <Auth>
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
@@ -26,10 +26,10 @@ function App() {
           <Route path={"/resources"} element={<Resources/>} />
           <Route path={"/directory"} element={<>To implemented directory</>} />
         </Route>
-        {/* <Route path={"/signup"} element={<SignUp />} /> */}
-          {/* <Route path={"/login"} element={<Login />} /> */}
+        <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/login"} element={<Login />} />
       </Routes>
-        {/* </Auth> */}
+        </Auth>
     </ThemeProvider>
   );
 }

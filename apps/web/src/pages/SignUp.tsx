@@ -1,239 +1,197 @@
-import { Button } from "../components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { VscLoading } from "react-icons/vsc";
-import { useMutation } from "@tanstack/react-query";
-import { Checkbox } from "../components/ui/checkbox";
-import { signUp } from "../services/auth";
-import { ToastAction } from "../components/ui/toast";
-import { useToast } from "../components/ui/use-toast";
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { TEInput, TERipple } from "tw-elements-react";
 
-export const SignUpSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  email: z.string().email({ message: "Invalid email address." }),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters.",
-  }),
-  termsAndConditions: z
-    .boolean()
-    .refine((value) => value === true, {
-      message: "You must accept the terms and conditions.",
-    })
-    .default(false),
-  fullName: z.string().optional(),
-});
+export default function ExampleV2(): JSX.Element {
+  // State variables to manage form inputs
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [enrollmentId, setEnrollmentId] = useState("");
+  const [batch, setBatch] = useState("");
+  const [department, setDepartment] = useState("");
+  const [semester, setSemester] = useState("");
+  const [section, setSection] = useState("");
+  const [bio, setBio] = useState("");
+  const [location, setLocation] = useState("");
+  const [website, setWebsite] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [github, setGithub] = useState("");
 
-const SignUp = () => {
-  // const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof SignUpSchema>>({
-    resolver: zodResolver(SignUpSchema),
-  });
-
-  const { isPending, mutate } = useMutation({
-    mutationFn: async (data: z.infer<typeof SignUpSchema>) => {
-      await signUp(data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Success",
-        description: "You have successfully signed up!",
-        variant: "default",
-        className: "text-green-500",
-      });
-      form.setValue("username", "");
-      form.setValue("email", "");
-      form.setValue("password", "");
-      form.setValue("fullName", "");
-      console.log("Success");
-      // navigate("/login");
-    },
-    onError: (error: unknown) => {
-      if (error instanceof Error) {
-        toast({
-          variant: "destructive",
-          title: "Error occurred while signing up.",
-          description: error?.message || "An unknown error occurred.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
-        console.log(error.message);
-      }
-
-      console.log("Error:", error);
-    },
-  });
-
-  const onSubmit = (data: z.infer<typeof SignUpSchema>) => {
-    mutate(data);
+  // Function to handle form submission
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Send form data to backend for processing
+    // This is where you would typically make an API request
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <Card className="w-80">
-        <CardHeader>
-          <CardTitle>Sign up</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="grid items-center w-full gap-4">
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Full name</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder="Enter your name "
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">User name</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder="Enter username"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="Enter your email"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />{" "}
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex flex-col space-y-1.5">
-                        <FormLabel className="text-left">Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            type={`${showPassword ? "text" : "password"}`}
-                            placeholder="Enter your password"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <div className="flex items-center ml-4 space-x-2">
-                  <Checkbox
-                    id="showPassword"
-                    checked={showPassword}
-                    onCheckedChange={() => {
-                      setShowPassword(!showPassword);
-                    }}
-                  />
-                  <label
-                    htmlFor="showPassword"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Show Password
-                  </label>
-                </div>
-                <FormField
-                  control={form.control}
-                  name="termsAndConditions"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start p-4 space-x-3 space-y-0 border rounded-md shadow">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
+    <section className="h-full bg-neutral-200 dark:bg-neutral-700">
+      <div className="container h-full p-10">
+        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+          <div className="w-full">
+            <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+              <div className="g-0 lg:flex lg:flex-wrap">
+                <div className="px-4 md:px-0 lg:w-6/12">
+                  <div className="md:mx-6 md:p-12">
+                    <div className="text-center">
+                      <img
+                        className="mx-auto w-48"
+                        src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                        alt="logo"
+                      />
+                      <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                        We are The Lotus Team
+                      </h4>
+                    </div>
 
-                      <div className="gap-1.5 leading-none flex flex-col">
-                        <label
-                          htmlFor="terms1"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    <form onSubmit={handleSubmit}>
+                      <p className="mb-4">Please register an account</p>
+                      <TEInput
+                        type="text"
+                        label="Username"
+                        className="mb-4"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
+
+                      <TEInput
+                        type="password"
+                        label="Password"
+                        className="mb-4"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+
+                      {/* Additional fields for StudentProfile */}
+                      <TEInput
+                        type="text"
+                        label="Enrollment ID"
+                        className="mb-4"
+                        value={enrollmentId}
+                        onChange={(e) => setEnrollmentId(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Batch"
+                        className="mb-4"
+                        value={batch}
+                        onChange={(e) => setBatch(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Department"
+                        className="mb-4"
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Semester"
+                        className="mb-4"
+                        value={semester}
+                        onChange={(e) => setSemester(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Section"
+                        className="mb-4"
+                        value={section}
+                        onChange={(e) => setSection(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Bio"
+                        className="mb-4"
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Location"
+                        className="mb-4"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Website"
+                        className="mb-4"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="LinkedIn"
+                        className="mb-4"
+                        value={linkedin}
+                        onChange={(e) => setLinkedin(e.target.value)}
+                      />
+                      <TEInput
+                        type="text"
+                        label="Github"
+                        className="mb-4"
+                        value={github}
+                        onChange={(e) => setGithub(e.target.value)}
+                      />
+
+                      <div className="mb-12 pb-1 pt-1 text-center">
+                        <TERipple
+                          rippleColor="light"
+                          className="w-full"
                         >
-                          Accept terms and conditions
-                        </label>
-                        <FormMessage />
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="submit"
-                  className={`disabled:cursor-not-allowed disabled:bg-slate-800`}
-                  disabled={isPending}
-                >
-                  {isPending ? (
-                    <>
-                      <VscLoading className="mr-2 animate-spin spin-in-180" />
-                      <span>Signing up....</span>
-                    </>
-                  ) : (
-                    "Sign Up"
-                  )}
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
+                          <button
+                            className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                            type="submit"
+                            style={{
+                              background:
+                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                            }}
+                          >
+                            Sign up
+                          </button>
+                        </TERipple>
 
-export default SignUp;
+                        <a href="#!">Terms and conditions</a>
+                      </div>
+
+                      <div className="flex items-center justify-between pb-6">
+                        <p className="mb-0 mr-2">Have an account?</p>
+                        <TERipple rippleColor="light">
+                          <button
+                            type="button"
+                            className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                          >
+                            Login
+                          </button>
+                        </TERipple>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div
+                  className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
+                  style={{
+                    background:
+                      "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                  }}
+                >
+                  <div className="px-4 py-6 text-white md:mx-6 md:p-12">
+                    <h4 className="mb-6 text-xl font-semibold">
+                      We are more than just a company
+                    </h4>
+                    <p className="text-sm">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
