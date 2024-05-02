@@ -158,7 +158,7 @@ const HomeLayout = () => {
           >
             <div className={"rounded-full"}>
               <Avatar>
-                <AvatarImage src={user.avatar} />
+                {/* <AvatarImage src={user.avatar} /> */}
                 <AvatarFallback>
                   {extractInitials(user?.name ? user?.name : "")}
                 </AvatarFallback>
@@ -167,7 +167,7 @@ const HomeLayout = () => {
             <NavigationMenu className="lg:flex hidden">
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>{user.name}</NavigationMenuTrigger>
+                  {/* <NavigationMenuTrigger>{user.name}</NavigationMenuTrigger> */}
                   <NavigationMenuContent className={"flex flex-col "}>
                     <NavigationMenuLink
                       href="/profile"

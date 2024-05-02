@@ -8,13 +8,14 @@ import Resources from "./pages/Resources/Resources.tsx";
 import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import Login from "./pages/LoginPage.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Auth>
+      {/* <Auth> */}
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
@@ -24,12 +25,13 @@ function App() {
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<>To implemented course</>} />
           <Route path={"/resources"} element={<Resources/>} />
+          <Route path={"/profile"} element={<Profile />} />
           <Route path={"/directory"} element={<>To implemented directory</>} />
         </Route>
-        <Route path={"/signup"} element={<SignUp />} />
-          <Route path={"/login"} element={<Login />} />
+        {/* <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/login"} element={<Login />} /> */}
       </Routes>
-        </Auth>
+        {/* </Auth> */}
     </ThemeProvider>
   );
 }

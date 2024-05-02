@@ -121,6 +121,7 @@ import React, { useState } from "react";
 import { TERipple } from "tw-elements-react";
 import {Input} from "../components/ui/input";
 import { FormLabel } from "@/components/ui/form";
+import Titlogo from "../../public/TIT.png";
 
 // import { Input } from "tw-elements-react";
 
@@ -150,24 +151,24 @@ export default function ExampleV2(): JSX.Element {
     <section className="h-full bg-neutral-200 dark:bg-neutral-700">
       <div className="container h-full p-10">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-          <div className="w-full">
+          <div className="">
             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-              <div className="g-0 lg:flex lg:flex-wrap">
-                <div className="px-4 md:px-0 lg:w-6/12">
+              {/* <div className="g-0 lg:flex lg:flex-wrap">
+                <div className="px-4 md:px-0 lg:w-6/12"> */}
                   <div className="md:mx-6 md:p-12">
                     <div className="text-center">
                       <img
-                        className="mx-auto w-48"
-                        src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                        className="mx-auto w-32"
+                        src={Titlogo}
                         alt="logo"
                       />
                       <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
-                        We are The Lotus Team
+                        TNP Education 
                       </h4>
                     </div>
 
                     <form onSubmit={handleSubmit}>
-                      <p className="mb-4">Please register an account</p>
+                      <p className="mb-4 text-red-700 font-semibold text-2xl">Please Register an account</p>
                      <p className="text-zinc-800 font-semibold">Email</p>
                       <Input
                         type="text"
@@ -176,7 +177,7 @@ export default function ExampleV2(): JSX.Element {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                       />
-                      <p className="text-zinc-800 font-semibold">Email</p>
+                      <p className="text-zinc-800 font-semibold">password</p>
                       <Input
                         type="password"
                         // label="Password"
@@ -186,7 +187,7 @@ export default function ExampleV2(): JSX.Element {
                       />
 
                       {/* Additional fields for StudentProfile */}
-                      <p className="text-zinc-800 font-semibold">Email</p>
+                      <p className="text-zinc-800 font-semibold">Enrollment Number</p>
                       <Input
                         type="text"
                         // label="Enrollment ID"
@@ -194,6 +195,7 @@ export default function ExampleV2(): JSX.Element {
                         value={enrollmentId}
                         onChange={(e) => setEnrollmentId(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Batch</p>
                       <Input
                         type="text"
                         // label="Batch"
@@ -201,6 +203,7 @@ export default function ExampleV2(): JSX.Element {
                         value={batch}
                         onChange={(e) => setBatch(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Department</p>
                       <Input
                         type="text"
                         // label="Department"
@@ -208,6 +211,7 @@ export default function ExampleV2(): JSX.Element {
                         value={department}
                         onChange={(e) => setDepartment(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Semester</p>
                       <Input
                         type="text"
                         // label="Semester"
@@ -215,6 +219,7 @@ export default function ExampleV2(): JSX.Element {
                         value={semester}
                         onChange={(e) => setSemester(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Section</p>
                       <Input
                         type="text"
                         // label="Section"
@@ -222,6 +227,7 @@ export default function ExampleV2(): JSX.Element {
                         value={section}
                         onChange={(e) => setSection(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Bio</p>
                       <Input
                         type="text"
                         // label="Bio"
@@ -229,6 +235,7 @@ export default function ExampleV2(): JSX.Element {
                         value={bio}
                         onChange={(e) => setBio(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">City Name</p>
                       <Input
                         type="text"
                         // label="Location"
@@ -236,6 +243,7 @@ export default function ExampleV2(): JSX.Element {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Website</p>
                       <Input
                         type="text"
                         // label="Website"
@@ -243,6 +251,7 @@ export default function ExampleV2(): JSX.Element {
                         value={website}
                         onChange={(e) => setWebsite(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">LinkedIn</p>
                       <Input
                         type="text"
                         // label="LinkedIn"
@@ -250,6 +259,7 @@ export default function ExampleV2(): JSX.Element {
                         value={linkedin}
                         onChange={(e) => setLinkedin(e.target.value)}
                       />
+                       <p className="text-zinc-800 font-semibold">Github</p>
                       <Input
                         type="text"
                         // label="Github"
@@ -257,7 +267,7 @@ export default function ExampleV2(): JSX.Element {
                         value={github}
                         onChange={(e) => setGithub(e.target.value)}
                       />
-
+                      
                       <div className="mb-12 pb-1 pt-1 text-center">
                         <TERipple
                           rippleColor="light"
@@ -290,10 +300,10 @@ export default function ExampleV2(): JSX.Element {
                         </TERipple>
                       </div>
                     </form>
-                  </div>
-                </div>
+                  {/* </div>
+                </div> */}
 
-                <div
+                {/* <div
                   className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                   style={{
                     background:
@@ -301,7 +311,7 @@ export default function ExampleV2(): JSX.Element {
                   }}
                 >
                   
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

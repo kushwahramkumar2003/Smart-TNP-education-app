@@ -47,6 +47,8 @@ model StudentProfile {
   batch         String
   department    String
   semester      String
+  // interests   String[]
+  // skills      String[]
   section       String
   bio           String?
   location      String?
