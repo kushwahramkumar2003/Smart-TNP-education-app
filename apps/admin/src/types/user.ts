@@ -8,20 +8,30 @@ interface UserState {
   status: string;
   lastLoggedIn: number | null;
 }
-// user.ts
 
-// Define UserProfile type
-export type UserProfile = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  // Add other fields as needed
-};
-
+interface UserProfile {
+  id?: string;
+  bio?: string;
+  location?: string;
+  interests?: string[];
+  skills?: string[];
+  avatar?: string;
+  comeToMeFor: {
+    id: string;
+    title: string;
+    description: string;
+  }[];
+  needHelpFor: {
+    id: string;
+    title: string;
+    description: string;
+  }[];
+  status: string;
+}
 
 export interface RootState {
   user: UserState;
+  profile: UserProfile;
 }
 
-export type { UserState };
+export type { UserState, UserProfile };
