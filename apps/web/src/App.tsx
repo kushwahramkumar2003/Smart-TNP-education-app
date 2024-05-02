@@ -9,6 +9,8 @@ import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import Login from "./pages/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
+import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
+import Course from "./pages/course/Course.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
@@ -20,13 +22,15 @@ function App() {
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
           <Route path={"/goals"} element={<Goals />} />
+          
           {/* <Route path={"/dashboard-bottom-menu"} element={<DashboardLayout></DashboardLayout>} ></Route> */}
           <Route path={"/schedule"} element={<>To implemented schedule</>} />
           <Route path={"/class"} element={<>To implemented class</>} />
-          <Route path={"/course"} element={<>To implemented course</>} />
+          <Route path={"/course"} element={<Course/>} />
           <Route path={"/resources"} element={<Resources/>} />
           <Route path={"/profile"} element={<Profile />} />
           <Route path={"/directory"} element={<>To implemented directory</>} />
+          <Route path={"/mycourses/new"} element={<NewCourse />} />
         </Route>
         {/* <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/login"} element={<Login />} /> */}

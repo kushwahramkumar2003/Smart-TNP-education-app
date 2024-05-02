@@ -56,7 +56,7 @@ const Profile = () => {
             </div>
             <div className=" ">
               <div className="text-center px-14">
-                <h2 className="text-gray-800 text-3xl font-bold">Pankaj Prajapati</h2>
+                <h2 className="text-gray-800 text-3xl font-bold">Pankaj </h2>
               </div>
               <div className="text-center px-14">
                 <p className="text-gray-700 text-sm font-semibold">

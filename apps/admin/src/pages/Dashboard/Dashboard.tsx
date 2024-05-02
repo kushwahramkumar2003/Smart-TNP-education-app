@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/button.tsx";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className=" flex flex-col p-4 max-md:flex-col">
       <div className="flex flex-row justify-between">
         <p className={"text-2xl font-semibold"}>My Courses</p>
-        <Button>+ Create New</Button>
+        <Button onClick={() => navigate("/mycourses/new")}>+ Create New</Button>
       </div>
       <div className="max-h-screen overflow-y-auto mt-4">
         <CourseCard />

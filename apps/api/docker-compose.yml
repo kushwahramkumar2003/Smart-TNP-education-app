@@ -23,7 +23,7 @@ services:
     volumes:
       - redis-data:/data
 
-  smart-tnp-server:
+  tit-smart-tnp-api:
     build: .
     # env_file: .env
     volumes:
