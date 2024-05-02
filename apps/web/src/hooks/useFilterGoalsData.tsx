@@ -30,9 +30,9 @@ export const useFilterGoalsData = () => {
 const FilterButtons: React.FC = () => {
   const {
     selectedData,
-    // selectedDuration,
+    selectedDuration,
     handleDataSelection,
-    // handleDurationSelection,
+    handleDurationSelection,
   } = useFilterGoalsData();
 
   const dataButtons: DataButton[] = [
@@ -42,11 +42,11 @@ const FilterButtons: React.FC = () => {
     "Profesional",
     "Live Event",
   ];
-  // const durationButtons: DurationButton[] = ["1W", "1M", "1Y"];
+  const durationButtons: DurationButton[] = ["1W", "1M", "1Y"];
 
   return (
     <div className="flex flex-row justify-between max-md:flex-col max-md:gap-4">
-      <div className="flex flex-row gap-3 dark:text-white">
+      <div className="flex flex-row gap-3 dark:text-white overflow-x-auto">
         {dataButtons.map((data) => (
           <Button
             key={data}
@@ -57,7 +57,7 @@ const FilterButtons: React.FC = () => {
           </Button>
         ))}
       </div>
-      {/* <div className="flex flex-row gap-2 dark:text-white">
+      <div className="flex flex-row gap-2 dark:text-white">
         {durationButtons.map((duration) => (
           <Button
             key={duration}
@@ -67,7 +67,7 @@ const FilterButtons: React.FC = () => {
             {duration}
           </Button>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
