@@ -11,6 +11,7 @@ import Login from "./pages/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
 import Course from "./pages/Course/Course.tsx";
+import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
@@ -31,6 +32,7 @@ function App() {
           <Route path={"/profile"} element={<Profile />} />
           <Route path={"/directory"} element={<>To implemented directory</>} />
           <Route path={"/mycourses/new"} element={<NewCourse />} />
+          <Route path={"/resource/details"} element={<ResourceDetails />} />
         </Route>
         {/* <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/login"} element={<Login />} /> */}
