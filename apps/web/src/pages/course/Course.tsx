@@ -1,3 +1,5 @@
+import { JSXElementConstructor, Key, ReactElement, ReactNode, useState } from "react";
+import { Button } from "../../../../admin/src/components/ui/button";
 
 
 // Define coursesList outside the component
@@ -81,17 +83,66 @@ const courseList = [
     }
   ];
   
+  type DataButton = "All" | "Personal" | "Finance" | "Profesional" | "Live Event";
   export default function Course() {
-    const bgColor = status === 'personal' ? 'bg-red-500' : 'bg-blue-500';
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
+    // className={`hover:bg-white hover:text-red-500 rounded-lg p-2 transition-all duration-200 ${
+    //   selectedItem === index
+    //     ? "bg-white text-red-500"
+    //     : ""
+    // }`
     return (
       <div>
         <h1 className='py-3 font-semibold text-2xl'>courses</h1>
-        <div className='py-3 flex flex-row gap-6'>
+        {/* <div className='py-3 flex flex-row gap-6'>
           <p className='hover:bg-blue-200 hover:text-blue-500 p-3 rounded-xl cursor-pointer'>All</p>
           <p className='hover:bg-blue-200 hover:text-blue-500 p-3 rounded-xl cursor-pointer'>Personal</p>
           <p className='hover:bg-blue-200 hover:text-blue-500 p-3 rounded-xl cursor-pointer'>Fianance</p>
           <p className='hover:bg-blue-200 hover:text-blue-500 p-3 rounded-xl cursor-pointer'>Live Events</p>
-        </div>
+        </div> */}
+            <div className='py-3 flex flex-row gap-6'>
+        <p
+          className={`p-3 rounded-xl cursor-pointer ${
+            selectedCategory === 'All'
+              ? 'bg-blue-200 text-blue-500'
+              : 'hover:bg-blue-200 hover:text-blue-500'
+          }`}
+          onClick={() => setSelectedCategory('All')}
+        >
+          All
+        </p>
+        <p
+          className={`p-3 rounded-xl cursor-pointer ${
+            selectedCategory === 'Personal'
+              ? 'bg-blue-200 text-blue-500'
+              : 'hover:bg-blue-200 hover:text-blue-500'
+          }`}
+          onClick={() => setSelectedCategory('Personal')}
+        >
+          Personal
+        </p>
+        <p
+          className={`p-3 rounded-xl cursor-pointer ${
+            selectedCategory === 'Finance'
+              ? 'bg-blue-200 text-blue-500'
+              : 'hover:bg-blue-200 hover:text-blue-500'
+          }`}
+          onClick={() => setSelectedCategory('Finance')}
+        >
+          Finance
+        </p>
+        <p
+          className={`p-3 rounded-xl cursor-pointer ${
+            selectedCategory === 'Live Events'
+              ? 'bg-blue-200 text-blue-500'
+              : 'hover:bg-blue-200 hover:text-blue-500'
+          }`}
+          onClick={() => setSelectedCategory('Live Events')}
+        >
+          Live Events
+        </p>
+      </div>
         <div className='grid grid-cols-3  gap-6 p-5'>
           {/* Use curly braces for map and return statement */}
           {courseList.map((course) => (
@@ -102,9 +153,9 @@ const courseList = [
               <img className='rounded-t-xl' src={course.tambnail} alt={course.title} />
               <p className='px-3'>{course.title}</p>
               </div>
-              <div className='py-4 flex flex-row justify-around gap-28'>
+              <div className='py-4 flex flex-row justify-around gap-28 md'>
               {/* <p className='bg-blue-200 px-2 hover:text-blue-500 rounded-xl cursor-pointer'>{course.status==='Finance'}</p> */}
-              <p className={`px-2 rounded-md ${course.status === 'Personal' ? 'bg-red-500 text-white' : 'bg-blue-500 text-black'} hover:bg-opacity-75 transition-colors duration-300`}> {course.status}</p>
+              <p className={`px-2 rounded-md ${course.status === 'Personal' ? 'bg-blue text-white' : 'bg-orange-600 text-black'} hover:bg-opacity-75 transition-colors duration-300`}> {course.status}</p>
               {/* <p>{course.duration}</p> */}
               <p>{course.lession} Lession </p>
               </div>

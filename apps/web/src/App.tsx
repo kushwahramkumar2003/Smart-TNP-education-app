@@ -10,7 +10,7 @@ import SignUp from "./pages/SignUp.tsx";
 import Login from "./pages/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
-import Course from "./pages/course/Course.tsx";
+import Course from "./pages/Course/Course.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
