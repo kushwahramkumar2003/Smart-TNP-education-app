@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import { Button } from '@/components/ui/button';
 import ResourcesList from './ResourceList'
-
+import { IoAlertCircleOutline } from "react-icons/io5";
+import { LuSquareEqual } from "react-icons/lu";
 
 export default function ResourceDetails() {
     const Categories = ['About', 'Discusion', 'Reviews'];
@@ -40,7 +41,7 @@ export default function ResourceDetails() {
                                     key={category}
                                     className={`p-2 rounded-lg cursor-pointer ${selectedCategory === category
                                         ? 'bg-blue-200 text-blue-600'
-                                        : 'hover:bg-blue-200 hover:text-blue-500'
+                                        : ''
                                         }`}
                                     onClick={() => setSelectedCategory(category)}
                                 >
@@ -51,7 +52,7 @@ export default function ResourceDetails() {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum fugit unde totam excepturi incidunt fuga sint similique hic culpa temporibus? Blanditiis odit possimus iusto eaque libero amet accusantium officia ullam ex asperiores harum vitae qui aspernatur architecto, voluptates nostrum quo, commodi quae doloribus aliquid. Repellat repudiandae harum officia eaque nostrum voluptatum magni, ducimus optio tempora dolore omnis quibusdam, nemo alias molestias velit est sit temporibus. Maxime minus consequatur ad deleniti aperiam, vero corrupti? Atque quis nam optio illo. Ullam facere ratione tenetur quisquam totam repudiandae nihil enim illum culpa nesciunt nemo blanditiis ipsa, corrupti atque, in doloribus! Excepturi, dignissimos ratione?</p>
                     </div>
                 </div>
-               <div className='w-1/4 mx-3 flex flex-col gap-3'>
+               <div className='w-1/3 mx-3 flex flex-col gap-3'>
                 <Button className='w-full bg-orange-400 hover:bg-orange-600'>Download 91.8</Button>
                 <div className='w-full  bg-white rounded-xl p-2'>
                     <h3 className='text-xl text-slate-800 font-semibold p-2'>Related Resourse</h3>
@@ -66,8 +67,14 @@ export default function ResourceDetails() {
             <p className=''>{resource.title} </p>
             <div className=' flex flex-row gap-3'>
             {/* <p className='bg-blue-200 px-2 hover:text-blue-500 rounded-xl cursor-pointer'>{resource.category}</p> */}
+            <div className='flex flex-row gap-1'>
+            <LuSquareEqual className='mt-1'/>
             <p>{resource.duration}</p>
-            <p>{resource.size}</p>
+            </div>
+            <div className='flex flex-row gap-1'>
+            <IoAlertCircleOutline className='mt-1' />
+            <p> {resource.size}</p>
+            </div>
             </div>
             </div>
             </div>

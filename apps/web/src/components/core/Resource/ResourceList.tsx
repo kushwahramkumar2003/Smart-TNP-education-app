@@ -4,7 +4,7 @@ const ResourcesList = [
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
       title: "how to become 5 start coder",
       category: "book",
-      duration: "84 pages",
+      duration: "84 Pages",
       size: "32 mb"
     },
     {
@@ -12,7 +12,7 @@ const ResourcesList = [
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
       title: "how to become 5 start coder",
       category: "book",
-      duration: "84 pages",
+      duration: "84 Pages",
       size: "32 mb"
     },
     {
@@ -20,7 +20,7 @@ const ResourcesList = [
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
       title: "how to become 5 start coder",
       category: "book",
-      duration: "84 pages",
+      duration: "84 Pages",
       size: "32 mb"
     },
     {
@@ -28,7 +28,7 @@ const ResourcesList = [
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
       title: "how to become 5 start coder",
       category: "book",
-      duration: "84 pages",
+      duration: "84 Pages",
       size: "32 mb"
     },
     // {
@@ -36,7 +36,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // },
     // {
@@ -44,7 +44,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // },
     // {
@@ -52,7 +52,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // },
     // {
@@ -60,7 +60,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // },
     // {
@@ -68,7 +68,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // },
     // {
@@ -76,7 +76,7 @@ const ResourcesList = [
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
     //   title: "how to become 5 start coder",
     //   category: "book",
-    //   duration: "84 pages",
+    //   duration: "84 Pages",
     //   size: "32 mb"
     // }
   ];
