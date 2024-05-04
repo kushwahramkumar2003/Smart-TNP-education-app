@@ -2,7 +2,7 @@ const ResourcesList = [
     {
       id: "1",
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-      title: "how to add numbers in c++ using add method",
+      title: "how to become 5 start coder",
       category: "book",
       duration: "84 pages",
       size: "32 mb"
@@ -10,7 +10,7 @@ const ResourcesList = [
     {
       id: "2",
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-      title: "how to add numbers in c++ using add method",
+      title: "how to become 5 start coder",
       category: "book",
       duration: "84 pages",
       size: "32 mb"
@@ -18,7 +18,7 @@ const ResourcesList = [
     {
       id: "3",
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-      title: "how to add numbers in c++ using add method",
+      title: "how to become 5 start coder",
       category: "book",
       duration: "84 pages",
       size: "32 mb"
@@ -26,7 +26,7 @@ const ResourcesList = [
     {
       id: "4",
       tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-      title: "how to add numbers in c++ using add method",
+      title: "how to become 5 start coder",
       category: "book",
       duration: "84 pages",
       size: "32 mb"
@@ -34,7 +34,7 @@ const ResourcesList = [
     // {
     //   id: "5",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
@@ -42,7 +42,7 @@ const ResourcesList = [
     // {
     //   id: "6",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
@@ -50,7 +50,7 @@ const ResourcesList = [
     // {
     //   id: "7",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
@@ -58,7 +58,7 @@ const ResourcesList = [
     // {
     //   id: "8",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
@@ -66,7 +66,7 @@ const ResourcesList = [
     // {
     //   id: "9",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
@@ -74,7 +74,7 @@ const ResourcesList = [
     // {
     //   id: "10",
     //   tambnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jOI8gCbADkP1mtC9FeKHurdmxa7hoD4J3z_Lm79TjQ&s",
-    //   title: "how to add numbers in c++ using add method",
+    //   title: "how to become 5 start coder",
     //   category: "book",
     //   duration: "84 pages",
     //   size: "32 mb"
