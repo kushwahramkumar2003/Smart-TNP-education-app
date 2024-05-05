@@ -120,14 +120,15 @@
 import React, { useState } from "react";
 import { TERipple } from "tw-elements-react";
 import {Input} from "../components/ui/input";
-import { FormLabel } from "@/components/ui/form";
+// import { FormLabel } from "@/components/ui/form";
 import Titlogo from "../../public/TIT.png";
 
 // import { Input } from "tw-elements-react";
 
-export default function ExampleV2(): JSX.Element {
+export default function signUp(): JSX.Element {
   // State variables to manage form inputs
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [enrollmentId, setEnrollmentId] = useState("");
   const [batch, setBatch] = useState("");
@@ -141,15 +142,72 @@ export default function ExampleV2(): JSX.Element {
   const [github, setGithub] = useState("");
 
   // Function to handle form submission
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Send form data to backend for processing
-    // This is where you would typically make an API request
-  };
+  // const handleSubmit = (event: React.FormEvent) => {
+   // Inside your ExampleV2 component
 
+// const handleSubmit = (event: React.FormEvent) => {
+//   event.preventDefault();
+//   console.log("Form submitted with the following data:");
+//   console.log("Username:", username);
+//   console.log("Password:", password);
+//   console.log("Enrollment ID:", enrollmentId);
+//   console.log("Batch:", batch);
+//   console.log("Department:", department);
+//   console.log("Semester:", semester);
+//   console.log("Section:", section);
+//   console.log("Bio:", bio);
+//   console.log("Location:", location);
+//   console.log("Website:", website);
+//   console.log("LinkedIn:", linkedin);
+//   console.log("Github:", github);
+// };
+
+
+
+const handleSubmit = async (event: React.FormEvent) => {
+  event.preventDefault();
+  try {
+    const userData = {
+      username,
+      email,
+      password,
+      enrollmentId,
+      semester,
+      batch,
+      department,
+      section,
+      bio,
+      location,
+      website,
+      linkedin,
+      github,
+    };
+    const response = await fetch('http:/locahost/3004/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log('User signed up successfully:', responseData);
+
+    } else {
+      console.error('Error signing up user:', response.statusText);
+      
+    }
+  } catch (error) {
+    console.error('Error signing up user:', error);
+
+  }
+};
+
+//  };
   return (
     <section className="h-full bg-neutral-200 dark:bg-neutral-700">
       <div className="container h-full p-10">
+        {/* <form action="" onSubmit={handleSubmit}> */}
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="">
             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -176,6 +234,14 @@ export default function ExampleV2(): JSX.Element {
                         className="mb-4"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                      />
+                     <p className="text-zinc-800 font-semibold">Email</p>
+                      <Input
+                        type="text"
+                        // label="email"
+                        className="mb-4"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                       <p className="text-zinc-800 font-semibold">password</p>
                       <Input
@@ -269,13 +335,14 @@ export default function ExampleV2(): JSX.Element {
                       />
                       
                       <div className="mb-12 pb-1 pt-1 text-center">
-                        <TERipple
-                          rippleColor="light"
-                          className="w-full"
-                        >
+                        {/* <TERipple */}
+                          {/* rippleColor="light"
+                          className="w-full" */}
+                        {/* > */}
                           <button
                             className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="submit"
+                            type='submit'
+                            
                             style={{
                               background:
                                 "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
@@ -283,7 +350,7 @@ export default function ExampleV2(): JSX.Element {
                           >
                             Sign up
                           </button>
-                        </TERipple>
+                        {/* </TERipple> */}
 
                         <a href="#!">Terms and conditions</a>
                       </div>
@@ -316,6 +383,7 @@ export default function ExampleV2(): JSX.Element {
             </div>
           </div>
         </div>
+        {/* </form> */}
       </div>
     </section>
   );

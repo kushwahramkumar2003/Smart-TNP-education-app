@@ -34,8 +34,8 @@ function App() {
           <Route path={"/mycourses/new"} element={<NewCourse />} />
           <Route path={"/resource/details"} element={<ResourceDetails />} />
         </Route>
-        {/* <Route path={"/signup"} element={<SignUp />} />
-          <Route path={"/login"} element={<Login />} /> */}
+        <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/login"} element={<Login />} />
       </Routes>
         {/* </Auth> */}
     </ThemeProvider>

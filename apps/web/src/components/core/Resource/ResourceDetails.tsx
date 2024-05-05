@@ -56,7 +56,7 @@ export default function ResourceDetails() {
                                 </p>
                             ))}
                             </div>
-                            <div className='flex gap-3 mt-4'>
+                            <div className='flex gap-3 mt-4 text-gray-900'>
                             <AiFillLike className='text-gray-400 hover:text-orange-300'size={24}/>
                            <AiFillDislike className='text-gray-400 hover:text-orange-300'size={24}/>
                             </div>
@@ -79,11 +79,11 @@ export default function ResourceDetails() {
             <p className=''>{resource.title} </p>
             <div className=' flex flex-row gap-3'>
             {/* <p className='bg-blue-200 px-2 hover:text-blue-500 rounded-xl cursor-pointer'>{resource.category}</p> */}
-            <div className='flex flex-row gap-1'>
-            <LuSquareEqual className='mt-1'/>
+            <div className='flex flex-row gap-1 text-gray-500'>
+            <LuSquareEqual className='mt-1 '/>
             <p>{resource.duration}</p>
             </div>
-            <div className='flex flex-row gap-1'>
+            <div className='flex flex-row gap-1 text-gray-500'>
             <IoAlertCircleOutline className='mt-1' />
             <p> {resource.size}</p>
             </div>
