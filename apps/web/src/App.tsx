@@ -7,7 +7,7 @@ import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
 import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp.tsx";
-import Login from "./pages/LoginPage.tsx";
+import SignupForm from "./pages/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
 import Course from "./pages/Course/Course.tsx";
@@ -35,7 +35,7 @@ function App() {
           <Route path={"/resource/details"} element={<ResourceDetails />} />
         </Route>
         <Route path={"/signup"} element={<SignUp />} />
-          <Route path={"/login"} element={<Login />} />
+          <Route path={"/login"} element={<SignupForm />} />
       </Routes>
         {/* </Auth> */}
     </ThemeProvider>
