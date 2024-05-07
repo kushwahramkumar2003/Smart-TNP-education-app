@@ -7,7 +7,7 @@ import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
 import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
-import SignupForm from "./pages/Login/LoginPage.tsx";
+// import SignupForm from "./pages/Login/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
 import Course from "./pages/Course/Course.tsx";
@@ -19,7 +19,7 @@ import Login from "./pages/Login/LoginPage.tsx";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      {/* <Auth> */}
+      <Auth>
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
@@ -35,10 +35,10 @@ function App() {
           <Route path={"/mycourses/new"} element={<NewCourse />} />
           <Route path={"/resource/details"} element={<ResourceDetails />} />
         </Route>
-        <Route path={"/signup"} element={<SignUp />} />
+        <Route path={"/signup"} element={<SignUp/>} />
           <Route path={"/login"} element={<Login />} />
       </Routes>
-        {/* </Auth> */}
+        </Auth>
     </ThemeProvider>
   );
 }

@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState, UserState } from "../../types/user";
 import { login } from "../../services/auth";
-import { LoginSchema } from "../../../../admin/src/pages/Login/Login";
+// import { LoginSchema } from "../../../../admin/src/pages/Login/Login";
 import { z } from "zod";
 
 const SESSION_EXPIRATION_TIME = 5 * 60 * 60 * 1000;
@@ -23,7 +23,7 @@ const initialState: UserState = {
 
 export const loginUser: any = createAsyncThunk(
   "auth/login",
-  async (userData: z.infer<typeof LoginSchema>) => {
+  async (userData:any) => {
     try {
       console.log("userData --> ", userData);
       const response = await login(userData);

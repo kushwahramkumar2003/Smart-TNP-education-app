@@ -17,24 +17,10 @@ const Auth = ({ children }: { children: ReactChild }) => {
   );
 
   useEffect(() => {
-    const sessionExpired = isSessionExpired();
-
-    if (sessionExpired) {
-      console.log("Session expired");
-      toast({
-        title: "Sesstion Expired",
-        description: "Your session has expired. Please login again",
-        variant: "default",
-        className: "text-green-500",
-      });
-      navigate("/login");
-    }
     const isLoginPage =
       location.pathname === "/login" || location.pathname === "/signup";
-    const isAuthorizedUser =
-      user.loggedIn && (user.role === "TEACHER" || user.role === "ADMIN");
 
-    if (!isLoginPage && !isAuthorizedUser) {
+    if (!isLoginPage) {
       navigate("/login");
     }
   }, [user, location.pathname]);

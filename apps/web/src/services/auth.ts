@@ -1,12 +1,12 @@
-import { LoginSchema } from "@/pages/Login/LoginPage";
-import { SignUpSchema } from "@/pages/SignUp/SignUp";
+// import { LoginSchema } from "@/pages/Login/LoginPage";
+// import { SignUpSchema } from "@/pages/SignUp/SignUp";
 import axios from "axios";
 import { z } from "zod";
 
-axios.defaults.baseURL = "http://localhost:8080/api/v1";
+axios.defaults.baseURL = "http://localhost:3000/api";
 axios.defaults.withCredentials = true;
 
-export const signUp = async (data: z.infer<typeof SignUpSchema>) => {
+export const signUp = async (data: any) => {
   try {
     const response = await axios.post("auth/signup", data);
     return response.data;
@@ -25,7 +25,7 @@ export const signUp = async (data: z.infer<typeof SignUpSchema>) => {
   }
 };
 
-export const login = async (formData: z.infer<typeof LoginSchema>) => {
+export const login = async (formData:any) => {
   try {
     const { data } = await axios.post("auth/login", formData);
     return data?.user;
