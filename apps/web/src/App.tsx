@@ -19,7 +19,7 @@ import Login from "./pages/Login/LoginPage.tsx";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Auth>
+      {/* <Auth> */}
       <Routes>
         <Route path={"/"} element={<HomeLayout />}>
           <Route path={"/"} element={<Dashboard />} />
@@ -38,7 +38,7 @@ function App() {
         <Route path={"/signup"} element={<SignUp/>} />
           <Route path={"/login"} element={<Login />} />
       </Routes>
-        </Auth>
+        {/* </Auth> */}
     </ThemeProvider>
   );
 }
