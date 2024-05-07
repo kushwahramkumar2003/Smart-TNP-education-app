@@ -1,5 +1,5 @@
-import { LoginSchema } from "@/pages/LoginPage";
-import { SignUpSchema } from "@/pages/SignUp";
+import { LoginSchema } from "@/pages/Login/LoginPage";
+import { SignUpSchema } from "@/pages/SignUp/SignUp";
 import axios from "axios";
 import { z } from "zod";
 

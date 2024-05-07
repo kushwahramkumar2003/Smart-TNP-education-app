@@ -119,9 +119,9 @@
 
 // import React, { useState } from "react";
 // import { TERipple } from "tw-elements-react";
-import {Input} from "../components/ui/input";
+import {Input} from "../../components/ui/input";
 // // import { FormLabel } from "@/components/ui/form";
-import Titlogo from "../../public/TIT.png";
+import Titlogo from "../../../public/TIT.png";
 
 // // import { Input } from "tw-elements-react";
 
@@ -390,8 +390,9 @@ import Titlogo from "../../public/TIT.png";
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
-function SignupForm() {
+function Login() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -454,15 +455,7 @@ function SignupForm() {
          {/* <h1>Signup</h1> */}
       <form onSubmit={handleSubmit}>
       <p className="mb-4 text-red-700 font-semibold text-2xl">Please Register an account</p>
-                 <p className="text-zinc-800 font-semibold">Name</p>
-          <Input
-            type="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <p className="text-zinc-800 font-semibold">Email</p>
+          <p className="text-zinc-800 font-semibold py-2">Email</p>
           <Input
             type="email"
             name="email"
@@ -470,8 +463,8 @@ function SignupForm() {
             onChange={handleChange}
             required
           />
-       <p className="text-zinc-800 font-semibold">Password</p>
-          <Input
+       <p className="text-zinc-800 font-semibold py-2">Password</p>
+          <Input className=""
             type="password"
             name="password"
             value={formData.password}
@@ -479,7 +472,18 @@ function SignupForm() {
             required
           />
 
-        <Button type="submit">Sign Up</Button>
+        <Button className="mt-6" type="submit">Sign Up</Button>
+        <div>
+          <Link to='/signup'>
+          <p className="text-red-700 font-md mt-4 cursor-pointer text-lg">Don't have any account</p>
+          </Link>
+        </div>
+                         {/* <Button
+                            type="button"
+                            className=""
+                          >
+                            Login
+                          </Button> */}
       </form>
       </div>
     </div>
@@ -490,4 +494,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default Login;

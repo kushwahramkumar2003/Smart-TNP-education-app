@@ -6,12 +6,13 @@ import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
 import Auth from "./components/reusable/Auth.tsx";
-import SignUp from "./pages/SignUp.tsx";
-import SignupForm from "./pages/LoginPage.tsx";
+import SignUp from "./pages/SignUp/SignUp.tsx";
+import SignupForm from "./pages/Login/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCourse.tsx"
 import Course from "./pages/Course/Course.tsx";
 import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
+import Login from "./pages/Login/LoginPage.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
@@ -35,7 +36,7 @@ function App() {
           <Route path={"/resource/details"} element={<ResourceDetails />} />
         </Route>
         <Route path={"/signup"} element={<SignUp />} />
-          <Route path={"/login"} element={<SignupForm />} />
+          <Route path={"/login"} element={<Login />} />
       </Routes>
         {/* </Auth> */}
     </ThemeProvider>
