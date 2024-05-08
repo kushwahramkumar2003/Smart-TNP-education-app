@@ -21,7 +21,7 @@ app.use('/api', postRouter)
 
 
 app.get('/', (req, res) => {
-    res.send("Hi from youtube live")
+    res.send("")
 })
 
 app.listen(3000, () => {
