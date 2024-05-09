@@ -55,7 +55,7 @@ function DashboardLayout() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-row gap-12 py-4">
+        <div className="flex flex-row gap-4 py-4">
           <Class></Class>
           <CalendarChec></CalendarChec>
         </div>
