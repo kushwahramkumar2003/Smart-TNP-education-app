@@ -1,7 +1,7 @@
 // import { LoginSchema } from "@/pages/Login/LoginPage";
 // import { SignUpSchema } from "@/pages/SignUp/SignUp";
 import axios from "axios";
-import { z } from "zod";
+// import { z } from "zod";
 
 axios.defaults.baseURL = "http://localhost:3000/api";
 axios.defaults.withCredentials = true;

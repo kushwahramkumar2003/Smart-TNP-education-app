@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 // import DashboardLayout from './components/reusable/layout/DashboardLayout.tsx'
 import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
-import Auth from "./components/reusable/Auth.tsx";
+// import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 // import SignupForm from "./pages/Login/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
