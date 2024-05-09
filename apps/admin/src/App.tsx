@@ -10,11 +10,12 @@ import LiveSchedule from "./pages/LiveSchedule/LiveSchedule.tsx";
 import ClassSchedule from "./pages/ClassSchedule/ClassSchedule.tsx";
 import PrivateRoutes from "./components/reusable/PrivateRoutes.tsx";
 import NewCourse from "./pages/Dashboard/screens/NewCourse/NewCourse.tsx";
+import Auth from "./components/reusable/Auth.tsx";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      {/* <Auth> */}
+      <Auth>
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<HomeLayout />}>
@@ -23,7 +24,7 @@ function App() {
             <Route path={"/profile"} element={<Profile />} />
             <Route path={"/schedule"} element={<LiveSchedule />} />
             <Route path={"/class"} element={<ClassSchedule />} />
-            <Route path={"/course"} element={<>To implemented course</>} />
+            <Route path={"/course"} element={<>to be implemented course</>} />
             <Route
               path={"/resources"}
               element={<>To implemented resources</>}
@@ -39,7 +40,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"*"} element={<>404 Not Found</>} />
       </Routes>
-      {/* </Auth> */}
+      </Auth>
     </ThemeProvider>
   );
 }

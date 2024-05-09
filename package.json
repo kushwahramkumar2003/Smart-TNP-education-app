@@ -10,10 +10,10 @@
     "ui:add": "npm --filter @repo/ui ui:add"
   },
   "devDependencies": {
+    "@repo/typescript-config": "*",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.10",
-    "@repo/typescript-config": "*",
     "turbo": "latest"
   },
   "engines": {
@@ -23,5 +23,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "react-router-dom": "^6.23.0"
+  }
 }

@@ -1,4 +1,4 @@
-// const baseUrl = process.env.VITE_API_END_POINT;
+
 const baseUrl = import.meta.env.VITE_BASE_URL;
 const enviroment = import.meta.env.MODE;
 const isProduction = enviroment === "production";
