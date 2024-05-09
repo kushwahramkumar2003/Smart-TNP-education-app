@@ -1,4 +1,41 @@
 
+import img from '../../assets/studyimg.jpg' 
+import userImg from '../../assets/user.jpg'
+// export const Schedules = [
+//     {
+//       id: 1,
+//       url: "Apptitude all topics in very short trick",
+//       imageUrl: img,
+//       title: "Apptitude all topics in very short trick",
+//       startDatetime: '2024-05-09T13:00',
+//       duration: ".....",
+//       userPhoto: userImg,
+//       userName: "User 1"
+//     },
+//     {
+//       id: 2,
+//       url: "Apptitude all topics in very short trick",
+//       imageUrl: img,
+//       title: "Apptitude all topics in very short trick",
+//       startDatetime: '2024-05-09T13:00',
+//       duration: ".....",
+//       userPhoto: userImg,
+//       userName: "User 2"
+//     },
+//     {
+//       id: 3,
+//       url: "Apptitude all topics in very short trick",
+//       imageUrl: img,
+//       title: "Apptitude all topics in very short trick",
+//       startDatetime: '2024-05-09T13:00',
+//       duration: ".....",
+//       userPhoto: userImg,
+//       userName: "User 2"
+//     },
+
+//   ];
+  
+
 export const Schedules = [
     {
       id: 1,

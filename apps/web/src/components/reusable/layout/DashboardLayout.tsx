@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { RxDashboard } from "react-icons/rx";
-import Class from "../../ui/Class";
-import CalendarChec from "../Calender";
+import Class from "../../ui/Class.tsx";
 import { Link} from "react-router-dom";
+import Calendar from "@/components/CalenderComponents/Calender.tsx";
 
 function DashboardLayout() {
   const [isTfiColored, setIsTfiColored] = useState(false);
@@ -18,7 +18,8 @@ function DashboardLayout() {
       setIsRxClored(true);
     }
   }
-
+  
+  let today = new Date(); 
   return (
     <>
       <div>
@@ -56,8 +57,8 @@ function DashboardLayout() {
           </div>
         </div>
         <div className="flex flex-row gap-4 py-4">
-          <Class></Class>
-          <CalendarChec></CalendarChec>
+          <Class selectedDay={today} selectedDaySchedules={[]}></Class>
+          <Calendar></Calendar>
         </div>
       </div>
     </>

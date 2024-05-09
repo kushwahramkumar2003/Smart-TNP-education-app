@@ -6,8 +6,8 @@ export const ClassData = [
       url: "Apptitude all topics in very short trick",
       imageUrl: img,
       title: "Apptitude all topics in very short trick",
-      duration: "10:30",
-      time : ".....",
+      time : "10:30",
+      duration: ".....",
       userPhoto: userImg,
       userName: "User 1"
     },
@@ -16,8 +16,8 @@ export const ClassData = [
       url: "Apptitude all topics in very short trick",
       imageUrl: img,
       title: "Apptitude all topics in very short trick",
-      duration: "15:45",
-      time : ".....",
+      time: "15:45",
+      duration: ".....",
       userPhoto: userImg,
       userName: "User 2"
     },
@@ -26,8 +26,8 @@ export const ClassData = [
       url: "Apptitude all topics in very short trick",
       imageUrl: img,
       title: "Apptitude all topics in very short trick",
-      duration: "15:45",
-      time : ".....",
+       time: "15:45",
+      duration: ".....",
       userPhoto: userImg,
       userName: "User 2"
     },
