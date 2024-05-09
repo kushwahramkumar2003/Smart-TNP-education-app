@@ -101,7 +101,7 @@ export default function Resources() {
             <div className=''>
          <div className='flex flex-col'>
             <img className='rounded-t-xl' src={resource.tambnail} alt={resource.title} />
-            <p className='px-3'>{resource.title}</p>
+            <p className='px-3'>{resource.title} </p>
             </div>
             <div className='p-4 flex flex-row gap-3'>
             <p className='bg-blue-200 px-2 hover:text-blue-500 rounded-xl cursor-pointer'>{resource.category}</p>
@@ -111,6 +111,7 @@ export default function Resources() {
             </div>
           </div>
         ))}
+
       </div>
     </div>
   );
