@@ -39,7 +39,7 @@ const NewCourse = () => {
             </TabsContent>
             <TabsContent
               value="lessons"
-              className="flex flex-col justify-center items-center w-full"
+              className="flex flex-col justify-center items-center w-full px-6"
             >
               <Lessons />
             </TabsContent>
