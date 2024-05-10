@@ -13,6 +13,7 @@ import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCour
 import Course from "./pages/Course/Course.tsx";
 import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 import Login from "./pages/Login/LoginPage.tsx";
+import LiveShcedule from "./pages/LiveShcedule/LiveSchedule.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
@@ -26,7 +27,7 @@ function App() {
           <Route path={"/goals"} element={<Goals />} />
           
           {/* <Route path={"/dashboard-bottom-menu"} element={<DashboardLayout></DashboardLayout>} ></Route> */}
-          <Route path={"/schedule"} element={<>To implemented schedule</>} />
+          <Route path={"/schedule"} element={<LiveShcedule/>} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<Course/>} />
           <Route path={"/resources"} element={<Resources/>} />
