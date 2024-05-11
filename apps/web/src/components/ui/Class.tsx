@@ -59,7 +59,7 @@ interface Props {
     // let today = new Date(); // Declare and assign a value to the 'today' variable
     // let [selectedDay, setSelectedDay] = useState(today);
   return (
-    <div className="8/12 bg-white">
+    <div className="w-full 8/12 bg-white">
     <div className=" bg-white rounded-lg flex flex-col">
       <p className='text-xl font-bold px-4 py-4'>Live Event</p>
       {ClassData.map((classItem) => (
