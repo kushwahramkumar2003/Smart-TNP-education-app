@@ -14,12 +14,8 @@ import {
 } from "../../ui/navigation-menu.tsx";
 import { ModeToggle } from "../mode-toggle.tsx";
 import SideMenuResponsive from "../../core/Dashboard/SideMenuResponsive.tsx";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, UserState } from "../../../types/user.ts";
-import {
-  getUserSelector,
-  resetUserInfo,
-} from "../../../store/slices/userReducers.ts";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom } from "@repo/store";
 
 function extractInitials(fullName: string): string {
   let words = fullName.split(" ");
@@ -31,18 +27,17 @@ function extractInitials(fullName: string): string {
 }
 
 const HomeLayout = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(
-    (state: RootState): UserState => getUserSelector(state),
-  );
+  const user = useRecoilValue(userAtom);
+  const [userState, setUserState] = useRecoilState(userAtom);
   const handleSignOut = () => {
-    dispatch(resetUserInfo());
+    setUserState(null);
     document.cookie.split(";").forEach(function (cookie) {
       document.cookie = cookie
         .replace(/^ +/, "")
         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
     history.pushState("/login", "", "/login");
+    localStorage.removeItem("user");
   };
   return (
     <div className={"w-screen flex flex-row gap-1 fixed"}>
@@ -68,51 +63,53 @@ const HomeLayout = () => {
             />
           </form>
 
-          <div
-            className={
-              "flex flex-row justify-center items-center gap-3 lg:gap-1"
-            }
-          >
-            <div className={"rounded-full"}>
-              <Avatar>
-                <AvatarImage src={user.avatar} />
-                <AvatarFallback>
-                  {extractInitials(user?.name ? user?.name : "")}
-                </AvatarFallback>
-              </Avatar>
-            </div>
-            <NavigationMenu className="lg:flex hidden">
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>{user.name}</NavigationMenuTrigger>
-                  <NavigationMenuContent className={"flex flex-col "}>
-                    <NavigationMenuLink
-                      href="/profile"
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Account
-                    </NavigationMenuLink>
-                    <NavigationMenuLink
-                      href="/settings"
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Settings
-                    </NavigationMenuLink>
-                    <NavigationMenuLink
-                      onClick={handleSignOut}
-                      href="#"
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Sign Out
-                    </NavigationMenuLink>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+          {user && (
+            <div
+              className={
+                "flex flex-row justify-center items-center gap-3 lg:gap-1"
+              }
+            >
+              <div className={"rounded-full"}>
+                <Avatar>
+                  <AvatarImage src={user.avatar} />
+                  <AvatarFallback>
+                    {extractInitials(user?.name ? user?.name : "")}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <NavigationMenu className="lg:flex hidden">
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>{user.name}</NavigationMenuTrigger>
+                    <NavigationMenuContent className={"flex flex-col "}>
+                      <NavigationMenuLink
+                        href="/profile"
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Account
+                      </NavigationMenuLink>
+                      <NavigationMenuLink
+                        href="/settings"
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Settings
+                      </NavigationMenuLink>
+                      <NavigationMenuLink
+                        onClick={handleSignOut}
+                        href="#"
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Sign Out
+                      </NavigationMenuLink>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
 
-            <IoNotifications size={25} className="lg:flex hidden" />
-            <ModeToggle />
-          </div>
+              <IoNotifications size={25} className="lg:flex hidden" />
+              <ModeToggle />
+            </div>
+          )}
         </div>
         <main className="mt-3 w-full h-screen overflow-y-scroll pb-28 bg-primary bg-red-50 rounded-lg p-2">
           <Outlet />

@@ -1,15 +1,17 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { getUserSelector, isSessionExpired } from "../../store/slices/userReducers";
-import { RootState, UserState } from "../../types/user";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "@repo/store";
 
+const SESSION_EXPIRATION_TIME = 5 * 60 * 60 * 1000;
 const PrivateRoutes = () => {
   const location = useLocation();
-  const user = useSelector((state: RootState): UserState => getUserSelector(state));
-
+  const user = useRecoilValue(userAtom);
+  console.log("default user ", user);
   const sessionExpired = isSessionExpired();
-  const isLoginPage = location.pathname === "/login" || location.pathname === "/signup";
-  const isAuthorizedUser = user.loggedIn && (user.role === "TEACHER" || user.role === "ADMIN");
+  const isLoginPage =
+    location.pathname === "/login" || location.pathname === "/signup";
+  const isAuthorizedUser =
+    user && user.loggedIn && (user.role === "TEACHER" || user.role === "ADMIN");
 
   if (sessionExpired) {
     console.log("Session expired");
@@ -21,6 +23,22 @@ const PrivateRoutes = () => {
   }
 
   return <Outlet />;
+};
+
+const isSessionExpired = () => {
+  const userData = localStorage.getItem("user");
+  if (!userData) {
+    return false;
+  }
+  if (userData) {
+    const user = JSON.parse(userData);
+    const { lastLoggedIn } = user;
+    if (lastLoggedIn) {
+      const currentTime = Date.now();
+      return currentTime - lastLoggedIn > SESSION_EXPIRATION_TIME;
+    }
+  }
+  return true;
 };
 
 export default PrivateRoutes;

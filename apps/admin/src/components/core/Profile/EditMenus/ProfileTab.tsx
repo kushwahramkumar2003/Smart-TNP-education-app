@@ -20,26 +20,16 @@ import { Button } from "../../../ui/button";
 import { VscLoading } from "react-icons/vsc";
 import { ProfilePhotoUploader } from "./ProfilePhotoUploader";
 import { Textarea } from "../../../ui/textarea";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, UserProfile, UserState } from "../../../../types/user";
-import { getUserSelector } from "../../../../store/slices/userReducers";
-import {
-  getUserProfileError,
-  getUserProfileSelector,
-  getUserProfileStatus,
-  UpdateProfile,
-} from "../../../../store/slices/profileReducers";
+import { updateProfile } from "../../../../services/profile.ts";
+import { ToastAction } from "../../../ui/toast.tsx";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, UserProfile, userProfileAtom } from "@repo/store";
 
 const ProfileTab = () => {
-  const profileStatus = useSelector(getUserProfileStatus);
-  const profileError = useSelector(getUserProfileError);
-  const dispatch = useDispatch();
-  const user = useSelector(
-    (state: RootState): UserState => getUserSelector(state),
-  );
-  const userProfile = useSelector(
-    (state: RootState): UserProfile => getUserProfileSelector(state),
-  );
+  const user = useRecoilValue(userAtom);
+  // const userProfile = useRecoilValue(userProfileAtom);
+  // const [userState, setUserState] = useRecoilState(userAtom);
+  const [userProfile, setUserProfileState] = useRecoilState(userProfileAtom);
   const [interests, setInterests] = useState<string[]>(
     userProfile.interests || [],
   );
@@ -48,7 +38,7 @@ const ProfileTab = () => {
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      name: user.name || "",
+      name: user?.name || "",
       bio: userProfile.bio || "",
       location: userProfile.location || "",
     },
@@ -57,42 +47,34 @@ const ProfileTab = () => {
   const { isPending, mutate } = useMutation({
     mutationFn: async (data: z.infer<typeof ProfileSchema>) => {
       console.log("form data --> ", data);
-      return await dispatch(UpdateProfile(data));
-      // Perform mutation logic here
+      return await updateProfile(data);
     },
-    onSuccess: (data) => {
+    onSuccess: (data: UserProfile) => {
       console.log("Success called ", data);
-      if (profileStatus === "idle") {
-        toast({
-          title: "Success",
-          description: "You have successfully added new item!",
-          variant: "default",
-          className: "text-green-500",
-        });
-        form.reset();
-        setInterests([]);
-        setSkills([]);
-      } else {
-        toast({
-          title: "Error",
-          description: profileError,
-          variant: "default",
-          className: "text-red-500",
-        });
-      }
+      setUserProfileState(data);
+      localStorage.setItem("profile", JSON.stringify(data));
+      toast({
+        title: "Success",
+        description: "You have successfully added new item!",
+        variant: "default",
+        className: "text-green-500",
+      });
+      form.reset();
+      setInterests([]);
+      setSkills([]);
     },
-    // onError: (error: unknown) => {
-    //   if (error instanceof Error) {
-    //     toast({
-    //       variant: "destructive",
-    //       title: "Error occurred while signing up.",
-    //       description: error?.message || "An unknown error occurred.",
-    //       action: <ToastAction altText="Try again">Try again</ToastAction>,
-    //     });
-    //     console.log(error.message);
-    //   }
-    //   console.log("Error:", error);
-    // },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        toast({
+          variant: "destructive",
+          title: "Error occurred while signing up.",
+          description: error?.message || "An unknown error occurred.",
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        });
+        console.log(error.message);
+      }
+      console.log("Error:", error);
+    },
   });
 
   const onSubmit = (data: z.infer<typeof ProfileSchema>) => {
@@ -117,7 +99,7 @@ const ProfileTab = () => {
             </span>
           </div>
           <div className="flex justify-start px-5  -mt-20 flex-col items-start">
-            <ProfilePhotoUploader iniImage={user.avatar} />
+            <ProfilePhotoUploader iniImage={user?.avatar} />
           </div>
         </div>
         <div>

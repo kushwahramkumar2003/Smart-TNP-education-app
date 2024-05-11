@@ -1,9 +1,8 @@
 import { Button } from "../../components/ui/button";
 import ProfileDescription from "../../components/core/Profile/ProfileDescription";
 import EditProfile from "../../components/core/Profile/EditProfile";
-import { getUserSelector } from "../../store/slices/userReducers";
-import { useSelector } from "react-redux";
-import { RootState, UserState } from "../../types/user";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "@repo/store";
 
 const intrest = [
   "Web Development",
@@ -31,9 +30,7 @@ const skills = [
 ];
 
 const Profile = () => {
-  const user = useSelector(
-    (state: RootState): UserState => getUserSelector(state)
-  );
+  const user = useRecoilValue(userAtom);
   return (
     <div className="w-full flex flex-row bg-gray-100 p-4 gap-4">
       <div className="flex flex-col gap-4">
