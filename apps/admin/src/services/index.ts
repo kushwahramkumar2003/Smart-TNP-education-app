@@ -1,6 +1,5 @@
-
 import axios from "axios";
-import config from "../components/ui/config";
+import config from "../config";
 
 axios.defaults.baseURL = config.baseUrl;
 axios.defaults.withCredentials = true;

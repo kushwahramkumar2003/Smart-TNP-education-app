@@ -7,12 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/use-toast";
 import { ToastAction } from "../../components/ui/toast";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "web/src/components/ui/card.tsx";
+
 import {
   Form,
   FormControl,
@@ -26,6 +21,12 @@ import { Input } from "../../components/ui/input.tsx";
 import { Button } from "../../components/ui/button.tsx";
 import { Checkbox } from "../../components/ui/checkbox.tsx";
 import { signUp } from "../../services/auth.ts";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card.tsx";
 
 export const SignUpSchema = z.object({
   // name: z.string().min(2, {
