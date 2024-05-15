@@ -92,6 +92,7 @@ model Course {
   description     String
   category        String
   CourseResources CourseResources[]
+  teacherId       String
 }
 
 model CourseResources {
@@ -117,9 +118,14 @@ enum ResourceType {
 }
 
 model Resource {
-  id          String       @id @default(uuid())
-  type        ResourceType
-  resourceUrl String
-  Lesson      Lesson?      @relation(fields: [lessonId], references: [id])
-  lessonId    String?
+  id        String       @id @default(uuid())
+  title     String
+  type      ResourceType
+  url       String
+  size      Int
+  Lesson    Lesson?      @relation(fields: [lessonId], references: [id])
+  lessonId  String?
+  duration  Int?
+  pageCount Int?
+  createdAt DateTime     @default(now())
 }

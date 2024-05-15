@@ -18,60 +18,40 @@ export const rateLimitMiddleware = setRateLimit({
 export const authMiddleware = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
-  if (!req?.cookies?.token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-  const token = req.cookies.token;
-  console.log("token --> ", token);
   try {
-    const decodedToken = await jwt.verify(token, config.jwtSecret);
-    //@ts-ignore
-    const userId = decodedToken.userId;
+    const token = req.cookies?.token;
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized: Token not provided" });
+    }
+
+    const decodedToken: any = await jwt.verify(token, config.jwtSecret);
+    const userId: string = decodedToken.userId;
 
     if (!userId) {
-      return res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Unauthorized: Invalid token" });
     }
 
     const user = await prisma.user.findFirst({
-      where: { id: userId as string },
+      where: { id: userId },
     });
+
     if (!user) {
-      return res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Unauthorized: User not found" });
     }
     //@ts-ignore
-    req.user = user as User;
-    console.log("authMiddleware user --> ", req.body.user);
+    req.user = user;
+    //@ts-ignore
+    console.log("authMiddleware user --> ", req.user);
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Unauthorized" });
+    console.error("Error in authMiddleware:", error);
+    return res
+      .status(401)
+      .json({ message: "Unauthorized: Token verification failed" });
   }
 };
-
-export const extractUserMiddleware = asyncHandler(
-  async (req: Request, res: Response, next) => {
-    if (req?.cookies?.token) {
-      const token = req.cookies.token;
-      console.log("token --->", token);
-      const decodeToken = await jwt.decode(token);
-      //@ts-ignore
-      const userId = decodeToken.userId;
-      console.log("userId ----->", userId);
-      if (!userId) {
-        res.status(401).json({ message: "Invalid token" });
-      }
-      const user = await prisma.user.findFirst({
-        where: { id: userId as string },
-      });
-
-      if (!user) {
-        res.status(401).json({ message: "Invalid token" });
-      }
-      req.push(user);
-      //@ts-ignore
-      console.log("extractUserMiddleware user --> ", req?.user);
-    }
-    next();
-  }
-);
