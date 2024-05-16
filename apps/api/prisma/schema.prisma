@@ -87,28 +87,22 @@ model NeedHelpFor {
 }
 
 model Course {
-  id              String            @id @default(uuid())
-  title           String
-  description     String
-  category        String
-  CourseResources CourseResources[]
-  teacherId       String
-}
-
-model CourseResources {
-  id       String   @id @default(uuid())
-  course   Course   @relation(fields: [courseId], references: [id])
-  courseId String
-  lessons  Lesson[]
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  category    String
+  teacherId   String
+  lessons     Lesson[]
 }
 
 model Lesson {
-  id                String           @id @default(uuid())
-  title             String
-  description       String
-  resources         Resource[]
-  CourseResources   CourseResources? @relation(fields: [courseResourcesId], references: [id])
-  courseResourcesId String?
+  id          String     @id @default(uuid())
+  title       String     @default("")
+  description String?    @default("")
+  resources   Resource[]
+  Course      Course     @relation(fields: [courseId], references: [id])
+  courseId    String
+  category    String     @default("")
 }
 
 enum ResourceType {

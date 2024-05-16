@@ -1,7 +1,7 @@
 import prisma from "../utils/prisma";
 import { Request, Response } from "express";
 import asyncHandler from "../utils/asynchHandler";
-import { courseInputSchema } from "../types/course";
+import { courseInputSchema, newLessonSchema } from "../types/course";
 import { User } from "@prisma/client";
 import fileType from "file-type";
 import { readFile } from "fs";
@@ -76,5 +76,33 @@ export const createNewResource = asyncHandler(
     });
 
     res.status(200).json({ message: "File uploaded successfully", resource });
+  },
+);
+
+export const createNewLesson = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { courseId } = newLessonSchema.parse(req.body);
+    //@ts-ignore
+    const user = req?.user as User;
+
+    const lesson = await prisma.lesson.create({
+      data: {
+        courseId: courseId,
+      },
+    });
+
+    console.log("newCourse", lesson);
+    if (!lesson) {
+      res.status(302).json({
+        success: false,
+        message: "New lesson can't be created!!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "New lesson successfully created!!",
+      lesson,
+    });
   },
 );

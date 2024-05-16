@@ -11,3 +11,7 @@ export const courseInputSchema = z.object({
   description: z.string(),
   category: z.string(),
 });
+
+export const newLessonSchema = z.object({
+  courseId: z.string(),
+});
