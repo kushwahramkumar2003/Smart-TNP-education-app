@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
+
+import { ChevronDownIcon } from 'lucide-react'
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function DropDown() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
