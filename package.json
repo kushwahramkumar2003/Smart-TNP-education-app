@@ -25,6 +25,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "react-bootstrap": "^2.10.2",
     "react-router-dom": "^6.23.0"
   }
 }
