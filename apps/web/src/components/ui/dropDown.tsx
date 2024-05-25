@@ -94,14 +94,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function DropDown() {
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle variant="success" id="dropdown-basic" className='bg-blue-400 rounded-sm p-2'>
         Dropdown Button
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      <Dropdown.Menu className='py-2 mt-3'>
+        <Dropdown.Item href="#/action-1" className='bg-red-400'>Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2" className='bg-red-400'>Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3" className='bg-red-400'>Something else</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
