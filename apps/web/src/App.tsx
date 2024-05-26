@@ -13,7 +13,7 @@ import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCour
 import Course from "./pages/Course/Course.tsx";
 import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 import Login from "./pages/Login/LoginPage.tsx";
-import LiveShcedule from "./pages/LiveShcedule/LiveSchedule.tsx";
+import LiveShcedule from "@/pages/LiveShcedule/LiveSchedule.tsx";
 import DropDown from "./components/ui/dropDown.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
