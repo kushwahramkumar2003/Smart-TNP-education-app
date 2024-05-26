@@ -89,22 +89,29 @@
 //   )
 // }
 
-import Dropdown from 'react-bootstrap/Dropdown';
 
-function DropDown() {
-  return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic" className='bg-blue-400 rounded-sm p-2'>
-        Dropdown Button
-      </Dropdown.Toggle>
+// src/Dropdown.tsx
+import React, { useState } from 'react';
 
-      <Dropdown.Menu className='py-2 mt-3'>
-        <Dropdown.Item href="#/action-1" className='bg-red-400'>Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" className='bg-red-400'>Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" className='bg-red-400'>Something else</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-}
+const Dropdown: React.FC = () => {
+    const [selectedOption, setSelectedOption] = useState<string>('Daily');
 
-export default DropDown;
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOption(event.target.value);
+    };
+
+    return (
+        <div className=''>
+            <select className='block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm focus:bg-slate-200' value={selectedOption} onChange={handleChange}>
+             
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+        
+            </select>
+            {/* {selectedOption} */}
+        </div>
+    );
+};
+
+export default Dropdown;
