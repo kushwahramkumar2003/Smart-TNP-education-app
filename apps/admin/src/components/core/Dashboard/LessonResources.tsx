@@ -5,12 +5,25 @@ import { Button } from "../../ui/button.tsx";
 import { FaPlay } from "react-icons/fa";
 import { TbNotes } from "react-icons/tb";
 
+const bytesToMB = (bytes: number): number =>
+  parseFloat((bytes / (1024 * 1024)).toFixed(4));
+
+const secondsToMinutes = (seconds: number): string => {
+  if (seconds < 60) {
+    return seconds + " sec";
+  } else {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes} min ${remainingSeconds} sec`;
+  }
+};
+
 export const LessonResources = ({ resource }: { resource: Resource }) => {
   return (
     <div className={"flex flex-row justify-between"}>
       <div className={"flex flex-row items-center"}>
         <div className={"px-7 text-orange-600"}>
-          {resource.type === "MP4" ? (
+          {resource.type === "VIDEO" ? (
             <FaPlay size={24} />
           ) : (
             <TbNotes size={25} />
@@ -23,9 +36,13 @@ export const LessonResources = ({ resource }: { resource: Resource }) => {
           >
             <p>{resource.type}</p>
             <span className={"w-[8px] h-[8px] rounded-full bg-gray-400"}></span>
-            <p>{resource.length}</p>
+            <p>
+              {resource.type === "VIDEO" &&
+                secondsToMinutes(Number(resource.duration))}
+              {resource.type === "PDF" && resource.pageCount + "Pages"}
+            </p>
             <span className={"w-[8px] h-[8px] rounded-full bg-gray-400"}></span>
-            <p>{resource.size}</p>
+            <p>{bytesToMB(Number(resource.size))} MB</p>
           </div>
         </div>
       </div>
