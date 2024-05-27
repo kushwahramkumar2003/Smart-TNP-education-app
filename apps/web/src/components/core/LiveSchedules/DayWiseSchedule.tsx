@@ -25,11 +25,11 @@ export interface ScheduleSchema {
 const DayWiseSchedule = () => {
   return (
     <div>
-      <div className={"flex flex-row justify-between items-center"}>
-        <h1 className={"text-lg font-semibold"}>Wednesday, 5 April 2024</h1>
+      <div className={"flex flex-row justify-between items-center "}>
+        <h1 className={"text-lg font-semibold mb-2"}>Wednesday, 5 April 2024</h1>
         <Dropdown></Dropdown>
       </div>
-      <div className={"px-3 flex flex-col gap-4"}>
+      <div className={"px-3 flex flex-col gap-4 my-6"}>
         {ScheduleData.map((ScheduleDatum) => (
           <DayScheduleCard data={ScheduleDatum} />
         ))}
