@@ -50,9 +50,7 @@ const CourseCard = () => {
           <div
             className={"flex flex-col  items-start text-center justify-evenly"}
           >
-            <p className={"text-xl font-semibold"}>
-              Cooking class for your summer holiday
-            </p>
+            <p className={"text-xl font-semibold"}>Java Coding class</p>
             <div
               className={
                 "flex flex-row gap-3 max-md:justify-center max-md:items-center"

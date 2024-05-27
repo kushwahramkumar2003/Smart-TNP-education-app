@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { Router } from "express";
 // import authRoutes from "./auth.routes";
 // import usersRoutes from "./user.routes";
@@ -33,6 +34,15 @@ import routes from "./routes";
 import cookieParser from "cookie-parser";
 const app: Express = express();
 
+=======
+import config from "./config";
+import express, { Express, Request, Response } from "express";
+import cors from "cors";
+import routes from "./routes";
+import cookieParser from "cookie-parser";
+const app: Express = express();
+
+>>>>>>> 64143724f09473ede496405c302454dc0d1b45d2
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +50,10 @@ app.use(
   cors({
     // origin: "*",
     origin: [
+<<<<<<< HEAD
       "http://localhost:3001",
+=======
+>>>>>>> 64143724f09473ede496405c302454dc0d1b45d2
       "http://localhost:3000",
       "http://localhost:8080",
       "http://localhost:5172",
@@ -61,4 +74,7 @@ app.get("/", async (req: Request, res: Response) => {
 app.listen(config.port, () => {
   console.log(`[server]: Server is running at http://localhost:${config.port}`);
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 64143724f09473ede496405c302454dc0d1b45d2

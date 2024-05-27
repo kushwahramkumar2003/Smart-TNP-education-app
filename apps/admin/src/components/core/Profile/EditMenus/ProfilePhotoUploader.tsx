@@ -7,25 +7,19 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import axios, { AxiosResponse } from "axios";
-
-import {
-  getUserSelector,
-  setUserInfo,
-} from "../../../../store/slices/userReducers";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, UserState } from "../../../../types/user";
 import { Progress } from "../../../ui/progress";
 import { useToast } from "../../../ui/use-toast";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, UserState } from "@repo/store";
 axios.defaults.baseURL = "http://localhost:8080/api/v1";
 axios.defaults.withCredentials = true;
 
 export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
   const { toast } = useToast();
   const [uploadProgress, setUploadProgress] = React.useState<number>(0);
-  const dispatch = useDispatch();
-  let user = useSelector(
-    (state: RootState): UserState => getUserSelector(state)
-  );
+  const user = useRecoilValue(userAtom);
+  const [userState, setUserState] = useRecoilState(userAtom);
+
   const [images, setImages] = React.useState<ImageType[]>([
     { dataURL: iniImage, key: "data_url" },
   ]);
@@ -44,9 +38,8 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
         await uploadMedia("video", uploadedFile.file);
       }
     }
-
     user.avatar = uploadedFile.dataURL || "";
-    dispatch(setUserInfo(user));
+    setUserState(user);
     setImages(imageList);
   };
 
@@ -66,14 +59,20 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round(
               //@ts-ignore
-              (progressEvent.loaded / progressEvent.total) * 100
+              (progressEvent.loaded / progressEvent.total) * 100,
             );
             setUploadProgress(progress);
           },
-        }
+        },
       );
-      dispatch(setUserInfo(response.data.updatedUser as UserState));
-      localStorage.setItem("user", JSON.stringify(response.data.updatedUser));
+      setUserState(response.data.updatedUser as UserState);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          avatar: response.data.updatedUser.avatar,
+        }),
+      );
       console.log("Upload successful:", response.data.updatedUser);
       toast({
         title: "Success",

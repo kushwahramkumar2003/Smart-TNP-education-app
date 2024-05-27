@@ -22,34 +22,34 @@ export const signUp = async (data: z.infer<typeof SignUpSchema>) => {
   }
 };
 
-// export const login = async (formData: z.infer<typeof LoginSchema>) => {
-//   try {
-//     const { data } = await axios.post("auth/login", formData);
-//     return data?.user;
-//   } catch (error: unknown) {
-//     if (axios.isAxiosError(error)) {
-//       console.log("Axios error:", error.message);
-//       console.log("Axios error:", error);
+export const login = async (formData: z.infer<typeof LoginSchema>) => {
+  try {
+    const { data } = await axios.post("auth/login", formData);
+    return data?.user;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.log("Axios error:", error.message);
+      console.log("Axios error:", error);
 
-//       if (error.response?.data) {
-//         throw new Error(error.response?.data.message);
-//       }
+      if (error.response?.data) {
+        throw new Error(error.response?.data.message);
+      }
 
-//       throw new Error(error.message);
-//     }
-//     console.log("Unknown error:", error);
-//   }
-// };
-
-export function login(formData: z.infer<typeof LoginSchema>) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const { data } = await axiosClient.post("auth/login", formData);
-      console.log("data :>> ", data);
-      resolve(data);
-    } catch (error) {
-      console.error("Error in login function:", error);
-      reject(error);
+      throw new Error(error.message);
     }
-  });
-}
+    console.log("Unknown error:", error);
+  }
+};
+
+// export function login(formData: z.infer<typeof LoginSchema>) {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       const { data } = await axiosClient.post("auth/login", formData);
+//       console.log("data :>> ", data);
+//       resolve(data);
+//     } catch (error) {
+//       console.error("Error in login function:", error);
+//       reject(error);
+//     }
+//   });
+// }

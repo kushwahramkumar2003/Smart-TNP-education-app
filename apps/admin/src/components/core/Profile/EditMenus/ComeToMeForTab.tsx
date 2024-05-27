@@ -16,24 +16,12 @@ import {
 import { Input } from "../../../ui/input";
 import { Button } from "../../../ui/button";
 import { VscLoading } from "react-icons/vsc";
-
-import {
-  getUserProfileError,
-  getUserProfileSelector,
-  getUserProfileStatus,
-  UpdateProfile,
-} from "../../../../store/slices/profileReducers";
-import { RootState, UserProfile } from "../../../../types/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useRecoilState } from "recoil";
+import { UserProfile, userProfileAtom } from "@repo/store";
+import { updateProfile } from "../../../../services/profile.ts";
 
 const ComeToMeForTab = () => {
-  const profileStatus = useSelector(getUserProfileStatus);
-  const profileError = useSelector(getUserProfileError);
-  const dispatch = useDispatch();
-
-  const userProfile = useSelector((state: RootState) =>
-    getUserProfileSelector(state),
-  );
+  const userProfile = useRecoilState(userProfileAtom);
 
   const { toast } = useToast();
   const form = useForm<z.infer<typeof cometomefor>>({
@@ -53,7 +41,7 @@ const ComeToMeForTab = () => {
       // };
 
       //@ts-ignore
-      setUpdatedUserComeToMeForData([...updatedUserComeToMeForData, newData]);
+      updateProfile([...updatedUserComeToMeForData, newData]);
     },
     onSuccess: () => {
       toast({
@@ -85,19 +73,9 @@ const ComeToMeForTab = () => {
   const { isPending: submitPending, mutate: submitFunction } = useMutation({
     mutationFn: async (data: UserProfile) => {
       console.info("come to me for data --> ", data);
-      return await dispatch(UpdateProfile(data));
+      return await updateProfile(data);
     },
-    onSuccess: (data) => {
-      handleProfileMutationSuccess(data);
-    },
-    onError: (error: unknown) => {
-      handleMutationError(error);
-    },
-  });
-
-  const handleProfileMutationSuccess = (data: any) => {
-    console.log(data);
-    if (profileStatus === "idle") {
+    onSuccess: (data: UserProfile) => {
       toast({
         title: "Success",
         description: "Profile updated successfully!",
@@ -105,15 +83,11 @@ const ComeToMeForTab = () => {
         className: "text-green-500",
       });
       form.reset();
-    } else {
-      toast({
-        title: "Error",
-        description: profileError,
-        variant: "default",
-        className: "text-red-500",
-      });
-    }
-  };
+    },
+    onError: (error: unknown) => {
+      handleMutationError(error);
+    },
+  });
 
   const onSubmit = (data: z.infer<typeof cometomefor>) => {
     mutate(data);
