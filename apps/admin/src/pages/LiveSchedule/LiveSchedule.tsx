@@ -15,7 +15,7 @@ const LiveSchedule = () => {
     <div className="mt-3 flex flex-col">
       <h1 className="text-2xl font-semibold ">Live Event Schedule</h1>
 
-      <div className={"grid grid-cols-2"}>
+      <div className={"grid grid-cols-2 mt-4"} >
         <div>
           <div>
             <Calender />
