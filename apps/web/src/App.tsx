@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 // import DashboardLayout from './components/reusable/layout/DashboardLayout.tsx'
 import Goals from "./pages/Goals/Goals.tsx";
 import Resources from "./pages/Resources/Resources.tsx";
-import Auth from "./components/reusable/Auth.tsx";
+// import Auth from "./components/reusable/Auth.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 // import SignupForm from "./pages/Login/LoginPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
@@ -13,6 +13,8 @@ import NewCourse from "../../admin/src/pages/Dashboard/screens/NewCourse/NewCour
 import Course from "./pages/Course/Course.tsx";
 import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 import Login from "./pages/Login/LoginPage.tsx";
+import LiveShcedule from "@/pages/LiveShcedule/LiveSchedule.tsx";
+import DropDown from "./components/ui/dropDown.tsx";
 // import SignUp from "./pages/SignUp.tsx";
 // import DashboardItems from "./pages/Dashboard/DashBoardItems.tsx";
 
@@ -26,7 +28,8 @@ function App() {
           <Route path={"/goals"} element={<Goals />} />
           
           {/* <Route path={"/dashboard-bottom-menu"} element={<DashboardLayout></DashboardLayout>} ></Route> */}
-          <Route path={"/schedule"} element={<>To implemented schedule</>} />
+          <Route path={"/schedule"} element={<LiveShcedule/>} />
+          <Route path={"/dropdown"} element={<DropDown />} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<Course/>} />
           <Route path={"/resources"} element={<Resources/>} />

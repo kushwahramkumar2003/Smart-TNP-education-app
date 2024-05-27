@@ -1,4 +1,4 @@
-import Calender from "../../components/core/LiveSchedule/Calender.tsx";
+import Calender from "../../components/CalenderComponents/Calender.tsx";
 import {
   Select,
   SelectContent,
@@ -7,22 +7,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select.tsx";
-import LiveEvent from "../../components/core/LiveSchedule/LiveEvent.tsx";
-import DayWiseSchedule from "../../components/core/LiveSchedule/DayWiseSchedule.tsx";
+import LiveEvent from "../../components/core/LiveSchedules/LiveEvent.tsx";
+import DayWiseSchedule from "../../components/core/LiveSchedules/DayWiseSchedule.tsx";
 
 const LiveSchedule = () => {
   return (
     <div className="mt-3 flex flex-col">
-      <h1 className="text-2xl font-semibold ">Live Event Schedule</h1>
+      <h1 className="text-2xl font-semibold px-3 ">Live Event Schedule</h1>
 
-      <div className={"grid grid-cols-2 mt-4"} >
+      <div className={"grid grid-cols-2 gap-6 mt-4 "}>
         <div>
-          <div>
+          <div className="">
             <Calender />
           </div>
           <div>
-            <div className={"flex flex-row justify-between"}>
-              <h2 className={"text-lg font-semibold "}>Upcoming Live Event</h2>
+            <div className={"flex flex-row justify-between my-4"}>
+              <h2 className={"text-lg my-3 px-3 font-semibold "}>Upcoming Live Event</h2>
               <Select>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue
@@ -42,7 +42,7 @@ const LiveSchedule = () => {
             <LiveEvent />
           </div>
         </div>
-        <div>
+        <div className="bg-white rounded-xl p-4 mx-5">
           <DayWiseSchedule />
         </div>
       </div>

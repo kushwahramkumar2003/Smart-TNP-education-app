@@ -197,7 +197,7 @@
 // }
 
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Titlogo from "../../../public/TIT.png";
 import { Input } from '../../../../admin/src/components/ui/input';
