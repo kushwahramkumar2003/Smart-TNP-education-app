@@ -6,10 +6,10 @@ import {
   ParticipantTile,
   RoomAudioRenderer,
   VideoConference,
-  useTracks,
+  useTracks, FocusLayout,
 } from "@livekit/components-react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 const serverUrl = "wss://smart-tnp-app-6ygycraq.livekit.cloud";
 
@@ -22,7 +22,7 @@ const ClassSchedule: React.FC = () => {
   const handleStartMeeting = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/admin/class/start",
+        "http://localhost:8081/api/v1/start-meeting",
         {
           userName,
         },
@@ -38,7 +38,7 @@ const ClassSchedule: React.FC = () => {
   const handleJoinMeeting = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/admin/class/join",
+        "http://localhost:8081/api/v1/join",
         {
           roomName: meetingId,
           userName,
@@ -101,6 +101,7 @@ const ClassSchedule: React.FC = () => {
       style={{ height: "100vh" }}
     >
       <MyVideoConference />
+      {/*<FocusLayout/>*/}
       <RoomAudioRenderer />
       <ControlBar />
     </LiveKitRoom>
@@ -111,6 +112,9 @@ function MyVideoConference() {
   const tracks = useTracks([
     { source: "camera", withPlaceholder: true },
     { source: "screen_share", withPlaceholder: false },
+    {
+      source:Track.Source.Camera,withPlaceholder: true,
+    }
   ]);
 
   return (

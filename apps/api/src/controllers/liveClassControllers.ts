@@ -1,9 +1,7 @@
 import asynchHandler from "../utils/asynchHandler";
-import { Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 import { AccessToken, RoomServiceClient } from "livekit-server-sdk";
 import config from "../config";
-import { User } from "@prisma/client";
 
 const roomService = new RoomServiceClient(
   config.LIVEKIT_URL,
