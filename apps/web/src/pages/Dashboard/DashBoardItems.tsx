@@ -19,19 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
-// import {
-//   Pagination,
-//   PaginationContent,
-//   PaginationEllipsis,
-//   PaginationItem,
-//   PaginationLink,
-//   PaginationNext,
-//   PaginationPrevious,
-// } from "../../components/ui/pagination";
 import DashboardLayout from "@/components/reusable/layout/DashboardLayout.tsx";
 import { cn } from "../../lib/utils";
-// import { Calendar } from "lucide-react";
-// import Calendar  from "../../components/reusable/Calender.tsx";
 const goalsStatusAndTypes = [
   {
     icon: (
