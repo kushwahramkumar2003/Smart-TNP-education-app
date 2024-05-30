@@ -11,6 +11,7 @@ import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 import Login from "./pages/Login/LoginPage.tsx";
 import LiveShcedule from "@/pages/LiveShcedule/LiveSchedule.tsx";
 import DropDown from "./components/ui/dropDown.tsx";
+import ClassSchedule from "./pages/ClassSchedule/classSchedule.tsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path={"/"} element={<Dashboard />} />
           <Route path={"/goals"} element={<Goals />} />
           <Route path={"/schedule"} element={<LiveShcedule />} />
+          <Route path={"/class"} element={<ClassSchedule />} />
           <Route path={"/dropdown"} element={<DropDown />} />
           <Route path={"/class"} element={<>To implemented class</>} />
           <Route path={"/course"} element={<Course />} />
