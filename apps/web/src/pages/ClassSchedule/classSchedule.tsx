@@ -109,7 +109,7 @@ const ClassSchedule = () => {
           ))}
         </div>
       </div>
-
+      <h3 className="text-xl font-semibold px-3">My Schedule</h3>
       <div className={"grid grid-cols-2 gap-6 mt-4 "}>
         <div>
           <div className="">
