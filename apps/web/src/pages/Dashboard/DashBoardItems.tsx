@@ -144,8 +144,6 @@ const goalsData: DashboardItems[] = [
 const DashboardItems = () => {
   const { selectedData, selectedDuration } = useFilterGoalsData();
   useEffect(() => {
-    console.log("selectedData", selectedData);
-    console.log("selectedDuration", selectedDuration);
   }, [selectedData, selectedDuration]);
 
   return (

@@ -14,6 +14,7 @@ import {
 } from "../../components/ui/select.tsx";
 import LiveEvent from "../../components/core/LiveSchedules/LiveEvent.tsx";
 import DayWiseSchedule from "../../components/core/LiveSchedules/DayWiseSchedule.tsx";
+import { useState } from "react";
 
 const goalsStatusAndTypes = [
   {
@@ -84,8 +85,9 @@ export interface DashboardItems {
 }
 
 
-
+const categories = ['All', 'OnGoing', 'InProgress', 'Complete'];
 const ClassSchedule = () => {
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);``
   return (
     <div className="mt-3 flex flex-col">
       <h1 className="text-2xl font-semibold px-3 ">Class Schedule</h1>
@@ -109,7 +111,23 @@ const ClassSchedule = () => {
           ))}
         </div>
       </div>
-      <h3 className="text-xl font-semibold px-3">My Schedule</h3>
+      <h3 className="text-lg font-semibold px-3 py-2">My Schedule</h3>
+    <div >
+    <div className='mx-3 py-3 flex flex-row gap-4'>
+        {categories.map(category => (
+          <p
+            key={category}
+            className={`py-2 px-3 rounded-xl cursor-pointer ${selectedCategory === category
+                ? 'bg-blue-200 text-blue-500'
+                : 'hover:bg-blue-200 hover:text-blue-500'
+              }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </p>
+        ))}
+      </div>
+    </div>
       <div className={"grid grid-cols-2 gap-6 mt-4 "}>
         <div>
           <div className="">
