@@ -4,17 +4,11 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineTaskAlt } from "react-icons/md";
 import Calender from "../../components/CalenderComponents/Calender.tsx";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/ui/select.tsx";
-import LiveEvent from "../../components/core/LiveSchedules/LiveEvent.tsx";
-import DayWiseSchedule from "../../components/core/LiveSchedules/DayWiseSchedule.tsx";
+import LiveEvent from "../../components/core/ClassShcedules/Events.tsx";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { RxDashboard } from "react-icons/rx";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 const goalsStatusAndTypes = [
   {
@@ -87,9 +81,22 @@ export interface DashboardItems {
 
 const categories = ['All', 'OnGoing', 'InProgress', 'Complete'];
 const ClassSchedule = () => {
+  const [isTfiColored, setIsTfiColored] = useState(false);
+  const [isRxClored, setIsRxClored] = useState(true);
+
+  function changebg(icon: string) {
+    if (icon === "TfiMenuAlt") {
+      setIsTfiColored(true);
+      setIsRxClored(false);
+    } else if (icon === "RxDashboard") {
+      setIsTfiColored(false);
+      setIsRxClored(true);
+    }
+  }
+  
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);``
   return (
-    <div className="mt-3 flex flex-col">
+    <div className="mt-3 flex flex-col pb-24">
       <h1 className="text-2xl font-semibold px-3 ">Class Schedule</h1>
       
       <div className="bg-white p-4 m-3 rounded-xl  flex gap-2 flex-col mt-4">
@@ -112,8 +119,8 @@ const ClassSchedule = () => {
         </div>
       </div>
       <h3 className="text-lg font-semibold px-3 py-2">My Schedule</h3>
-    <div >
-    <div className='mx-3 py-3 flex flex-row gap-4'>
+      <div className='flex justify-between'>
+      <div className='mx-3 py-3 flex flex-row gap-4'>
         {categories.map(category => (
           <p
             key={category}
@@ -127,36 +134,38 @@ const ClassSchedule = () => {
           </p>
         ))}
       </div>
-    </div>
+      <div className='mx-3 py-3 flex flex-row gap-4'>
+    <div className="bg-white rounded-xl flex flex-row gap-2 items-center px-2 py-2">
+           <Link to='/dashboard-bottom-menu'>
+           <div
+              style={{backgroundColor: isTfiColored ? "#44408A" : "" }}
+              className={`rounded-xl px-3 py-1 ${isTfiColored ? 'text-white' : 'text-black'}`}
+              onClick={() => changebg("TfiMenuAlt")}
+            >
+              <TfiMenuAlt className="" size={27} />
+            </div>
+            </Link>
+            <Link to='/dashboard-bottom-menu'>
+            <div
+              style={{ backgroundColor: isRxClored ? "#44408A" : "" }}
+              className={`rounded-xl px-3 py-1 ${isRxClored ? 'text-white' : 'text-black'}`}
+              onClick={() => changebg("RxDashboard")}
+            >
+              <RxDashboard className="cursor-pointer" size={27} />
+            </div>
+            </Link>
+          </div>
+      
+      </div>
+      </div>
       <div className={"grid grid-cols-2 gap-6 mt-4 "}>
         <div>
-          <div className="">
-            <Calender />
-          </div>
           <div>
-            <div className={"flex flex-row justify-between my-4"}>
-              <h2 className={"text-lg my-3 px-3 font-semibold "}>Upcoming Live Event</h2>
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue
-                    defaultChecked={true}
-                    placeholder="Select a Categorie"
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="apple">All</SelectItem>
-                    <SelectItem value="banana">C1</SelectItem>
-                    <SelectItem value="blueberry">C2</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
             <LiveEvent />
           </div>
         </div>
         <div className="bg-white rounded-xl p-4 mx-5">
-          <DayWiseSchedule />
+          <Calender />
         </div>
       </div>
     </div>

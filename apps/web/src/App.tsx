@@ -11,7 +11,7 @@ import ResourceDetails from "./components/core/Resource/ResourceDetails.tsx";
 import Login from "./pages/Login/LoginPage.tsx";
 import LiveShcedule from "@/pages/LiveShcedule/LiveSchedule.tsx";
 import DropDown from "./components/ui/dropDown.tsx";
-import ClassSchedule from "./pages/ClassSchedule/classSchedule.tsx";
+import ClassSchedule from "./pages/ClassSchedules/classSchedule.tsx";
 
 function App() {
   return (
