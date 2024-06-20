@@ -15,7 +15,8 @@ const Auth = ({ children }: { children: ReactChild }) => {
   const user = useSelector(
     (state: RootState): UserState => getUserSelector(state)
   );
-
+  console.log(user);
+  
   useEffect(() => {
     const isLoginPage =
       location.pathname === "/login" || location.pathname === "/signup";
