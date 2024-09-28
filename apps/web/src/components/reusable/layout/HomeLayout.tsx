@@ -128,7 +128,7 @@ const HomeLayout = () => {
     history.pushState("/login", "", "/login");
   };
   return (
-    <div className={"w-screen flex flex-row gap-1 fixed"}>
+    <div  className={"w-screen flex flex-row gap-1 fixed"}>
       <SideMenuBar />
 
       <div className={"flex flex-col  w-full p-4"}>
@@ -142,7 +142,7 @@ const HomeLayout = () => {
             }
           >
             {/* <CiSearch size={20} className={"bg-white"} /> */}
-            <Input
+            <Input 
               type={"text"}
               placeholder={"Search anything ?"}
               className={
