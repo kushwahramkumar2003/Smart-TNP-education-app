@@ -1,6 +1,6 @@
 
-import img from '../../assets/studyimg.jpg' 
-import userImg from '../../assets/user.jpg'
+// import img from '../../assets/studyimg.jpg' 
+// import userImg from '../../assets/user.jpg'
 // export const Schedules = [
 //     {
 //       id: 1,

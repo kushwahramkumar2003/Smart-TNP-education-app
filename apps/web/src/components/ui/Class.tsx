@@ -46,7 +46,7 @@
 
 import { format } from 'date-fns';
 import { ClassData } from '../data/ClassData';
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 // define a interface for type Props
 interface Props {

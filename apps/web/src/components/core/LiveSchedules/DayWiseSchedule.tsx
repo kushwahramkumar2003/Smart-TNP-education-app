@@ -1,12 +1,12 @@
 import Dropdown from "@/components/ui/dropDown.tsx";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select.tsx";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "../../ui/select.tsx";
 import DayScheduleCard from "./DayScheduleCard.tsx";
 
 enum ScheduleType {

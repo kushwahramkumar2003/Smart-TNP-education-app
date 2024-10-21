@@ -1,5 +1,5 @@
-import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon } from '@heroicons/react/outline'
+// import { Menu, Transition } from '@headlessui/react'
+// import { DotsVerticalIcon } from '@heroicons/react/outline'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import {
   add,
@@ -17,7 +17,7 @@ import {
 } from 'date-fns'
 
 // import {useState } from 'react'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import {Schedules} from "../data/classScheduleData"
 
 function classNames(...classes: (string | boolean)[]) {
@@ -45,9 +45,6 @@ export default function Calendar() {
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
-  let selectedDaySchedules = Schedules.filter((meeting) =>
-    isSameDay(parseISO(meeting.startDatetime), selectedDay)
-  )
 
   return (
     <div className="w-full h-full bg-white mx-4 rounded-lg">
@@ -159,13 +156,13 @@ export default function Calendar() {
   )
 }
 
-interface MeetingType {
-  id: number
-  name: string
-  imageUrl: string
-  startDatetime: string
-  endDatetime: string
-}
+// interface MeetingType {
+//   id: number
+//   name: string
+//   imageUrl: string
+//   startDatetime: string
+//   endDatetime: string
+// }
 // function Meeting({ meeting }: { meeting: MeetingType }) {
 //   let startDateTime = parseISO(meeting.startDatetime)
 //   let endDateTime = parseISO(meeting.endDatetime)
