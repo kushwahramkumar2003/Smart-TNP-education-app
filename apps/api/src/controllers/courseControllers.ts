@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import asyncHandler from "../utils/asynchHandler";
 import { courseInputSchema, newLessonSchema } from "../types/course";
 import { User } from "@prisma/client";
-import fileType from "file-type";
 import { readFile } from "fs";
 import { azureUpload } from "../services/azure";
 import getVideoDuration from "../services/getVideoDuration";

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { joinToMeeting, startNewMeeting } from "../../controllers/liveClassControllers";
 
 const router = Router();
 
