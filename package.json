@@ -7,7 +7,8 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui:add": "npm --filter @repo/ui ui:add"
+    "ui:add": "npm --filter @repo/ui ui:add",
+    "prisma:dev": "cd packages/db && npm run prisma:dev"
   },
   "devDependencies": {
     "@repo/typescript-config": "*",

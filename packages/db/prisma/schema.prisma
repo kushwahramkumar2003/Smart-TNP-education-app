@@ -123,3 +123,11 @@ model Resource {
   pageCount Int?
   createdAt DateTime     @default(now())
 }
+
+model LiveClass {
+  id        String   @id @default(uuid())
+  className String
+  hostedBy  String
+  token     String
+  startedAt DateTime @default(now())
+}

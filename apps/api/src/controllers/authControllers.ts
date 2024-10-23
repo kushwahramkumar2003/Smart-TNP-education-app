@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { prisma } from "../utils/prisma";
 import z from "zod";
-import getNewToken from "../utils/jwtToke";
-import asyncHandler from "../utils/asynchHandler";
 import bcrypt from "bcrypt";
+import prisma from "../utils/prisma";
+import asyncHandler from "../utils/asynchHandler";
+import getNewToken from "../utils/jwtToke";
 
 const cookieOptions = {
   httpOnly: true,

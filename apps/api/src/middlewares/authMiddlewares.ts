@@ -1,11 +1,11 @@
 import setRateLimit from "express-rate-limit";
-import asyncHandler from "../utils/asynchHandler";
+import asyncHandler from "../utils/asynchHandler.js";
 import jwt from "jsonwebtoken";
 
 import { NextFunction, Request, Response } from "express";
-import config from "../config";
-import { prisma } from "../utils/prisma";
+import  prisma  from "../utils/prisma";
 import { User } from "@prisma/client";
+import config from "../config";
 
 // Rate limit middleware
 export const rateLimitMiddleware = setRateLimit({

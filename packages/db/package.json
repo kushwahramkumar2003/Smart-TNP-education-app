@@ -1,0 +1,27 @@
+{
+  "name": "@repo/db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prisma:dev:migrate": "prisma migrate dev --name init",
+    "prisma:dev:generate": "prisma generate",
+    "prisma:prod:migrate": "prisma migrate deploy",
+    "prisma:prod:generate": "prisma generate",
+    "postinstall": "npm run prisma:prod:generate",
+    "prisma:dev": "npm run prisma:dev:migrate && npm run prisma:dev:generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "prisma": "^5.12.0"
+  },
+  "exports": {
+    "./client": "./src/index.ts",
+    "./prisma": "./src/index.ts"
+  }
+}

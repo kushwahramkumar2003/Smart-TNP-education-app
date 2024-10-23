@@ -1,7 +1,7 @@
 import { Router } from "express";
 import authRoutes from "./auth.routes";
 import usersRoutes from "./user.routes";
-import adminRoutes from "./admin";
+import adminRoutes from "./admin/index";
 import teacherRoutes from "./admin/teacher.routes";
 import profileRoutes from "./profile.routes";
 import {

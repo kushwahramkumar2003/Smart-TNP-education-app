@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "../utils/asynchHandler";
 import { azureUpload } from "../services/azure";
-import { prisma } from "../utils/prisma";
+import  prisma  from "../utils/prisma";
 import z, { string } from "zod";
 import { User } from "@prisma/client";
 import { strToArr } from "../utils/stringToArr";

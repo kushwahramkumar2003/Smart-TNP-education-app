@@ -3,7 +3,7 @@ import { AccessToken, RoomServiceClient } from "livekit-server-sdk";
 import dotenv from "dotenv";
 import cors from "cors";
 import { randomUUID } from "crypto";
-
+import prisma from "./prisma.js";
 dotenv.config();
 
 const app = express();
@@ -22,16 +22,41 @@ const apiSecret = process.env.LIVEKIT_API_SECRET;
 const roomService = new RoomServiceClient(livekitHost, apiKey, apiSecret);
 
 app.post("/api/v1/start-meeting", async (req, res) => {
-  const { userName } = req.body;
-  const meetingId = randomUUID();
-  const at = new AccessToken(apiKey, apiSecret, {
-    identity: userName,
-  });
-  at.addGrant({ roomCreate: true, roomJoin: true, room: meetingId });
+  const { liveClassName, hostedBy } = req.body;
 
-  const token = await at.toJwt();
-  console.log("mettingId", meetingId);
-  res.json({ meetingId, token });
+  // Input validation
+  if (!liveClassName || !hostedBy) {
+    return res
+      .status(400)
+      .json({ error: "liveClassName and hostedBy are required" });
+  }
+
+  try {
+    const meetingId = randomUUID();
+
+    // Create access token for the meeting
+    const at = new AccessToken(apiKey, apiSecret, {
+      identity: hostedBy,
+    });
+    at.addGrant({ roomCreate: true, roomJoin: true, room: meetingId });
+
+    const token = await at.toJwt();
+
+    // Create a new LiveClass entry in the database
+    const newLiveClass = await prisma.liveClass.create({
+      data: {
+        id: meetingId, // Make sure the Prisma model id matches the meetingId
+        className: liveClassName,
+        hostedBy,
+        token,
+      },
+    });
+
+    res.json({ meetingId, token, liveClassName });
+  } catch (error) {
+    console.error("Error starting meeting:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.post("/api/v1/join", async (req, res) => {
@@ -43,6 +68,10 @@ app.post("/api/v1/join", async (req, res) => {
 
   const token = await at.toJwt();
   res.json({ token });
+});
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: "Internal Server Error" });
 });
 
 const PORT = process.env.PORT || 8081;
