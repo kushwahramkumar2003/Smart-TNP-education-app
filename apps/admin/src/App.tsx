@@ -10,6 +10,7 @@ import LiveSchedule from "./pages/LiveSchedule/LiveSchedule.tsx";
 import ClassSchedule from "./pages/ClassSchedule/ClassSchedule.tsx";
 import PrivateRoutes from "./components/reusable/PrivateRoutes.tsx";
 import NewCourse from "./pages/Dashboard/screens/NewCourse/NewCourse.tsx";
+import Live from './pages/ClassSchedule/Live.tsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path={"/profile"} element={<Profile />} />
             <Route path={"/schedule"} element={<LiveSchedule />} />
             <Route path={"/class"} element={<ClassSchedule />} />
+            <Route path={"/class/:classId"} element={<Live />} />
             <Route path={"/course"} element={<>To implemented course</>} />
             <Route
               path={"/resources"}

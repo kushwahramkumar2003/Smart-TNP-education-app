@@ -3,6 +3,7 @@ import { Readable } from "node:stream";
 
 async function getVideoDuration(videoPath: string | Readable) {
   try {
+    //@ts-ignore
     const durationInSeconds = await getVideoDurationInSeconds(videoPath);
     return durationInSeconds;
   } catch (error) {

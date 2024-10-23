@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('ADMIN', 'STUDENT', 'TEACHER');
 
+-- CreateEnum
+CREATE TYPE "ResourceType" AS ENUM ('VIDEO', 'PDF', 'IMAGE');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -50,10 +53,9 @@ CREATE TABLE "TeacherProfile" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "bio" TEXT,
-    "interests" TEXT,
-    "skills" TEXT,
+    "interests" TEXT[],
+    "skills" TEXT[],
     "location" TEXT,
-    "comeToMeId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -78,6 +80,54 @@ CREATE TABLE "NeedHelpFor" (
     "description" TEXT NOT NULL,
 
     CONSTRAINT "NeedHelpFor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Course" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "teacherId" TEXT NOT NULL,
+
+    CONSTRAINT "Course_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Lesson" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL DEFAULT '',
+    "description" TEXT DEFAULT '',
+    "courseId" TEXT NOT NULL,
+    "category" TEXT NOT NULL DEFAULT '',
+
+    CONSTRAINT "Lesson_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Resource" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "type" "ResourceType" NOT NULL,
+    "url" TEXT NOT NULL,
+    "size" INTEGER NOT NULL,
+    "lessonId" TEXT,
+    "duration" INTEGER,
+    "pageCount" INTEGER,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Resource_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "LiveClass" (
+    "id" TEXT NOT NULL,
+    "className" TEXT NOT NULL,
+    "hostedBy" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "startedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "LiveClass_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -109,3 +159,9 @@ ALTER TABLE "ComeToMeFor" ADD CONSTRAINT "ComeToMeFor_teacherProfileId_fkey" FOR
 
 -- AddForeignKey
 ALTER TABLE "NeedHelpFor" ADD CONSTRAINT "NeedHelpFor_teacherProfileId_fkey" FOREIGN KEY ("teacherProfileId") REFERENCES "TeacherProfile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Lesson" ADD CONSTRAINT "Lesson_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Resource" ADD CONSTRAINT "Resource_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE SET NULL ON UPDATE CASCADE;

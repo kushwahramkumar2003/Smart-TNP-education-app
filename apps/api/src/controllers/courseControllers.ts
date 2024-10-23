@@ -1,16 +1,14 @@
-import prisma from "../utils/prisma";
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asynchHandler";
-import { courseInputSchema, newLessonSchema } from "../types/course";
 import { User } from "@prisma/client";
-import fileType from "file-type";
-import { readFile } from "fs";
-import { azureUpload } from "../services/azure";
-import getVideoDuration from "../services/getVideoDuration";
-import getPdfPageCount from "../services/getPdfPageCount";
-import { createReadStream } from "node:fs";
+
 import { randomUUID } from "node:crypto";
 import { promises as fs } from "fs";
+import asyncHandler from "../utils/asynchHandler";
+import {courseInputSchema, newLessonSchema} from "../types/course";
+import prisma from "../utils/prisma";
+import {azureUpload} from "../services/azure";
+import getVideoDuration from "../services/getVideoDuration";
+import getPdfPageCount from "../services/getPdfPageCount";
 
 export const createNewCourse = asyncHandler(
   async (req: Request, res: Response) => {
