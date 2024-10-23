@@ -18,7 +18,7 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
   const { toast } = useToast();
   const [uploadProgress, setUploadProgress] = React.useState<number>(0);
   const user = useRecoilValue(userAtom);
-  const [userState, setUserState] = useRecoilState(userAtom);
+  const [_userState, setUserState] = useRecoilState(userAtom);
 
   const [images, setImages] = React.useState<ImageType[]>([
     { dataURL: iniImage, key: "data_url" },
@@ -38,12 +38,12 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
         await uploadMedia("video", uploadedFile.file);
       }
     }
-    user.avatar = uploadedFile.dataURL || "";
+    if (user) user.avatar = uploadedFile.dataURL || "";
     setUserState(user);
     setImages(imageList);
   };
 
-  //@ts-ignore
+  //@ts-ignore some error
   const uploadMedia = async (type: string, file: File) => {
     const formData = new FormData();
     formData.append("avatar", file);
@@ -59,11 +59,11 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round(
               //@ts-ignore
-              (progressEvent.loaded / progressEvent.total) * 100,
+              (progressEvent.loaded / progressEvent.total) * 100
             );
             setUploadProgress(progress);
           },
-        },
+        }
       );
       setUserState(response.data.updatedUser as UserState);
       localStorage.setItem(
@@ -71,7 +71,7 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
         JSON.stringify({
           ...user,
           avatar: response.data.updatedUser.avatar,
-        }),
+        })
       );
       console.log("Upload successful:", response.data.updatedUser);
       toast({

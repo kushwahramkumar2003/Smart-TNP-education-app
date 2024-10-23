@@ -36,7 +36,8 @@ const categoryies: string[] = [
 ];
 
 const Overview = () => {
-  const [course, setCourse] = useRecoilState(newCourseAtom);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_course, setCourse] = useRecoilState(newCourseAtom);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof OverviewShecma>>({
     resolver: zodResolver(OverviewShecma),

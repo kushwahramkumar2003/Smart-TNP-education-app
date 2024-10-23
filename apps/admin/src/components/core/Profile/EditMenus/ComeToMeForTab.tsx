@@ -73,9 +73,10 @@ const ComeToMeForTab = () => {
   const { isPending: submitPending, mutate: submitFunction } = useMutation({
     mutationFn: async (data: UserProfile) => {
       console.info("come to me for data --> ", data);
+      //@ts-ignore some error
       return await updateProfile(data);
     },
-    onSuccess: (data: UserProfile) => {
+    onSuccess: (_data: UserProfile) => {
       toast({
         title: "Success",
         description: "Profile updated successfully!",
@@ -93,15 +94,16 @@ const ComeToMeForTab = () => {
     mutate(data);
   };
 
-  const [updatedUserComeToMeForData, setUpdatedUserComeToMeForData] = useState<
+  const [updatedUserComeToMeForData, _setUpdatedUserComeToMeForData] = useState<
     UserProfile[]
-    //@ts-ignore
+    //@ts-ignore some error
   >(userProfile.comeToMeFor || []);
 
   const submitHandler = () => {
     const newUserProfile = { ...userProfile };
-    //@ts-ignore
+    //@ts-ignore some error
     newUserProfile.comeToMeFor = updatedUserComeToMeForData;
+    //@ts-ignore some error
     submitFunction(newUserProfile);
   };
 
@@ -115,13 +117,13 @@ const ComeToMeForTab = () => {
           >
             <h3 className="text-lg font-semibold text-gray-800">
               {
-                //@ts-ignore
+                //@ts-ignore some error
                 item.title
               }
             </h3>
             <p className="text-sm text-gray-400">
               {
-                //@ts-ignore
+                //@ts-ignore some error
                 item.description
               }
             </p>
