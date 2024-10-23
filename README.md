@@ -1,58 +1,210 @@
-# Turborepo Tailwind CSS starter
+# 🎓 Smart TNP Education Platform
 
-This is an official starter Turborepo.
+<div align="center">
 
-## Using this example
+![GitHub stars](https://img.shields.io/github/stars/kushwahramkumar2003/Smart-TNP-education-app?style=social)
+![GitHub forks](https://img.shields.io/github/forks/kushwahramkumar2003/Smart-TNP-education-app?style=social)
+![GitHub issues](https://img.shields.io/github/issues/kushwahramkumar2003/Smart-TNP-education-app)
+![GitHub license](https://img.shields.io/github/license/kushwahramkumar2003/Smart-TNP-education-app)
 
-Run the following command:
+*Advanced Training and Placement Department Education Platform with Real-time Features*
 
-```sh
-npx create-turbo@latest -e with-tailwind
+[Report Bug](https://github.com/kushwahramkumar2003/Smart-TNP-education-app/issues) • [Request Feature](https://github.com/kushwahramkumar2003/Smart-TNP-education-app/issues)
+
+</div>
+
+## 🌟 Overview
+
+Smart TNP Education Platform is a modern, feature-rich online learning system built specifically for college Training and Placement departments. Using a turborepo monorepo structure, it delivers a seamless experience across student and administrative portals with real-time communication capabilities.
+
+## 💻 Technology Stack
+
+<div align="center">
+
+### Frontend
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=white)
+![Recoil](https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white)
+
+### Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=for-the-badge&logo=socket.io&logoColor=white)
+
+### Cloud & DevOps
+![AWS](https://img.shields.io/badge/AWS_S3-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+</div>
+
+## 🏗️ Project Structure
+
+```
+Smart-TNP-education-app/
+├── apps/
+│   ├── web/                 # Student portal (Vite + React)
+│   │   ├── src/
+│   │   │   ├── components/  # Reusable UI components
+│   │   │   ├── pages/      # Route pages
+│   │   │   ├── hooks/      # Custom React hooks
+│   │   │   ├── services/   # API services
+│   │   │   ├── store/      # Recoil state management
+│   │   │   └── types/      # TypeScript types
+│   │   
+│   ├── admin/              # Admin portal
+│   │   ├── src/
+│   │   │   ├── components/ # Admin UI components
+│   │   │   ├── pages/     # Admin routes
+│   │   │   ├── hooks/     # Admin-specific hooks
+│   │   │   └── services/  # Admin API services
+│   │   
+│   ├── api/                # Main backend service
+│   │   ├── src/
+│   │   │   ├── controllers/
+│   │   │   ├── middlewares/
+│   │   │   ├── routes/
+│   │   │   └── services/
+│   │   └── Dockerfile
+│   │   
+│   └── ws/                 # WebSocket service
+│       └── src/
+│           ├── index.js
+│           └── prisma.js
+│
+├── packages/               # Shared packages
+│   ├── ui/                # Shared UI components
+│   ├── store/             # Shared state management
+│   ├── config-typescript/ # TypeScript configs
+│   ├── config-eslint/     # ESLint configs
+│   ├── tailwind-config/   # Tailwind configs
+│   └── db/                # Database package
+│       └── prisma/        # Prisma schema & migrations
+│
+└── turbo.json             # Turborepo config
 ```
 
-## What's inside?
+## ✨ Key Features
 
-This Turborepo includes the following packages/apps:
+### 🎓 Student Portal (Web)
+- Live virtual classrooms using WebRTC
+- Real-time notifications via WebSocket
+- Course enrollment and tracking
+- Assignment submission with AWS S3
+- Interactive UI with Framer Motion animations
+- Secure authentication with JWT
 
-### Apps and Packages
+### 👨‍💼 Admin Portal
+- Comprehensive dashboard
+- Student management
+- Course administration
+- Live session management
+- Resource allocation
+- Performance analytics
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### 🔄 Real-time Features
+- WebRTC-powered live classes
+- Live Kit integration
+- Instant messaging
+- Real-time status updates
+- Activity tracking
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🛠️ Development Setup
 
-### Building packages/ui
+1. **Clone and Install**
+   ```bash
+   git clone https://github.com/kushwahramkumar2003/Smart-TNP-education-app.git
+   cd Smart-TNP-education-app
+   npm install
+   ```
 
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.js`. This was chosen for several reasons:
+2. **Database Setup**
+   ```bash
+   cd packages/db
+   ./setupDB.sh
+   npx prisma migrate dev
+   ```
 
-- Make sharing one `tailwind.config.js` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
+3. **Environment Configuration**
+   ```bash
+   # Set up environment files for each app
+   cp apps/api/.env.example apps/api/.env
+   cp apps/web/.env.example apps/web/.env
+   cp apps/admin/.env.example apps/admin/.env
+   cp apps/ws/.env.example apps/ws/.env
+   ```
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.js` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
+4. **Start Development Services**
+   ```bash
+   # Start all services
+   npm run dev
 
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+   # Start specific apps
+   npm run dev --filter=web
+   npm run dev --filter=admin
+   npm run dev --filter=api
+   npm run dev --filter=ws
+   ```
 
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+## 🚀 Deployment
+
+The project uses GitHub Actions for CI/CD and deploys to:
+- Frontend: Vercel
+- Backend: AWS (with Docker containers)
+- Database: AWS RDS (PostgreSQL)
+- WebSocket: AWS EC2
+
+## 🔒 Environment Variables
+
+Required environment variables for each app:
+
+```bash
+# apps/api/.env
+DATABASE_URL=
+JWT_SECRET=
+AWS_ACCESS_KEY=
+AWS_SECRET_KEY=
+AWS_BUCKET_NAME=
+
+# apps/web/.env & apps/admin/.env
+VITE_API_URL=
+VITE_WS_URL=
+
+# apps/ws/.env
+DATABASE_URL=
+WS_PORT=
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+## 🤝 Contributing
 
-### Utilities
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This Turborepo has some additional tools already setup for you:
+## 📄 License
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Training and Placement Department faculty
+- College administration
+- All contributors
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Ram Kumar](https://github.com/kushwahramkumar2003)
+
+[⬆ Back to Top](#-smart-tnp-education-platform)
+
+</div>
