@@ -199,11 +199,40 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - College administration
 - All contributors
 
+## 👥 Contributors
+
+Thanks goes to these wonderful people:
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/kushwahramkumar2003">
+          <img src="https://avatars.githubusercontent.com/kushwahramkumar2003" width="100px" height="100px" style="border-radius: 50%; object-fit: cover;" alt="Ramkumar kushwah"/>
+          <br />
+          <sub><b>Ramkumar kushwah</b></sub>
+          <br />
+          <sub>Project Lead</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/pankaj143p">
+          <img src="https://avatars.githubusercontent.com/pankaj143p" width="100px" height="100px" style="border-radius: 50%; object-fit: cover;" alt="Pankaj Prajapati"/>
+          <br />
+          <sub><b>Pankaj Prajapati</b></sub>
+          <br />
+          <sub>Backend Developer</sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ---
 
 <div align="center">
 
-Made with ❤️ by [Ram Kumar](https://github.com/kushwahramkumar2003)
+Made with ❤️ by [TNP Education App Team](#-contributors)
 
 [⬆ Back to Top](#-smart-tnp-education-platform)
 
