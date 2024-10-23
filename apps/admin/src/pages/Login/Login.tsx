@@ -40,7 +40,8 @@ export const LoginSchema = z.object({
 });
 
 const Login = (): ReactNode => {
-  const [user, setUser] = useRecoilState(userAtom);
+  //eslint@typescript-eslint/no-unused-vars
+  const [_user, setUser] = useRecoilState(userAtom);
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -76,7 +77,7 @@ const Login = (): ReactNode => {
           ...user,
           loggedIn: true,
           lastLoggedIn: Date.now(),
-        }),
+        })
       );
       navigate("/");
     },

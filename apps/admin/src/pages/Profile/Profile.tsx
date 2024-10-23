@@ -46,7 +46,7 @@ const Profile = () => {
             <div className="flex justify-center px-5  -mt-12 flex-col items-center">
               <img
                 className="h-32 w-32 bg-white p-2 rounded-full   "
-                src={user && user.avatar}
+                src={(user && user.avatar) ?? ""}
                 alt=""
               />
               <EditProfile />

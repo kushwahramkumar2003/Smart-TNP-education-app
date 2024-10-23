@@ -28,7 +28,7 @@ function extractInitials(fullName: string): string {
 
 const HomeLayout = () => {
   const user = useRecoilValue(userAtom);
-  const [userState, setUserState] = useRecoilState(userAtom);
+  const [_userState, setUserState] = useRecoilState(userAtom);
   const handleSignOut = () => {
     setUserState(null);
     document.cookie.split(";").forEach(function (cookie) {

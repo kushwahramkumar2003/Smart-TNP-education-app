@@ -31,7 +31,7 @@ const ProfileTab = () => {
   // const [userState, setUserState] = useRecoilState(userAtom);
   const [userProfile, setUserProfileState] = useRecoilState(userProfileAtom);
   const [interests, setInterests] = useState<string[]>(
-    userProfile.interests || [],
+    userProfile.interests || []
   );
   const [skills, setSkills] = useState<string[]>(userProfile.skills || []);
   const { toast } = useToast();
@@ -99,7 +99,7 @@ const ProfileTab = () => {
             </span>
           </div>
           <div className="flex justify-start px-5  -mt-20 flex-col items-start">
-            <ProfilePhotoUploader iniImage={user?.avatar} />
+            <ProfilePhotoUploader iniImage={user?.avatar ?? ""} />
           </div>
         </div>
         <div>

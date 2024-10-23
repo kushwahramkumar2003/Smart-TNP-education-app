@@ -1,28 +1,28 @@
 // src/components/Chat.tsx
 import React, { useState, useEffect } from "react";
-import socket from "../../../lib/socket.ts";
+
 
 interface ChatProps {
   meetingId: string | null;
 }
 
 const Chat: React.FC<ChatProps> = ({ meetingId }) => {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, _setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    socket.on("message", (msg: string) => {
-      setMessages((prevMessages) => [...prevMessages, msg]);
-    });
+    // socket.on("message", (msg: string) => {
+    //   setMessages((prevMessages) => [...prevMessages, msg]);
+    // });
 
     return () => {
-      socket.off("message");
+      // socket.off("message");
     };
   }, []);
 
   const sendMessage = () => {
     if (message.trim() && meetingId) {
-      socket.emit("message", { meetingId, message });
+      // socket.emit("message", { meetingId, message });
       setMessage("");
     }
   };

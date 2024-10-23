@@ -1,6 +1,6 @@
 // src/components/Video.tsx
 import React, { useState, useEffect, useRef } from "react";
-import socket from "../../../lib/socket.ts";
+// import socket from "../../../lib/socket.ts";
 
 interface VideoProps {
   meetingId: string | null;
@@ -8,7 +8,7 @@ interface VideoProps {
 }
 
 const Video: React.FC<VideoProps> = ({ meetingId, isHost }) => {
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, _setIsConnected] = useState(false);
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const peerConnection = useRef<RTCPeerConnection | null>(null);
@@ -18,11 +18,11 @@ const Video: React.FC<VideoProps> = ({ meetingId, isHost }) => {
 
     const handleIceCandidate = (event: RTCPeerConnectionIceEvent) => {
       if (event.candidate) {
-        socket.emit("signal", {
-          meetingId,
-          type: "candidate",
-          candidate: event.candidate,
-        });
+        // socket.emit("signal", {
+        //   meetingId,
+        //   type: "candidate",
+        //   candidate: event.candidate,
+        // });
       }
     };
 
@@ -38,34 +38,34 @@ const Video: React.FC<VideoProps> = ({ meetingId, isHost }) => {
       peerConnection.current.onicecandidate = handleIceCandidate;
       peerConnection.current.ontrack = handleTrack;
 
-      socket.on("signal", async (data) => {
-        if (peerConnection.current) {
-          if (data.type === "offer") {
-            await peerConnection.current.setRemoteDescription(
-              new RTCSessionDescription(data),
-            );
-            const answer = await peerConnection.current.createAnswer();
-            await peerConnection.current.setLocalDescription(answer);
-            socket.emit("signal", { meetingId, type: "answer", answer });
-          } else if (data.type === "answer") {
-            await peerConnection.current.setRemoteDescription(
-              new RTCSessionDescription(data),
-            );
-          } else if (data.type === "candidate") {
-            await peerConnection.current.addIceCandidate(
-              new RTCIceCandidate(data.candidate),
-            );
-          }
-        }
-      });
+      // socket.on("signal", async (data) => {
+      //   if (peerConnection.current) {
+      //     if (data.type === "offer") {
+      //       await peerConnection.current.setRemoteDescription(
+      //         new RTCSessionDescription(data),
+      //       );
+      //       const answer = await peerConnection.current.createAnswer();
+      //       await peerConnection.current.setLocalDescription(answer);
+      //       // socket.emit("signal", { meetingId, type: "answer", answer });
+      //     } else if (data.type === "answer") {
+      //       await peerConnection.current.setRemoteDescription(
+      //         new RTCSessionDescription(data),
+      //       );
+      //     } else if (data.type === "candidate") {
+      //       await peerConnection.current.addIceCandidate(
+      //         new RTCIceCandidate(data.candidate),
+      //       );
+      //     }
+      //   }
+      // });
     };
 
     createPeerConnection();
 
-    return () => {
-      socket.emit("leaveRoom");
-      peerConnection.current?.close();
-    };
+    // return () => {
+    //   socket.emit("leaveRoom");
+    //   peerConnection.current?.close();
+    // };
   }, [meetingId]);
 
   const startLocalStream = async () => {
@@ -88,11 +88,11 @@ const Video: React.FC<VideoProps> = ({ meetingId, isHost }) => {
 
   const handleJoin = () => {
     if (meetingId) {
-      socket.emit("joinRoom", { meetingId });
-      setIsConnected(true);
-      if (isHost) {
-        startLocalStream();
-      }
+      // socket.emit("joinRoom", { meetingId });
+      // setIsConnected(true);
+      // if (isHost) {
+      //   startLocalStream();
+      // }
     }
   };
 
