@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "../utils/asynchHandler";
 import z, { string } from "zod";
-import { prisma } from "../utils/prisma";
+import  prisma  from "../utils/prisma";
 import crypto from "crypto";
 
 const TokenSchema = z.object({

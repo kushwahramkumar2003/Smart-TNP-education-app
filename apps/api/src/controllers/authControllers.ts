@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { prisma } from "../utils/prisma";
 import z from "zod";
-import getNewToken from "../utils/jwtToke";
-import asyncHandler from "../utils/asynchHandler";
 import bcrypt from "bcrypt";
+import prisma from "../utils/prisma";
+import asyncHandler from "../utils/asynchHandler";
+import getNewToken from "../utils/jwtToke";
 
 const cookieOptions = {
   httpOnly: true,
@@ -70,6 +70,12 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
     await prisma.teacherRegistrationToken.delete({
       where: {
         token,
+      },
+    });
+
+    await prisma.teacherProfile.create({
+      data: {
+        userId: user.id,
       },
     });
 

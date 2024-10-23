@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -7,15 +6,9 @@ import { useMutation } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/use-toast.ts";
-import { UserState } from "../../types/user.ts";
 
 import { ToastAction } from "../../components/ui/toast.tsx";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "web/src/components/ui/card.tsx";
+
 import {
   Form,
   FormControl,
@@ -26,9 +19,16 @@ import {
 } from "../../components/ui/form.tsx";
 import { Input } from "../../components/ui/input.tsx";
 import { Button } from "../../components/ui/button.tsx";
-import { login } from "../../services/auth.ts";
 import { Checkbox } from "../../components/ui/checkbox.tsx";
-import { setUserInfo } from "../../store/slices/userReducers.ts";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card.tsx";
+import { login } from "../../services/auth.ts";
+import { useRecoilState } from "recoil";
+import { userAtom, UserState } from "@repo/store";
 
 export const LoginSchema = z.object({
   email: z.string().min(2, {
@@ -40,7 +40,8 @@ export const LoginSchema = z.object({
 });
 
 const Login = (): ReactNode => {
-  const dispatch = useDispatch();
+  //eslint@typescript-eslint/no-unused-vars
+  const [_user, setUser] = useRecoilState(userAtom);
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -64,26 +65,55 @@ const Login = (): ReactNode => {
       form.setValue("email", "");
       form.setValue("password", "");
       console.log("login user", user);
-      dispatch(setUserInfo(user));
-      localStorage.setItem("user", JSON.stringify(user));
+      setUser({
+        ...user,
+        loggedIn: true,
+        lastLoggedIn: Date.now(),
+      });
+      // dispatch(setUserInfo(user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          loggedIn: true,
+          lastLoggedIn: Date.now(),
+        })
+      );
       navigate("/");
     },
-    onError: (error: unknown) => {
+    onError: (error: Error) => {
+      console.error("error occure ", error);
       if (error instanceof Error) {
-        toast({
-          variant: "destructive",
-
-          description: error?.message || "An unknown error occurred.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
-        console.log(error.message);
+        // Check if the error message indicates incorrect credentials or user not registered
+        if (
+          error.message === "Incorrect email or password." ||
+          error.message === "User not registered."
+        ) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive",
+            className: "text-red-500",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        } else {
+          // For other errors, display a generic error message
+          toast({
+            title: "Error",
+            description:
+              error.message || "An error occurred. Please try again.",
+            variant: "destructive",
+            className: "text-red-500",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+        }
       }
 
       console.log("Error:", error);
     },
   });
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     mutate(data);
   };
 

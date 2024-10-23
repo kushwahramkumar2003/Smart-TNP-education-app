@@ -12,6 +12,29 @@ import ProfileTab from "./EditMenus/ProfileTab";
 import ComeToMeForTab from "./EditMenus/ComeToMeForTab";
 import NeedHelpForTab from "./EditMenus/NeedHelpForTab";
 import SocialMediaTab from "./EditMenus/SocialMediaTab";
+import z from "zod";
+
+const cometomefor = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(10),
+  teacherProfileId: z.string(),
+});
+const needHelpFor = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(10),
+  teacherProfileId: z.string(),
+});
+
+export const TeacherProfileSchema = z.object({
+  bio: z.string().optional(),
+  interests: z.array(z.string()).optional(),
+  skills: z.array(z.string()).optional(),
+  location: z.string().optional(),
+  comeToMeFor: z.array(cometomefor).optional(),
+  needHelpFor: z.array(needHelpFor).optional(),
+});
 
 const EditProfile = () => {
   return (

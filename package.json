@@ -7,13 +7,14 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui:add": "npm --filter @repo/ui ui:add"
+    "ui:add": "npm --filter @repo/ui ui:add",
+    "prisma:dev": "cd packages/db && npm run prisma:dev"
   },
   "devDependencies": {
+    "@repo/typescript-config": "*",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.10",
-    "@repo/typescript-config": "*",
     "turbo": "latest"
   },
   "engines": {
@@ -23,5 +24,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "react-bootstrap": "^2.10.2",
+    "react-router-dom": "^6.23.0"
+  }
 }

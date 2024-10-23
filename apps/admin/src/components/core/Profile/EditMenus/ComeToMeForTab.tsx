@@ -16,8 +16,13 @@ import {
 import { Input } from "../../../ui/input";
 import { Button } from "../../../ui/button";
 import { VscLoading } from "react-icons/vsc";
+import { useRecoilState } from "recoil";
+import { UserProfile, userProfileAtom } from "@repo/store";
+import { updateProfile } from "../../../../services/profile.ts";
 
 const ComeToMeForTab = () => {
+  const userProfile = useRecoilState(userProfileAtom);
+
   const { toast } = useToast();
   const form = useForm<z.infer<typeof cometomefor>>({
     resolver: zodResolver(cometomefor),
@@ -25,8 +30,18 @@ const ComeToMeForTab = () => {
 
   const { isPending, mutate } = useMutation({
     mutationFn: async (data: z.infer<typeof cometomefor>) => {
-      const newData = { title: data.title, description: data.description };
-      setComeToMeForData([...ComeToMeForData, newData]);
+      console.log(data);
+      // const newData: UserProfile = {
+      //   id: "",
+      //   title: data.title,
+      //   description: data.description,
+      //   comeToMeFor: [], // Add the missing property
+      //   needHelpFor: [], // Add the missing property
+      //   status: "", // Add the missing property
+      // };
+
+      //@ts-ignore
+      updateProfile([...updatedUserComeToMeForData, newData]);
     },
     onSuccess: () => {
       toast({
@@ -39,17 +54,39 @@ const ComeToMeForTab = () => {
       form.setValue("description", "");
     },
     onError: (error: unknown) => {
-      if (error instanceof Error) {
-        toast({
-          variant: "destructive",
-          title: "Error occurred while signing up.",
-          description: error?.message || "An unknown error occurred.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
-        console.log(error.message);
-      }
+      handleMutationError(error);
+    },
+  });
 
-      console.log("Error:", error);
+  const handleMutationError = (error: unknown) => {
+    if (error instanceof Error) {
+      toast({
+        variant: "destructive",
+        title: "Error occurred while adding new item.",
+        description: error?.message || "An unknown error occurred.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+      console.log(error.message);
+    }
+  };
+
+  const { isPending: submitPending, mutate: submitFunction } = useMutation({
+    mutationFn: async (data: UserProfile) => {
+      console.info("come to me for data --> ", data);
+      //@ts-ignore some error
+      return await updateProfile(data);
+    },
+    onSuccess: (_data: UserProfile) => {
+      toast({
+        title: "Success",
+        description: "Profile updated successfully!",
+        variant: "default",
+        className: "text-green-500",
+      });
+      form.reset();
+    },
+    onError: (error: unknown) => {
+      handleMutationError(error);
     },
   });
 
@@ -57,35 +94,41 @@ const ComeToMeForTab = () => {
     mutate(data);
   };
 
-  const [ComeToMeForData, setComeToMeForData] = useState([
-    {
-      title: "UI/UX Design",
-      description:
-        "I can help you design a user interface that is both functional and visually appealing.",
-    },
-    {
-      title: "Web Development",
-      description:
-        "I can help you create a website or web application using HTML, CSS, and JavaScript.",
-    },
-  ]);
+  const [updatedUserComeToMeForData, _setUpdatedUserComeToMeForData] = useState<
+    UserProfile[]
+    //@ts-ignore some error
+  >(userProfile.comeToMeFor || []);
+
+  const submitHandler = () => {
+    const newUserProfile = { ...userProfile };
+    //@ts-ignore some error
+    newUserProfile.comeToMeFor = updatedUserComeToMeForData;
+    //@ts-ignore some error
+    submitFunction(newUserProfile);
+  };
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-4">
-        {ComeToMeForData.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="flex flex-col gap-2 p-3 rounded-lg bg-gray-100"
-            >
-              <h3 className="text-lg font-semibold text-gray-800">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-400">{item.description}</p>
-            </div>
-          );
-        })}
+        {updatedUserComeToMeForData.map((item, index) => (
+          <div
+            key={item.id || index}
+            className="flex flex-col gap-2 p-3 rounded-lg bg-gray-100"
+          >
+            <h3 className="text-lg font-semibold text-gray-800">
+              {
+                //@ts-ignore some error
+                item.title
+              }
+            </h3>
+            <p className="text-sm text-gray-400">
+              {
+                //@ts-ignore some error
+                item.description
+              }
+            </p>
+          </div>
+        ))}
       </div>
       <div>
         <Form {...form}>
@@ -94,40 +137,32 @@ const ComeToMeForTab = () => {
               <FormField
                 control={form.control}
                 name="title"
-                render={({ field }) => {
-                  return (
-                    <FormItem className="flex flex-col space-y-1.5">
-                      <FormLabel className="text-left">Title</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="text"
-                          placeholder="Your title"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                render={({ field }) => (
+                  <FormItem className="flex flex-col space-y-1.5">
+                    <FormLabel className="text-left">Title</FormLabel>
+                    <FormControl>
+                      <Input type="text" placeholder="Your title" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
               <FormField
                 control={form.control}
                 name="description"
-                render={({ field }) => {
-                  return (
-                    <FormItem className="flex flex-col space-y-1.5">
-                      <FormLabel className="text-left">Description</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="text"
-                          placeholder="Your description"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                render={({ field }) => (
+                  <FormItem className="flex flex-col space-y-1.5">
+                    <FormLabel className="text-left">Description</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Your description"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
               <div className="w-full flex flex-row justify-between">
                 <Button type="button" onClick={() => form.reset()}>
@@ -153,7 +188,9 @@ const ComeToMeForTab = () => {
         <div>
           <Button>Cancel</Button>
         </div>
-        <Button>Save Changes</Button>
+        <Button disabled={submitPending} onClick={submitHandler}>
+          Save Changes
+        </Button>
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { RxDashboard } from "react-icons/rx";
-import Class from "../../ui/Class";
-import CalendarChec from "../Calender";
+import Class from "../../ui/Class.tsx";
+import { Link} from "react-router-dom";
+import Calendar from "@/components/CalenderComponents/Calender.tsx";
 
 function DashboardLayout() {
   const [isTfiColored, setIsTfiColored] = useState(false);
-  const [isRxClored, setIsRxClored] = useState(false);
+  const [isRxClored, setIsRxClored] = useState(true);
 
   function changebg(icon: string) {
     if (icon === "TfiMenuAlt") {
@@ -17,7 +18,8 @@ function DashboardLayout() {
       setIsRxClored(true);
     }
   }
-
+  
+  let today = new Date(); 
   return (
     <>
       <div>
@@ -34,13 +36,16 @@ function DashboardLayout() {
             </p>
           </div>
           <div className="bg-white rounded-xl flex flex-row gap-2 items-center px-2 py-2">
-            <div
+           <Link to='/dashboard-bottom-menu'>
+           <div
               style={{backgroundColor: isTfiColored ? "#E11D48" : "" }}
               className={`rounded-xl px-3 py-1 ${isTfiColored ? 'text-white' : 'text-black'}`}
               onClick={() => changebg("TfiMenuAlt")}
             >
               <TfiMenuAlt className="" size={27} />
             </div>
+            </Link>
+            <Link to='/dashboard-bottom-menu'>
             <div
               style={{ backgroundColor: isRxClored ? "#E11D48" : "" }}
               className={`rounded-xl px-3 py-1 ${isRxClored ? 'text-white' : 'text-black'}`}
@@ -48,11 +53,12 @@ function DashboardLayout() {
             >
               <RxDashboard className="cursor-pointer" size={27} />
             </div>
+            </Link>
           </div>
         </div>
-        <div className="flex flex-row gap-2 justify-between p-4">
-          <Class></Class>
-          <CalendarChec></CalendarChec>
+        <div className="flex flex-row gap-4 py-4">
+          <Class selectedDay={today} selectedDaySchedules={[]}></Class>
+          <Calendar></Calendar>
         </div>
       </div>
     </>

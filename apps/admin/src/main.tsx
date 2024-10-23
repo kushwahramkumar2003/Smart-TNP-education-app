@@ -3,18 +3,17 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
 import "./index.css";
 import { Toaster } from "./components/ui/toaster.tsx";
-import store from "./store/index.ts";
+
+import { RecoilRoot } from "recoil";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Provider store={store}>
+    <RecoilRoot>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <App />
@@ -24,6 +23,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           )}
         </QueryClientProvider>
       </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+    </RecoilRoot>
+  </React.StrictMode>,
 );

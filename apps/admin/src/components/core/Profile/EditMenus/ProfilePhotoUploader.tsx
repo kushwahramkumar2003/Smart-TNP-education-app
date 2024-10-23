@@ -7,23 +7,19 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import axios, { AxiosResponse } from "axios";
-
-import {
-  getUserSelector,
-  setUserInfo,
-} from "../../../../store/slices/userReducers";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, UserState } from "../../../../types/user";
 import { Progress } from "../../../ui/progress";
+import { useToast } from "../../../ui/use-toast";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, UserState } from "@repo/store";
 axios.defaults.baseURL = "http://localhost:8080/api/v1";
 axios.defaults.withCredentials = true;
 
 export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
+  const { toast } = useToast();
   const [uploadProgress, setUploadProgress] = React.useState<number>(0);
-  const dispatch = useDispatch();
-  let user = useSelector(
-    (state: RootState): UserState => getUserSelector(state)
-  );
+  const user = useRecoilValue(userAtom);
+  const [_userState, setUserState] = useRecoilState(userAtom);
+
   const [images, setImages] = React.useState<ImageType[]>([
     { dataURL: iniImage, key: "data_url" },
   ]);
@@ -42,13 +38,12 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
         await uploadMedia("video", uploadedFile.file);
       }
     }
-
-    user.avatar = uploadedFile.dataURL || "";
-    dispatch(setUserInfo(user));
+    if (user) user.avatar = uploadedFile.dataURL || "";
+    setUserState(user);
     setImages(imageList);
   };
 
-  //@ts-ignore
+  //@ts-ignore some error
   const uploadMedia = async (type: string, file: File) => {
     const formData = new FormData();
     formData.append("avatar", file);
@@ -70,12 +65,30 @@ export function ProfilePhotoUploader({ iniImage }: { iniImage: string }) {
           },
         }
       );
-      dispatch(setUserInfo(response.data.updatedUser as UserState));
-      localStorage.setItem("user", JSON.stringify(response.data.updatedUser));
+      setUserState(response.data.updatedUser as UserState);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          avatar: response.data.updatedUser.avatar,
+        })
+      );
       console.log("Upload successful:", response.data.updatedUser);
+      toast({
+        title: "Success",
+        description: "Profile photo updated success!",
+        variant: "default",
+        className: "text-green-500",
+      });
 
       setUploadProgress(0); // Reset progress after successful upload
     } catch (error) {
+      toast({
+        title: "Error",
+        variant: "default",
+        description: "Error in updating profile image",
+        className: "text-red-600",
+      });
       console.error("Error uploading media:", error);
     }
   };

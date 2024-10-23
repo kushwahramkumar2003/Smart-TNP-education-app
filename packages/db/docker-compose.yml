@@ -1,0 +1,18 @@
+version: "3.5"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: tit-smart-tnp
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - tit-smart-tnp:/data/postgres
+    restart: unless-stopped
+
+volumes:
+  tit-smart-tnp:

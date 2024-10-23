@@ -4,10 +4,12 @@ import { HiOutlineChartPie } from "react-icons/hi2";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineTaskAlt } from "react-icons/md";
+
 import FilterButtons, {
   useFilterGoalsData,
 } from "../../hooks/useFilterGoalsData";
 import { useEffect } from "react";
+import CreateNewGoal from "../../components/core/Goals/CreateNewGoal";
 import GoalDataTable from "../../components/core/Goals/GoalDataTable";
 import {
   Table,
@@ -157,10 +159,14 @@ const Goals = () => {
 
   return (
     <div className="flex flex-col gap-6 overflow-y-scroll max-h-screen max-md:mb-8 max-sm:mb-6 pb-8">
-      <div className="flex gap-2 flex-col mt-4">
+   <div className="flex flex-row-reverse mr-5 mt-3 justify-between items-center">
+   <CreateNewGoal />
+   </div>
+      <div className="bg-white p-4 m-3 rounded-xl  flex gap-2 flex-col mt-4">
         <div className="flex flex-row justify-between">
           <p className="text-2xl font-semibold">My Courses</p>
-          <Button>+ Create New Goals</Button>
+          
+          {/* <Button>+ Create New Goals</Button> */}
         </div>
         <div className="grid grid-cols-5 max-md:grid-cols-3">
           {goalsStatusAndTypes.map((goal) => (
@@ -197,7 +203,7 @@ const Goals = () => {
         </button>
       </div> */}
             </TableHeader>
-            <TableBody className={cn(null, "max-h-screen overflow-y-auto")}>
+            <TableBody className={cn(null, "max-h-screen overflow-y-auto bg-white")}>
               {goalsData.map((goal) => (
                 <GoalDataTable goal={goal} key={goal.name} />
               ))}

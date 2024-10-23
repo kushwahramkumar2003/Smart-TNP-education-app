@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STUDENT
+  TEACHER
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  name           String?
+  password       String
+  avatar         String?
+  profile        StudentProfile? // Add relation to StudentProfile
+  teacherProfile TeacherProfile? // Add relation to TeacherProfile
+  role           Role            @default(STUDENT)
+}
+
+model TeacherRegistrationToken {
+  // Corrected typo in model name
+  id        String   @id @default(uuid())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String
+  role      Role     @default(TEACHER)
+}
+
+model StudentProfile {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
+  enrollmentId String   @unique
+  batch        String
+  department   String
+  semester     String
+  section      String
+  bio          String?
+  location     String?
+  website      String?
+  linkedin     String?
+  github       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TeacherProfile {
+  id          String        @id @default(uuid())
+  user        User          @relation(fields: [userId], references: [id])
+  userId      String        @unique
+  bio         String?
+  interests   String[]
+  skills      String[]
+  location    String?
+  comeToMeFor ComeToMeFor[]
+  needHelpFor NeedHelpFor[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ComeToMeFor {
+  id               String         @id @default(uuid())
+  title            String
+  teacherProfile   TeacherProfile @relation(fields: [teacherProfileId], references: [id])
+  teacherProfileId String
+  description      String
+}
+
+model NeedHelpFor {
+  id               String         @id @default(uuid())
+  title            String
+  teacherProfile   TeacherProfile @relation(fields: [teacherProfileId], references: [id])
+  teacherProfileId String
+  description      String
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  category    String
+  teacherId   String
+  lessons     Lesson[]
+}
+
+model Lesson {
+  id          String     @id @default(uuid())
+  title       String     @default("")
+  description String?    @default("")
+  resources   Resource[]
+  Course      Course     @relation(fields: [courseId], references: [id])
+  courseId    String
+  category    String     @default("")
+}
+
+enum ResourceType {
+  VIDEO
+  PDF
+  IMAGE
+}
+
+model Resource {
+  id        String       @id @default(uuid())
+  title     String
+  type      ResourceType
+  url       String
+  size      Int
+  Lesson    Lesson?      @relation(fields: [lessonId], references: [id])
+  lessonId  String?
+  duration  Int?
+  pageCount Int?
+  createdAt DateTime     @default(now())
+}
+
+model LiveClass {
+  id        String   @id @default(uuid())
+  className String
+  hostedBy  String
+  token     String
+  startedAt DateTime @default(now())
+}

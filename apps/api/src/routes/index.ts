@@ -1,26 +1,20 @@
 import { Router } from "express";
 import authRoutes from "./auth.routes";
 import usersRoutes from "./user.routes";
-import teachersRoutes from "./teacher.routes";
-import adminRoutes from "./admin";
+import adminRoutes from "./admin/index";
+import teacherRoutes from "./admin/teacher.routes";
 import profileRoutes from "./profile.routes";
 import {
   authMiddleware,
-  extractUserMiddleware,
   rateLimitMiddleware,
 } from "../middlewares/authMiddlewares";
 
 const router = Router();
 
 router.use("/auth", rateLimitMiddleware, authRoutes);
-router.use("/user", rateLimitMiddleware, extractUserMiddleware, usersRoutes);
-router.use(
-  "/teacher",
-  rateLimitMiddleware,
-  extractUserMiddleware,
-  teachersRoutes
-);
-router.use("/admin", rateLimitMiddleware, extractUserMiddleware, adminRoutes);
+router.use("/user", rateLimitMiddleware, authMiddleware, usersRoutes);
+router.use("/teacher", rateLimitMiddleware, authMiddleware, teacherRoutes);
+router.use("/admin", rateLimitMiddleware, authMiddleware, adminRoutes);
 router.use("/profile", rateLimitMiddleware, authMiddleware, profileRoutes);
 
 export default router;
