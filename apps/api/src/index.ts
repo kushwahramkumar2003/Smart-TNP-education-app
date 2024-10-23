@@ -9,20 +9,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
-<<<<<<< HEAD
-  cors({
-    // origin: "*",
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:8080",
-      "http://localhost:5172",
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "http://localhost:5175",
-    ],
-    credentials: true,
-  })
-=======
     cors({
         // origin: "*",
         origin: [
@@ -35,7 +21,6 @@ app.use(
         ],
         credentials: true,
     })
->>>>>>> 277c2e0 (video calling server created)
 );
 
 app.use("/api/v1", routes);
